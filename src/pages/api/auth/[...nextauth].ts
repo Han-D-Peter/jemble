@@ -14,7 +14,7 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.NAVER_SECRET as string,
       profile(profile) {
         return {
-          ...profile,
+          ...profile.response,
           points: 1000,
         };
       },
@@ -22,5 +22,11 @@ export const authOptions: NextAuthOptions = {
     // ...add more providers here
   ],
   secret: process.env.SECRET,
+  callbacks: {
+    session: async ({ session, user }) => {
+      session.user.id = user.id;
+      return Promise.resolve(session);
+    },
+  },
 };
 export default nextAuth(authOptions);

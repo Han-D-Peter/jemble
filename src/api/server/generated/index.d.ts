@@ -49,7 +49,7 @@ export type User = {
   name: string | null
   email: string | null
   emailVerified: Date | null
-  image: string | null
+  profile_image: string | null
   points: number
 }
 
@@ -2872,7 +2872,7 @@ export namespace Prisma {
     name: string | null
     email: string | null
     emailVerified: Date | null
-    image: string | null
+    profile_image: string | null
     points: number | null
   }
 
@@ -2881,7 +2881,7 @@ export namespace Prisma {
     name: string | null
     email: string | null
     emailVerified: Date | null
-    image: string | null
+    profile_image: string | null
     points: number | null
   }
 
@@ -2890,7 +2890,7 @@ export namespace Prisma {
     name: number
     email: number
     emailVerified: number
-    image: number
+    profile_image: number
     points: number
     _all: number
   }
@@ -2909,7 +2909,7 @@ export namespace Prisma {
     name?: true
     email?: true
     emailVerified?: true
-    image?: true
+    profile_image?: true
     points?: true
   }
 
@@ -2918,7 +2918,7 @@ export namespace Prisma {
     name?: true
     email?: true
     emailVerified?: true
-    image?: true
+    profile_image?: true
     points?: true
   }
 
@@ -2927,7 +2927,7 @@ export namespace Prisma {
     name?: true
     email?: true
     emailVerified?: true
-    image?: true
+    profile_image?: true
     points?: true
     _all?: true
   }
@@ -3024,7 +3024,7 @@ export namespace Prisma {
     name: string | null
     email: string | null
     emailVerified: Date | null
-    image: string | null
+    profile_image: string | null
     points: number
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
@@ -3052,7 +3052,7 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     emailVerified?: boolean
-    image?: boolean
+    profile_image?: boolean
     points?: boolean
     accounts?: boolean | User$accountsArgs
     sessions?: boolean | User$sessionsArgs
@@ -4795,7 +4795,7 @@ export namespace Prisma {
     name: 'name',
     email: 'email',
     emailVerified: 'emailVerified',
-    image: 'image',
+    profile_image: 'profile_image',
     points: 'points'
   };
 
@@ -4946,7 +4946,7 @@ export namespace Prisma {
     name?: StringNullableFilter | string | null
     email?: StringNullableFilter | string | null
     emailVerified?: DateTimeNullableFilter | Date | string | null
-    image?: StringNullableFilter | string | null
+    profile_image?: StringNullableFilter | string | null
     points?: IntFilter | number
     accounts?: AccountListRelationFilter
     sessions?: SessionListRelationFilter
@@ -4957,7 +4957,7 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     emailVerified?: SortOrder
-    image?: SortOrder
+    profile_image?: SortOrder
     points?: SortOrder
     accounts?: AccountOrderByRelationAggregateInput
     sessions?: SessionOrderByRelationAggregateInput
@@ -4973,7 +4973,7 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     emailVerified?: SortOrder
-    image?: SortOrder
+    profile_image?: SortOrder
     points?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
@@ -4990,7 +4990,7 @@ export namespace Prisma {
     name?: StringNullableWithAggregatesFilter | string | null
     email?: StringNullableWithAggregatesFilter | string | null
     emailVerified?: DateTimeNullableWithAggregatesFilter | Date | string | null
-    image?: StringNullableWithAggregatesFilter | string | null
+    profile_image?: StringNullableWithAggregatesFilter | string | null
     points?: IntWithAggregatesFilter | number
   }
 
@@ -5189,7 +5189,7 @@ export namespace Prisma {
     name?: string | null
     email?: string | null
     emailVerified?: Date | string | null
-    image?: string | null
+    profile_image?: string | null
     points: number
     accounts?: AccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
@@ -5200,7 +5200,7 @@ export namespace Prisma {
     name?: string | null
     email?: string | null
     emailVerified?: Date | string | null
-    image?: string | null
+    profile_image?: string | null
     points: number
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
@@ -5211,7 +5211,7 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
+    profile_image?: NullableStringFieldUpdateOperationsInput | string | null
     points?: IntFieldUpdateOperationsInput | number
     accounts?: AccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
@@ -5222,7 +5222,7 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
+    profile_image?: NullableStringFieldUpdateOperationsInput | string | null
     points?: IntFieldUpdateOperationsInput | number
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -5233,7 +5233,7 @@ export namespace Prisma {
     name?: string | null
     email?: string | null
     emailVerified?: Date | string | null
-    image?: string | null
+    profile_image?: string | null
     points: number
   }
 
@@ -5242,7 +5242,7 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
+    profile_image?: NullableStringFieldUpdateOperationsInput | string | null
     points?: IntFieldUpdateOperationsInput | number
   }
 
@@ -5251,7 +5251,7 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
+    profile_image?: NullableStringFieldUpdateOperationsInput | string | null
     points?: IntFieldUpdateOperationsInput | number
   }
 
@@ -5542,7 +5542,7 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     emailVerified?: SortOrder
-    image?: SortOrder
+    profile_image?: SortOrder
     points?: SortOrder
   }
 
@@ -5555,7 +5555,7 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     emailVerified?: SortOrder
-    image?: SortOrder
+    profile_image?: SortOrder
     points?: SortOrder
   }
 
@@ -5564,7 +5564,7 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     emailVerified?: SortOrder
-    image?: SortOrder
+    profile_image?: SortOrder
     points?: SortOrder
   }
 
@@ -5962,7 +5962,7 @@ export namespace Prisma {
     name?: string | null
     email?: string | null
     emailVerified?: Date | string | null
-    image?: string | null
+    profile_image?: string | null
     points: number
     sessions?: SessionCreateNestedManyWithoutUserInput
   }
@@ -5972,7 +5972,7 @@ export namespace Prisma {
     name?: string | null
     email?: string | null
     emailVerified?: Date | string | null
-    image?: string | null
+    profile_image?: string | null
     points: number
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
   }
@@ -5992,7 +5992,7 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
+    profile_image?: NullableStringFieldUpdateOperationsInput | string | null
     points?: IntFieldUpdateOperationsInput | number
     sessions?: SessionUpdateManyWithoutUserNestedInput
   }
@@ -6002,7 +6002,7 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
+    profile_image?: NullableStringFieldUpdateOperationsInput | string | null
     points?: IntFieldUpdateOperationsInput | number
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -6012,7 +6012,7 @@ export namespace Prisma {
     name?: string | null
     email?: string | null
     emailVerified?: Date | string | null
-    image?: string | null
+    profile_image?: string | null
     points: number
     accounts?: AccountCreateNestedManyWithoutUserInput
   }
@@ -6022,7 +6022,7 @@ export namespace Prisma {
     name?: string | null
     email?: string | null
     emailVerified?: Date | string | null
-    image?: string | null
+    profile_image?: string | null
     points: number
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
   }
@@ -6042,7 +6042,7 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
+    profile_image?: NullableStringFieldUpdateOperationsInput | string | null
     points?: IntFieldUpdateOperationsInput | number
     accounts?: AccountUpdateManyWithoutUserNestedInput
   }
@@ -6052,7 +6052,7 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
+    profile_image?: NullableStringFieldUpdateOperationsInput | string | null
     points?: IntFieldUpdateOperationsInput | number
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
   }
