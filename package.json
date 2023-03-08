@@ -2,6 +2,7 @@
   "name": "jemble",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "yarn db:generate && next build",
@@ -10,17 +11,27 @@
     "db:generate": "yarn pnpify prisma generate",
     "db:push": "yarn pnpify prisma db push"
   },
-  "packageManager": "yarn@3.4.1",
+  "packageManager": "yarn@3.3.1",
   "dependencies": {
+    "@emotion/babel-preset-css-prop": "^11.10.0",
+    "@emotion/core": "^11.0.0",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
     "@next-auth/prisma-adapter": "^1.0.5",
     "@prisma/client": "4.11.0",
+    "@tanstack/react-query": "^4.26.1",
+    "@tanstack/react-query-devtools": "^4.26.1",
     "@yarnpkg/pnpify": "^4.0.0-rc.39",
+    "got": "^12.6.0",
+    "ky": "^0.33.2",
     "next": "^13.2.1",
     "next-auth": "^4.19.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "recoil": "^0.7.7"
   },
   "devDependencies": {
+    "@emotion/babel-plugin": "^11.10.6",
     "@types/node": "18.14.2",
     "@types/react": "18.0.28",
     "prisma": "4.11.0",
