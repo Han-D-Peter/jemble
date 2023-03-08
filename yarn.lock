@@ -1333,6 +1333,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "jemble@workspace:."
   dependencies:
+    "@emotion/babel-plugin": ^11.10.6
     "@emotion/babel-preset-css-prop": ^11.10.0
     "@emotion/core": ^11.0.0
     "@emotion/react": ^11.10.6

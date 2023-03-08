@@ -28,6 +28,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
+            ["@emotion/babel-plugin", "npm:11.10.6"],\
             ["@emotion/babel-preset-css-prop", "virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:11.10.0"],\
             ["@emotion/core", "npm:11.0.0"],\
             ["@emotion/react", "virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:11.10.6"],\
@@ -1718,6 +1719,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["jemble", "workspace:."],\
+            ["@emotion/babel-plugin", "npm:11.10.6"],\
             ["@emotion/babel-preset-css-prop", "virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:11.10.0"],\
             ["@emotion/core", "npm:11.0.0"],\
             ["@emotion/react", "virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:11.10.6"],\
