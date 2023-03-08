@@ -384,8 +384,8 @@ export namespace Prisma {
 
 
   /**
-   * Prisma Client JS version: 4.10.1
-   * Query Engine version: aead147aa326ccb985dcfed5b065b4fdabd44b19
+   * Prisma Client JS version: 4.11.0
+   * Query Engine version: 8fde8fef4033376662cad983758335009d522acb
    */
   export type PrismaVersion = {
     client: string
@@ -3257,13 +3257,13 @@ export namespace Prisma {
     points?: boolean
     unionId?: boolean
     doneTime?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     union?: boolean | UnionArgs
     followedBy?: boolean | User$followedByArgs
     following?: boolean | User$followingArgs
     accounts?: boolean | User$accountsArgs
     sessions?: boolean | User$sessionsArgs
-    createdAt?: boolean
-    updatedAt?: boolean
     _count?: boolean | UserCountOutputTypeArgs
   }
 
@@ -5208,9 +5208,9 @@ export namespace Prisma {
     name?: boolean
     union_image?: boolean
     points?: boolean
-    user?: boolean | Union$userArgs
     createdAt?: boolean
     updatedAt?: boolean
+    user?: boolean | Union$userArgs
     _count?: boolean | UnionCountOutputTypeArgs
   }
 
@@ -9965,13 +9965,13 @@ export namespace Prisma {
     points?: IntFilter | number
     unionId?: StringNullableFilter | string | null
     doneTime?: DateTimeNullableFilter | Date | string | null
+    createdAt?: DateTimeFilter | Date | string
+    updatedAt?: DateTimeFilter | Date | string
     union?: XOR<UnionRelationFilter, UnionWhereInput> | null
     followedBy?: UserListRelationFilter
     following?: UserListRelationFilter
     accounts?: AccountListRelationFilter
     sessions?: SessionListRelationFilter
-    createdAt?: DateTimeFilter | Date | string
-    updatedAt?: DateTimeFilter | Date | string
   }
 
   export type UserOrderByWithRelationInput = {
@@ -9983,13 +9983,13 @@ export namespace Prisma {
     points?: SortOrder
     unionId?: SortOrder
     doneTime?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     union?: UnionOrderByWithRelationInput
     followedBy?: UserOrderByRelationAggregateInput
     following?: UserOrderByRelationAggregateInput
     accounts?: AccountOrderByRelationAggregateInput
     sessions?: SessionOrderByRelationAggregateInput
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
   }
 
   export type UserWhereUniqueInput = {
@@ -10077,9 +10077,9 @@ export namespace Prisma {
     name?: StringFilter | string
     union_image?: StringNullableFilter | string | null
     points?: IntFilter | number
-    user?: UserListRelationFilter
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
+    user?: UserListRelationFilter
   }
 
   export type UnionOrderByWithRelationInput = {
@@ -10087,9 +10087,9 @@ export namespace Prisma {
     name?: SortOrder
     union_image?: SortOrder
     points?: SortOrder
-    user?: UserOrderByRelationAggregateInput
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    user?: UserOrderByRelationAggregateInput
   }
 
   export type UnionWhereUniqueInput = {
@@ -10493,13 +10493,13 @@ export namespace Prisma {
     profile_image?: string | null
     points?: number
     doneTime?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     union?: UnionCreateNestedOneWithoutUserInput
     followedBy?: UserCreateNestedManyWithoutFollowingInput
     following?: UserCreateNestedManyWithoutFollowedByInput
     accounts?: AccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type UserUncheckedCreateInput = {
@@ -10511,12 +10511,12 @@ export namespace Prisma {
     points?: number
     unionId?: string | null
     doneTime?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     followedBy?: UserUncheckedCreateNestedManyWithoutFollowingInput
     following?: UserUncheckedCreateNestedManyWithoutFollowedByInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type UserUpdateInput = {
@@ -10527,13 +10527,13 @@ export namespace Prisma {
     profile_image?: NullableStringFieldUpdateOperationsInput | string | null
     points?: IntFieldUpdateOperationsInput | number
     doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     union?: UnionUpdateOneWithoutUserNestedInput
     followedBy?: UserUpdateManyWithoutFollowingNestedInput
     following?: UserUpdateManyWithoutFollowedByNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUncheckedUpdateInput = {
@@ -10545,12 +10545,12 @@ export namespace Prisma {
     points?: IntFieldUpdateOperationsInput | number
     unionId?: NullableStringFieldUpdateOperationsInput | string | null
     doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     followedBy?: UserUncheckedUpdateManyWithoutFollowingNestedInput
     following?: UserUncheckedUpdateManyWithoutFollowedByNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserCreateManyInput = {
@@ -10638,9 +10638,9 @@ export namespace Prisma {
     name: string
     union_image?: string | null
     points?: number
-    user?: UserCreateNestedManyWithoutUnionInput
     createdAt?: Date | string
     updatedAt?: Date | string
+    user?: UserCreateNestedManyWithoutUnionInput
   }
 
   export type UnionUncheckedCreateInput = {
@@ -10648,9 +10648,9 @@ export namespace Prisma {
     name: string
     union_image?: string | null
     points?: number
-    user?: UserUncheckedCreateNestedManyWithoutUnionInput
     createdAt?: Date | string
     updatedAt?: Date | string
+    user?: UserUncheckedCreateNestedManyWithoutUnionInput
   }
 
   export type UnionUpdateInput = {
@@ -10658,9 +10658,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     union_image?: NullableStringFieldUpdateOperationsInput | string | null
     points?: IntFieldUpdateOperationsInput | number
-    user?: UserUpdateManyWithoutUnionNestedInput
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateManyWithoutUnionNestedInput
   }
 
   export type UnionUncheckedUpdateInput = {
@@ -10668,9 +10668,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     union_image?: NullableStringFieldUpdateOperationsInput | string | null
     points?: IntFieldUpdateOperationsInput | number
-    user?: UserUncheckedUpdateManyWithoutUnionNestedInput
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUncheckedUpdateManyWithoutUnionNestedInput
   }
 
   export type UnionCreateManyInput = {
@@ -11972,12 +11972,12 @@ export namespace Prisma {
     profile_image?: string | null
     points?: number
     doneTime?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     union?: UnionCreateNestedOneWithoutUserInput
     followedBy?: UserCreateNestedManyWithoutFollowingInput
     following?: UserCreateNestedManyWithoutFollowedByInput
     sessions?: SessionCreateNestedManyWithoutUserInput
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -11989,11 +11989,11 @@ export namespace Prisma {
     points?: number
     unionId?: string | null
     doneTime?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     followedBy?: UserUncheckedCreateNestedManyWithoutFollowingInput
     following?: UserUncheckedCreateNestedManyWithoutFollowedByInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -12014,12 +12014,12 @@ export namespace Prisma {
     profile_image?: NullableStringFieldUpdateOperationsInput | string | null
     points?: IntFieldUpdateOperationsInput | number
     doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     union?: UnionUpdateOneWithoutUserNestedInput
     followedBy?: UserUpdateManyWithoutFollowingNestedInput
     following?: UserUpdateManyWithoutFollowedByNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -12031,11 +12031,11 @@ export namespace Prisma {
     points?: IntFieldUpdateOperationsInput | number
     unionId?: NullableStringFieldUpdateOperationsInput | string | null
     doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     followedBy?: UserUncheckedUpdateManyWithoutFollowingNestedInput
     following?: UserUncheckedUpdateManyWithoutFollowedByNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -12046,12 +12046,12 @@ export namespace Prisma {
     profile_image?: string | null
     points?: number
     doneTime?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     union?: UnionCreateNestedOneWithoutUserInput
     followedBy?: UserCreateNestedManyWithoutFollowingInput
     following?: UserCreateNestedManyWithoutFollowedByInput
     accounts?: AccountCreateNestedManyWithoutUserInput
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -12063,11 +12063,11 @@ export namespace Prisma {
     points?: number
     unionId?: string | null
     doneTime?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     followedBy?: UserUncheckedCreateNestedManyWithoutFollowingInput
     following?: UserUncheckedCreateNestedManyWithoutFollowedByInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -12088,12 +12088,12 @@ export namespace Prisma {
     profile_image?: NullableStringFieldUpdateOperationsInput | string | null
     points?: IntFieldUpdateOperationsInput | number
     doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     union?: UnionUpdateOneWithoutUserNestedInput
     followedBy?: UserUpdateManyWithoutFollowingNestedInput
     following?: UserUpdateManyWithoutFollowedByNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -12105,11 +12105,11 @@ export namespace Prisma {
     points?: IntFieldUpdateOperationsInput | number
     unionId?: NullableStringFieldUpdateOperationsInput | string | null
     doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     followedBy?: UserUncheckedUpdateManyWithoutFollowingNestedInput
     following?: UserUncheckedUpdateManyWithoutFollowedByNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UnionCreateWithoutUserInput = {
@@ -12143,12 +12143,12 @@ export namespace Prisma {
     profile_image?: string | null
     points?: number
     doneTime?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     union?: UnionCreateNestedOneWithoutUserInput
     followedBy?: UserCreateNestedManyWithoutFollowingInput
     accounts?: AccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type UserUncheckedCreateWithoutFollowingInput = {
@@ -12160,11 +12160,11 @@ export namespace Prisma {
     points?: number
     unionId?: string | null
     doneTime?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     followedBy?: UserUncheckedCreateNestedManyWithoutFollowingInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type UserCreateOrConnectWithoutFollowingInput = {
@@ -12180,12 +12180,12 @@ export namespace Prisma {
     profile_image?: string | null
     points?: number
     doneTime?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     union?: UnionCreateNestedOneWithoutUserInput
     following?: UserCreateNestedManyWithoutFollowedByInput
     accounts?: AccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type UserUncheckedCreateWithoutFollowedByInput = {
@@ -12197,11 +12197,11 @@ export namespace Prisma {
     points?: number
     unionId?: string | null
     doneTime?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     following?: UserUncheckedCreateNestedManyWithoutFollowedByInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type UserCreateOrConnectWithoutFollowedByInput = {
@@ -12408,12 +12408,12 @@ export namespace Prisma {
     profile_image?: string | null
     points?: number
     doneTime?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     followedBy?: UserCreateNestedManyWithoutFollowingInput
     following?: UserCreateNestedManyWithoutFollowedByInput
     accounts?: AccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type UserUncheckedCreateWithoutUnionInput = {
@@ -12424,12 +12424,12 @@ export namespace Prisma {
     profile_image?: string | null
     points?: number
     doneTime?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     followedBy?: UserUncheckedCreateNestedManyWithoutFollowingInput
     following?: UserUncheckedCreateNestedManyWithoutFollowedByInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type UserCreateOrConnectWithoutUnionInput = {
@@ -12486,12 +12486,12 @@ export namespace Prisma {
     profile_image?: NullableStringFieldUpdateOperationsInput | string | null
     points?: IntFieldUpdateOperationsInput | number
     doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     union?: UnionUpdateOneWithoutUserNestedInput
     followedBy?: UserUpdateManyWithoutFollowingNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUncheckedUpdateWithoutFollowingInput = {
@@ -12503,11 +12503,11 @@ export namespace Prisma {
     points?: IntFieldUpdateOperationsInput | number
     unionId?: NullableStringFieldUpdateOperationsInput | string | null
     doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     followedBy?: UserUncheckedUpdateManyWithoutFollowingNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUncheckedUpdateManyWithoutFollowedByInput = {
@@ -12531,12 +12531,12 @@ export namespace Prisma {
     profile_image?: NullableStringFieldUpdateOperationsInput | string | null
     points?: IntFieldUpdateOperationsInput | number
     doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     union?: UnionUpdateOneWithoutUserNestedInput
     following?: UserUpdateManyWithoutFollowedByNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUncheckedUpdateWithoutFollowedByInput = {
@@ -12548,11 +12548,11 @@ export namespace Prisma {
     points?: IntFieldUpdateOperationsInput | number
     unionId?: NullableStringFieldUpdateOperationsInput | string | null
     doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     following?: UserUncheckedUpdateManyWithoutFollowedByNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUncheckedUpdateManyWithoutFollowingInput = {
@@ -12648,12 +12648,12 @@ export namespace Prisma {
     profile_image?: NullableStringFieldUpdateOperationsInput | string | null
     points?: IntFieldUpdateOperationsInput | number
     doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     followedBy?: UserUpdateManyWithoutFollowingNestedInput
     following?: UserUpdateManyWithoutFollowedByNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUncheckedUpdateWithoutUnionInput = {
@@ -12664,12 +12664,12 @@ export namespace Prisma {
     profile_image?: NullableStringFieldUpdateOperationsInput | string | null
     points?: IntFieldUpdateOperationsInput | number
     doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     followedBy?: UserUncheckedUpdateManyWithoutFollowingNestedInput
     following?: UserUncheckedUpdateManyWithoutFollowedByNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUncheckedUpdateManyWithoutUserInput = {
