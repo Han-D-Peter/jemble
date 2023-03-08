@@ -40,6 +40,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:18.14.2"],\
             ["@types/react", "npm:18.0.28"],\
             ["@yarnpkg/pnpify", "npm:4.0.0-rc.40"],\
+            ["ky", "npm:0.33.2"],\
             ["next", "virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:13.2.3"],\
             ["next-auth", "virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:4.20.1"],\
             ["prisma", "npm:4.11.0"],\
@@ -1731,6 +1732,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:18.14.2"],\
             ["@types/react", "npm:18.0.28"],\
             ["@yarnpkg/pnpify", "npm:4.0.0-rc.40"],\
+            ["ky", "npm:0.33.2"],\
             ["next", "virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:13.2.3"],\
             ["next-auth", "virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:4.20.1"],\
             ["prisma", "npm:4.11.0"],\
@@ -1795,6 +1797,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["keyv", "npm:4.5.2"],\
             ["json-buffer", "npm:3.0.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["ky", [\
+        ["npm:0.33.2", {\
+          "packageLocation": "./.yarn/cache/ky-npm-0.33.2-962f722db7-bb5b1685b7.zip/node_modules/ky/",\
+          "packageDependencies": [\
+            ["ky", "npm:0.33.2"]\
           ],\
           "linkType": "HARD"\
         }]\
