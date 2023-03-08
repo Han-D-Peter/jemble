@@ -30,6 +30,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@next-auth/prisma-adapter", "virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:1.0.5"],\
             ["@prisma/client", "virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:4.11.0"],\
+            ["@tanstack/react-query", "virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:4.26.1"],\
+            ["@tanstack/react-query-devtools", "virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:4.26.1"],\
             ["@types/node", "npm:18.14.2"],\
             ["@types/react", "npm:18.0.28"],\
             ["@yarnpkg/pnpify", "npm:4.0.0-rc.40"],\
@@ -38,7 +40,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prisma", "npm:4.11.0"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:18.2.0"],\
-            ["typescript", "patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=23ec76"]\
+            ["typescript", "patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=ad5954"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -321,6 +323,90 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@szmarczak/http-timer", "npm:4.0.6"],\
             ["defer-to-connect", "npm:2.0.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@tanstack/match-sorter-utils", [\
+        ["npm:8.7.6", {\
+          "packageLocation": "./.yarn/cache/@tanstack-match-sorter-utils-npm-8.7.6-2bff79c61d-3f3dda277e.zip/node_modules/@tanstack/match-sorter-utils/",\
+          "packageDependencies": [\
+            ["@tanstack/match-sorter-utils", "npm:8.7.6"],\
+            ["remove-accents", "npm:0.4.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@tanstack/query-core", [\
+        ["npm:4.26.1", {\
+          "packageLocation": "./.yarn/cache/@tanstack-query-core-npm-4.26.1-b4ec767cdf-c7bc751d7d.zip/node_modules/@tanstack/query-core/",\
+          "packageDependencies": [\
+            ["@tanstack/query-core", "npm:4.26.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@tanstack/react-query", [\
+        ["npm:4.26.1", {\
+          "packageLocation": "./.yarn/cache/@tanstack-react-query-npm-4.26.1-1d638817b0-3b43a5acc8.zip/node_modules/@tanstack/react-query/",\
+          "packageDependencies": [\
+            ["@tanstack/react-query", "npm:4.26.1"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:4.26.1", {\
+          "packageLocation": "./.yarn/__virtual__/@tanstack-react-query-virtual-4d71803ee0/0/cache/@tanstack-react-query-npm-4.26.1-1d638817b0-3b43a5acc8.zip/node_modules/@tanstack/react-query/",\
+          "packageDependencies": [\
+            ["@tanstack/react-query", "virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:4.26.1"],\
+            ["@tanstack/query-core", "npm:4.26.1"],\
+            ["@types/react", "npm:18.0.28"],\
+            ["@types/react-dom", null],\
+            ["@types/react-native", null],\
+            ["react", "npm:18.2.0"],\
+            ["react-dom", "virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:18.2.0"],\
+            ["react-native", null],\
+            ["use-sync-external-store", "virtual:211ff7b909fd542c8983b32fc08d455837ba7a5a65b3f4e8872f51b83aa6b4593e3ae3258a947815647de9fc0f602b5c2d24038b4662ad071f13d680d9e797e5#npm:1.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react-dom",\
+            "@types/react-native",\
+            "@types/react",\
+            "react-dom",\
+            "react-native",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@tanstack/react-query-devtools", [\
+        ["npm:4.26.1", {\
+          "packageLocation": "./.yarn/cache/@tanstack-react-query-devtools-npm-4.26.1-d2ce54a837-d647115677.zip/node_modules/@tanstack/react-query-devtools/",\
+          "packageDependencies": [\
+            ["@tanstack/react-query-devtools", "npm:4.26.1"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:4.26.1", {\
+          "packageLocation": "./.yarn/__virtual__/@tanstack-react-query-devtools-virtual-211ff7b909/0/cache/@tanstack-react-query-devtools-npm-4.26.1-d2ce54a837-d647115677.zip/node_modules/@tanstack/react-query-devtools/",\
+          "packageDependencies": [\
+            ["@tanstack/react-query-devtools", "virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:4.26.1"],\
+            ["@tanstack/match-sorter-utils", "npm:8.7.6"],\
+            ["@tanstack/react-query", "virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:4.26.1"],\
+            ["@types/react", "npm:18.0.28"],\
+            ["@types/react-dom", null],\
+            ["@types/tanstack__react-query", null],\
+            ["react", "npm:18.2.0"],\
+            ["react-dom", "virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:18.2.0"],\
+            ["superjson", "npm:1.12.2"],\
+            ["use-sync-external-store", "virtual:211ff7b909fd542c8983b32fc08d455837ba7a5a65b3f4e8872f51b83aa6b4593e3ae3258a947815647de9fc0f602b5c2d24038b4662ad071f13d680d9e797e5#npm:1.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@tanstack/react-query",\
+            "@types/react-dom",\
+            "@types/react",\
+            "@types/tanstack__react-query",\
+            "react-dom",\
+            "react"\
           ],\
           "linkType": "HARD"\
         }]\
@@ -761,6 +847,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["copy-anything", [\
+        ["npm:3.0.3", {\
+          "packageLocation": "./.yarn/cache/copy-anything-npm-3.0.3-a24d77ec4d-d456dc5ec9.zip/node_modules/copy-anything/",\
+          "packageDependencies": [\
+            ["copy-anything", "npm:3.0.3"],\
+            ["is-what", "npm:4.1.8"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["cross-spawn", [\
         ["npm:7.0.3", {\
           "packageLocation": "./.yarn/cache/cross-spawn-npm-7.0.3-e4ff3e65b3-671cc7c728.zip/node_modules/cross-spawn/",\
@@ -1013,6 +1109,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["is-what", [\
+        ["npm:4.1.8", {\
+          "packageLocation": "./.yarn/cache/is-what-npm-4.1.8-57bef8cfbc-b9bec3acff.zip/node_modules/is-what/",\
+          "packageDependencies": [\
+            ["is-what", "npm:4.1.8"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["isexe", [\
         ["npm:2.0.0", {\
           "packageLocation": "./.yarn/cache/isexe-npm-2.0.0-b58870bd2e-26bf6c5480.zip/node_modules/isexe/",\
@@ -1029,6 +1134,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jemble", "workspace:."],\
             ["@next-auth/prisma-adapter", "virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:1.0.5"],\
             ["@prisma/client", "virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:4.11.0"],\
+            ["@tanstack/react-query", "virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:4.26.1"],\
+            ["@tanstack/react-query-devtools", "virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:4.26.1"],\
             ["@types/node", "npm:18.14.2"],\
             ["@types/react", "npm:18.0.28"],\
             ["@yarnpkg/pnpify", "npm:4.0.0-rc.40"],\
@@ -1037,7 +1144,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prisma", "npm:4.11.0"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:18.2.0"],\
-            ["typescript", "patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=23ec76"]\
+            ["typescript", "patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=ad5954"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -1571,6 +1678,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["remove-accents", [\
+        ["npm:0.4.2", {\
+          "packageLocation": "./.yarn/cache/remove-accents-npm-0.4.2-7cb341092a-84a6988555.zip/node_modules/remove-accents/",\
+          "packageDependencies": [\
+            ["remove-accents", "npm:0.4.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["resolve-alpn", [\
         ["npm:1.2.1", {\
           "packageLocation": "./.yarn/cache/resolve-alpn-npm-1.2.1-af77edd28b-f558071fcb.zip/node_modules/resolve-alpn/",\
@@ -1716,6 +1832,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["superjson", [\
+        ["npm:1.12.2", {\
+          "packageLocation": "./.yarn/cache/superjson-npm-1.12.2-e37d205ed2-cf7735e172.zip/node_modules/superjson/",\
+          "packageDependencies": [\
+            ["superjson", "npm:1.12.2"],\
+            ["copy-anything", "npm:3.0.3"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["supports-color", [\
         ["npm:7.2.0", {\
           "packageLocation": "./.yarn/cache/supports-color-npm-7.2.0-606bfcf7da-3dda818de0.zip/node_modules/supports-color/",\
@@ -1797,10 +1923,32 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["typescript", [\
-        ["patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=23ec76", {\
-          "packageLocation": "./.yarn/cache/typescript-patch-72dc6f164f-ab417a2f39.zip/node_modules/typescript/",\
+        ["patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=ad5954", {\
+          "packageLocation": "./.yarn/cache/typescript-patch-2f73799a60-8f6260acc8.zip/node_modules/typescript/",\
           "packageDependencies": [\
-            ["typescript", "patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=23ec76"]\
+            ["typescript", "patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=ad5954"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["use-sync-external-store", [\
+        ["npm:1.2.0", {\
+          "packageLocation": "./.yarn/cache/use-sync-external-store-npm-1.2.0-44f75d2564-5c639e0f8d.zip/node_modules/use-sync-external-store/",\
+          "packageDependencies": [\
+            ["use-sync-external-store", "npm:1.2.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:211ff7b909fd542c8983b32fc08d455837ba7a5a65b3f4e8872f51b83aa6b4593e3ae3258a947815647de9fc0f602b5c2d24038b4662ad071f13d680d9e797e5#npm:1.2.0", {\
+          "packageLocation": "./.yarn/__virtual__/use-sync-external-store-virtual-cd87d48e16/0/cache/use-sync-external-store-npm-1.2.0-44f75d2564-5c639e0f8d.zip/node_modules/use-sync-external-store/",\
+          "packageDependencies": [\
+            ["use-sync-external-store", "virtual:211ff7b909fd542c8983b32fc08d455837ba7a5a65b3f4e8872f51b83aa6b4593e3ae3258a947815647de9fc0f602b5c2d24038b4662ad071f13d680d9e797e5#npm:1.2.0"],\
+            ["@types/react", "npm:18.0.28"],\
+            ["react", "npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react",\
+            "react"\
           ],\
           "linkType": "HARD"\
         }]\
@@ -3488,10 +3636,6 @@ class ZipFS extends BasePortableFakeFS {
     this.prepareClose();
     if (!this.lzSource)
       throw new Error(`ZipFS was not created from a Buffer`);
-    if (this.entries.size === 0) {
-      this.discardAndClose();
-      return makeEmptyArchive();
-    }
     try {
       this.libzip.source.keep(this.lzSource);
       if (this.libzip.close(this.zip) === -1)
@@ -10473,7 +10617,7 @@ function getPathForDisplay(p) {
 }
 
 const [major, minor] = process.versions.node.split(`.`).map((value) => parseInt(value, 10));
-const WATCH_MODE_MESSAGE_USES_ARRAYS = major > 19 || major === 19 && minor >= 2 || major === 18 && minor >= 13;
+const WATCH_MODE_MESSAGE_USES_ARRAYS = major > 19 || major === 19 && minor >= 2;
 
 const builtinModules = new Set(require$$0.Module.builtinModules || Object.keys(process.binding(`natives`)));
 const isBuiltinModule = (request) => request.startsWith(`node:`) || builtinModules.has(request);
@@ -11390,291 +11534,6 @@ function packageImportsResolve({
   throwImportNotDefined(name, packageJSONUrl, base);
 }
 
-const flagSymbol = Symbol('arg flag');
-
-class ArgError extends Error {
-	constructor(msg, code) {
-		super(msg);
-		this.name = 'ArgError';
-		this.code = code;
-
-		Object.setPrototypeOf(this, ArgError.prototype);
-	}
-}
-
-function arg(
-	opts,
-	{
-		argv = process.argv.slice(2),
-		permissive = false,
-		stopAtPositional = false
-	} = {}
-) {
-	if (!opts) {
-		throw new ArgError(
-			'argument specification object is required',
-			'ARG_CONFIG_NO_SPEC'
-		);
-	}
-
-	const result = { _: [] };
-
-	const aliases = {};
-	const handlers = {};
-
-	for (const key of Object.keys(opts)) {
-		if (!key) {
-			throw new ArgError(
-				'argument key cannot be an empty string',
-				'ARG_CONFIG_EMPTY_KEY'
-			);
-		}
-
-		if (key[0] !== '-') {
-			throw new ArgError(
-				`argument key must start with '-' but found: '${key}'`,
-				'ARG_CONFIG_NONOPT_KEY'
-			);
-		}
-
-		if (key.length === 1) {
-			throw new ArgError(
-				`argument key must have a name; singular '-' keys are not allowed: ${key}`,
-				'ARG_CONFIG_NONAME_KEY'
-			);
-		}
-
-		if (typeof opts[key] === 'string') {
-			aliases[key] = opts[key];
-			continue;
-		}
-
-		let type = opts[key];
-		let isFlag = false;
-
-		if (
-			Array.isArray(type) &&
-			type.length === 1 &&
-			typeof type[0] === 'function'
-		) {
-			const [fn] = type;
-			type = (value, name, prev = []) => {
-				prev.push(fn(value, name, prev[prev.length - 1]));
-				return prev;
-			};
-			isFlag = fn === Boolean || fn[flagSymbol] === true;
-		} else if (typeof type === 'function') {
-			isFlag = type === Boolean || type[flagSymbol] === true;
-		} else {
-			throw new ArgError(
-				`type missing or not a function or valid array type: ${key}`,
-				'ARG_CONFIG_VAD_TYPE'
-			);
-		}
-
-		if (key[1] !== '-' && key.length > 2) {
-			throw new ArgError(
-				`short argument keys (with a single hyphen) must have only one character: ${key}`,
-				'ARG_CONFIG_SHORTOPT_TOOLONG'
-			);
-		}
-
-		handlers[key] = [type, isFlag];
-	}
-
-	for (let i = 0, len = argv.length; i < len; i++) {
-		const wholeArg = argv[i];
-
-		if (stopAtPositional && result._.length > 0) {
-			result._ = result._.concat(argv.slice(i));
-			break;
-		}
-
-		if (wholeArg === '--') {
-			result._ = result._.concat(argv.slice(i + 1));
-			break;
-		}
-
-		if (wholeArg.length > 1 && wholeArg[0] === '-') {
-			/* eslint-disable operator-linebreak */
-			const separatedArguments =
-				wholeArg[1] === '-' || wholeArg.length === 2
-					? [wholeArg]
-					: wholeArg
-							.slice(1)
-							.split('')
-							.map((a) => `-${a}`);
-			/* eslint-enable operator-linebreak */
-
-			for (let j = 0; j < separatedArguments.length; j++) {
-				const arg = separatedArguments[j];
-				const [originalArgName, argStr] =
-					arg[1] === '-' ? arg.split(/=(.*)/, 2) : [arg, undefined];
-
-				let argName = originalArgName;
-				while (argName in aliases) {
-					argName = aliases[argName];
-				}
-
-				if (!(argName in handlers)) {
-					if (permissive) {
-						result._.push(arg);
-						continue;
-					} else {
-						throw new ArgError(
-							`unknown or unexpected option: ${originalArgName}`,
-							'ARG_UNKNOWN_OPTION'
-						);
-					}
-				}
-
-				const [type, isFlag] = handlers[argName];
-
-				if (!isFlag && j + 1 < separatedArguments.length) {
-					throw new ArgError(
-						`option requires argument (but was followed by another short argument): ${originalArgName}`,
-						'ARG_MISSING_REQUIRED_SHORTARG'
-					);
-				}
-
-				if (isFlag) {
-					result[argName] = type(true, argName, result[argName]);
-				} else if (argStr === undefined) {
-					if (
-						argv.length < i + 2 ||
-						(argv[i + 1].length > 1 &&
-							argv[i + 1][0] === '-' &&
-							!(
-								argv[i + 1].match(/^-?\d*(\.(?=\d))?\d*$/) &&
-								(type === Number ||
-									// eslint-disable-next-line no-undef
-									(typeof BigInt !== 'undefined' && type === BigInt))
-							))
-					) {
-						const extended =
-							originalArgName === argName ? '' : ` (alias for ${argName})`;
-						throw new ArgError(
-							`option requires argument: ${originalArgName}${extended}`,
-							'ARG_MISSING_REQUIRED_LONGARG'
-						);
-					}
-
-					result[argName] = type(argv[i + 1], argName, result[argName]);
-					++i;
-				} else {
-					result[argName] = type(argStr, argName, result[argName]);
-				}
-			}
-		} else {
-			result._.push(wholeArg);
-		}
-	}
-
-	return result;
-}
-
-arg.flag = (fn) => {
-	fn[flagSymbol] = true;
-	return fn;
-};
-
-// Utility types
-arg.COUNT = arg.flag((v, name, existingCount) => (existingCount || 0) + 1);
-
-// Expose error class
-arg.ArgError = ArgError;
-
-var arg_1 = arg;
-
-/**
-  @license
-  The MIT License (MIT)
-
-  Copyright (c) 2014 Blake Embrey (hello@blakeembrey.com)
-
-  Permission is hereby granted, free of charge, to any person obtaining a copy
-  of this software and associated documentation files (the "Software"), to deal
-  in the Software without restriction, including without limitation the rights
-  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-  copies of the Software, and to permit persons to whom the Software is
-  furnished to do so, subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be included in
-  all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-  THE SOFTWARE.
-*/
-function getOptionValue(opt) {
-  parseOptions();
-  return options[opt];
-}
-let options;
-function parseOptions() {
-  if (!options) {
-    options = {
-      "--conditions": [],
-      ...parseArgv(getNodeOptionsEnvArgv()),
-      ...parseArgv(process.execArgv)
-    };
-  }
-}
-function parseArgv(argv) {
-  return arg_1(
-    {
-      "--conditions": [String],
-      "-C": "--conditions"
-    },
-    {
-      argv,
-      permissive: true
-    }
-  );
-}
-function getNodeOptionsEnvArgv() {
-  const errors = [];
-  const envArgv = ParseNodeOptionsEnvVar(process.env.NODE_OPTIONS || "", errors);
-  if (errors.length !== 0) ;
-  return envArgv;
-}
-function ParseNodeOptionsEnvVar(node_options, errors) {
-  const env_argv = [];
-  let is_in_string = false;
-  let will_start_new_arg = true;
-  for (let index = 0; index < node_options.length; ++index) {
-    let c = node_options[index];
-    if (c === "\\" && is_in_string) {
-      if (index + 1 === node_options.length) {
-        errors.push("invalid value for NODE_OPTIONS (invalid escape)\n");
-        return env_argv;
-      } else {
-        c = node_options[++index];
-      }
-    } else if (c === " " && !is_in_string) {
-      will_start_new_arg = true;
-      continue;
-    } else if (c === '"') {
-      is_in_string = !is_in_string;
-      continue;
-    }
-    if (will_start_new_arg) {
-      env_argv.push(c);
-      will_start_new_arg = false;
-    } else {
-      env_argv[env_argv.length - 1] += c;
-    }
-  }
-  if (is_in_string) {
-    errors.push("invalid value for NODE_OPTIONS (unterminated string)\n");
-  }
-  return env_argv;
-}
-
 function makeApi(runtimeState, opts) {
   const alwaysWarnOnFallback = Number(process.env.PNP_ALWAYS_WARN_ON_FALLBACK) > 0;
   const debugLevel = Number(process.env.PNP_DEBUG_LEVEL);
@@ -11788,12 +11647,7 @@ function makeApi(runtimeState, opts) {
         return true;
     return false;
   }
-  const defaultExportsConditions = /* @__PURE__ */ new Set([
-    `default`,
-    `node`,
-    `require`,
-    ...getOptionValue(`--conditions`)
-  ]);
+  const defaultExportsConditions = /* @__PURE__ */ new Set([`default`, `node`, `require`]);
   function applyNodeExportsResolution(unqualifiedPath, conditions = defaultExportsConditions) {
     const locator = findPackageLocator(ppath.join(unqualifiedPath, `internal.js`), {
       resolveIgnored: true,
