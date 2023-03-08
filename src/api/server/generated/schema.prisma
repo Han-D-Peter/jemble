@@ -78,7 +78,6 @@ model Union {
   user   User[]
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
-
 }
 
 model Zerosum {
@@ -90,7 +89,6 @@ model Zerosum {
   operatorTwo String
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
-
 }
 
 model TrasferTransaction {
@@ -100,7 +98,6 @@ model TrasferTransaction {
   amount Int
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
-
 }
 
 model DonationTransaction {
@@ -110,7 +107,6 @@ model DonationTransaction {
   amount Int
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
-
 }
 
 model RequestFriendTransaction {
@@ -120,5 +116,4 @@ model RequestFriendTransaction {
   status String
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
-
 }
