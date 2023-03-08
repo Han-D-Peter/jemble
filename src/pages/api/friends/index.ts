@@ -18,6 +18,7 @@ async function handler(
   req: NextApiRequest,
   res: NextApiResponse<NetworkResult<CheckFriendsResponse>>
 ) {
+  const searchKeyWord = req.query.search;
   const session = await getServerSession(req, res, authOptions);
 
   assert(session !== null, "session is null");
@@ -29,6 +30,9 @@ async function handler(
       },
       select: {
         following: {
+          where: {
+            name: { contains: searchKeyWord ? (searchKeyWord as string) : "" },
+          },
           include: {
             union: true,
           },
