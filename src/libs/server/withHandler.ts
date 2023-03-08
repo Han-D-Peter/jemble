@@ -24,11 +24,11 @@ export default function withHandler({
     req: NextApiRequest,
     res: NextApiResponse
   ): Promise<any> {
-    const session = await getServerSession(req, res, authOptions);
-    if (req.method && methods.includes(req.method as any)) {
+    if (req.method && !methods.includes(req.method as any)) {
       return res.status(405).end();
     }
 
+    const session = await getServerSession(req, res, authOptions);
     if (isPrivate && !session) {
       return res.status(401).json({ ok: false, error: "Please Log In" });
     }
