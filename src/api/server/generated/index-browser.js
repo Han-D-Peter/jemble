@@ -104,6 +104,24 @@ exports.Prisma.AccountScalarFieldEnum = makeEnum({
   session_state: 'session_state'
 });
 
+exports.Prisma.DonationTransactionScalarFieldEnum = makeEnum({
+  id: 'id',
+  sender: 'sender',
+  unionId: 'unionId',
+  amount: 'amount',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+});
+
+exports.Prisma.RequestFriendTransactionScalarFieldEnum = makeEnum({
+  id: 'id',
+  sender: 'sender',
+  receiver: 'receiver',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+});
+
 exports.Prisma.SessionScalarFieldEnum = makeEnum({
   id: 'id',
   sessionToken: 'sessionToken',
@@ -123,13 +141,35 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.TrasferTransactionScalarFieldEnum = makeEnum({
+  id: 'id',
+  sender: 'sender',
+  receiver: 'receiver',
+  amount: 'amount',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+});
+
+exports.Prisma.UnionScalarFieldEnum = makeEnum({
+  id: 'id',
+  name: 'name',
+  union_image: 'union_image',
+  points: 'points',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+});
+
 exports.Prisma.UserScalarFieldEnum = makeEnum({
   id: 'id',
   name: 'name',
   email: 'email',
   emailVerified: 'emailVerified',
   profile_image: 'profile_image',
-  points: 'points'
+  points: 'points',
+  unionId: 'unionId',
+  doneTime: 'doneTime',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 });
 
 exports.Prisma.VerificationTokenScalarFieldEnum = makeEnum({
@@ -138,12 +178,28 @@ exports.Prisma.VerificationTokenScalarFieldEnum = makeEnum({
   expires: 'expires'
 });
 
+exports.Prisma.ZerosumScalarFieldEnum = makeEnum({
+  id: 'id',
+  numberOne: 'numberOne',
+  numberTwo: 'numberTwo',
+  numberThree: 'numberThree',
+  operatorOne: 'operatorOne',
+  operatorTwo: 'operatorTwo',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+});
+
 
 exports.Prisma.ModelName = makeEnum({
   Account: 'Account',
   Session: 'Session',
   User: 'User',
-  VerificationToken: 'VerificationToken'
+  VerificationToken: 'VerificationToken',
+  Union: 'Union',
+  Zerosum: 'Zerosum',
+  TrasferTransaction: 'TrasferTransaction',
+  DonationTransaction: 'DonationTransaction',
+  RequestFriendTransaction: 'RequestFriendTransaction'
 });
 
 /**
