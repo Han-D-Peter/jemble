@@ -56,6 +56,8 @@ model User {
   following     User[]    @relation("UserFollows")
   accounts      Account[]
   sessions      Session[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
   @@index([unionId])
 }
@@ -74,14 +76,49 @@ model Union {
   union_image String?
   points Int @default(0)
   user   User[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
 }
 
-model Zerosum{
+model Zerosum {
   id String @id @default(cuid())
-  
   numberOne Int
   numberTwo Int
   numberThree Int
   operatorOne String
   operatorTwo String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+}
+
+model TrasferTransaction {
+  id String @id @default(cuid())
+  sender String
+  receiver String
+  amount Int
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+}
+
+model DonationTransaction {
+  id String @id @default(cuid())
+  sender String
+  unionId String
+  amount Int
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+}
+
+model RequestFriendTransaction {
+  id String @id @default(cuid())
+  sender String
+  receiver String
+  status String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
 }

@@ -51,6 +51,10 @@ export type User = {
   emailVerified: Date | null
   profile_image: string | null
   points: number
+  unionId: string | null
+  doneTime: Date | null
+  createdAt: Date
+  updatedAt: Date
 }
 
 /**
@@ -61,6 +65,73 @@ export type VerificationToken = {
   identifier: string
   token: string
   expires: Date
+}
+
+/**
+ * Model Union
+ * 
+ */
+export type Union = {
+  id: string
+  name: string
+  union_image: string | null
+  points: number
+  createdAt: Date
+  updatedAt: Date
+}
+
+/**
+ * Model Zerosum
+ * 
+ */
+export type Zerosum = {
+  id: string
+  numberOne: number
+  numberTwo: number
+  numberThree: number
+  operatorOne: string
+  operatorTwo: string
+  createdAt: Date
+  updatedAt: Date
+}
+
+/**
+ * Model TrasferTransaction
+ * 
+ */
+export type TrasferTransaction = {
+  id: string
+  sender: string
+  receiver: string
+  amount: number
+  createdAt: Date
+  updatedAt: Date
+}
+
+/**
+ * Model DonationTransaction
+ * 
+ */
+export type DonationTransaction = {
+  id: string
+  sender: string
+  unionId: string
+  amount: number
+  createdAt: Date
+  updatedAt: Date
+}
+
+/**
+ * Model RequestFriendTransaction
+ * 
+ */
+export type RequestFriendTransaction = {
+  id: string
+  sender: string
+  receiver: string
+  status: string
+  createdAt: Date
+  updatedAt: Date
 }
 
 
@@ -220,6 +291,56 @@ export class PrismaClient<
     * ```
     */
   get verificationToken(): Prisma.VerificationTokenDelegate<GlobalReject>;
+
+  /**
+   * `prisma.union`: Exposes CRUD operations for the **Union** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Unions
+    * const unions = await prisma.union.findMany()
+    * ```
+    */
+  get union(): Prisma.UnionDelegate<GlobalReject>;
+
+  /**
+   * `prisma.zerosum`: Exposes CRUD operations for the **Zerosum** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Zerosums
+    * const zerosums = await prisma.zerosum.findMany()
+    * ```
+    */
+  get zerosum(): Prisma.ZerosumDelegate<GlobalReject>;
+
+  /**
+   * `prisma.trasferTransaction`: Exposes CRUD operations for the **TrasferTransaction** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TrasferTransactions
+    * const trasferTransactions = await prisma.trasferTransaction.findMany()
+    * ```
+    */
+  get trasferTransaction(): Prisma.TrasferTransactionDelegate<GlobalReject>;
+
+  /**
+   * `prisma.donationTransaction`: Exposes CRUD operations for the **DonationTransaction** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DonationTransactions
+    * const donationTransactions = await prisma.donationTransaction.findMany()
+    * ```
+    */
+  get donationTransaction(): Prisma.DonationTransactionDelegate<GlobalReject>;
+
+  /**
+   * `prisma.requestFriendTransaction`: Exposes CRUD operations for the **RequestFriendTransaction** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more RequestFriendTransactions
+    * const requestFriendTransactions = await prisma.requestFriendTransaction.findMany()
+    * ```
+    */
+  get requestFriendTransaction(): Prisma.RequestFriendTransactionDelegate<GlobalReject>;
 }
 
 export namespace Prisma {
@@ -692,7 +813,12 @@ export namespace Prisma {
     Account: 'Account',
     Session: 'Session',
     User: 'User',
-    VerificationToken: 'VerificationToken'
+    VerificationToken: 'VerificationToken',
+    Union: 'Union',
+    Zerosum: 'Zerosum',
+    TrasferTransaction: 'TrasferTransaction',
+    DonationTransaction: 'DonationTransaction',
+    RequestFriendTransaction: 'RequestFriendTransaction'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -859,11 +985,15 @@ export namespace Prisma {
 
 
   export type UserCountOutputType = {
+    followedBy: number
+    following: number
     accounts: number
     sessions: number
   }
 
   export type UserCountOutputTypeSelect = {
+    followedBy?: boolean
+    following?: boolean
     accounts?: boolean
     sessions?: boolean
   }
@@ -894,6 +1024,49 @@ export namespace Prisma {
      * Select specific fields to fetch from the UserCountOutputType
      */
     select?: UserCountOutputTypeSelect | null
+  }
+
+
+
+  /**
+   * Count Type UnionCountOutputType
+   */
+
+
+  export type UnionCountOutputType = {
+    user: number
+  }
+
+  export type UnionCountOutputTypeSelect = {
+    user?: boolean
+  }
+
+  export type UnionCountOutputTypeGetPayload<S extends boolean | null | undefined | UnionCountOutputTypeArgs> =
+    S extends { select: any, include: any } ? 'Please either choose `select` or `include`' :
+    S extends true ? UnionCountOutputType :
+    S extends undefined ? never :
+    S extends { include: any } & (UnionCountOutputTypeArgs)
+    ? UnionCountOutputType 
+    : S extends { select: any } & (UnionCountOutputTypeArgs)
+      ? {
+    [P in TruthyKeys<S['select']>]:
+    P extends keyof UnionCountOutputType ? UnionCountOutputType[P] : never
+  } 
+      : UnionCountOutputType
+
+
+
+
+  // Custom InputTypes
+
+  /**
+   * UnionCountOutputType without action
+   */
+  export type UnionCountOutputTypeArgs = {
+    /**
+     * Select specific fields to fetch from the UnionCountOutputType
+     */
+    select?: UnionCountOutputTypeSelect | null
   }
 
 
@@ -2874,6 +3047,10 @@ export namespace Prisma {
     emailVerified: Date | null
     profile_image: string | null
     points: number | null
+    unionId: string | null
+    doneTime: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -2883,6 +3060,10 @@ export namespace Prisma {
     emailVerified: Date | null
     profile_image: string | null
     points: number | null
+    unionId: string | null
+    doneTime: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -2892,6 +3073,10 @@ export namespace Prisma {
     emailVerified: number
     profile_image: number
     points: number
+    unionId: number
+    doneTime: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -2911,6 +3096,10 @@ export namespace Prisma {
     emailVerified?: true
     profile_image?: true
     points?: true
+    unionId?: true
+    doneTime?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -2920,6 +3109,10 @@ export namespace Prisma {
     emailVerified?: true
     profile_image?: true
     points?: true
+    unionId?: true
+    doneTime?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -2929,6 +3122,10 @@ export namespace Prisma {
     emailVerified?: true
     profile_image?: true
     points?: true
+    unionId?: true
+    doneTime?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -3026,6 +3223,10 @@ export namespace Prisma {
     emailVerified: Date | null
     profile_image: string | null
     points: number
+    unionId: string | null
+    doneTime: Date | null
+    createdAt: Date
+    updatedAt: Date
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
     _sum: UserSumAggregateOutputType | null
@@ -3054,13 +3255,23 @@ export namespace Prisma {
     emailVerified?: boolean
     profile_image?: boolean
     points?: boolean
+    unionId?: boolean
+    doneTime?: boolean
+    union?: boolean | UnionArgs
+    followedBy?: boolean | User$followedByArgs
+    following?: boolean | User$followingArgs
     accounts?: boolean | User$accountsArgs
     sessions?: boolean | User$sessionsArgs
+    createdAt?: boolean
+    updatedAt?: boolean
     _count?: boolean | UserCountOutputTypeArgs
   }
 
 
   export type UserInclude = {
+    union?: boolean | UnionArgs
+    followedBy?: boolean | User$followedByArgs
+    following?: boolean | User$followingArgs
     accounts?: boolean | User$accountsArgs
     sessions?: boolean | User$sessionsArgs
     _count?: boolean | UserCountOutputTypeArgs
@@ -3073,6 +3284,9 @@ export namespace Prisma {
     S extends { include: any } & (UserArgs | UserFindManyArgs)
     ? User  & {
     [P in TruthyKeys<S['include']>]:
+        P extends 'union' ? UnionGetPayload<S['include'][P]> | null :
+        P extends 'followedBy' ? Array < UserGetPayload<S['include'][P]>>  :
+        P extends 'following' ? Array < UserGetPayload<S['include'][P]>>  :
         P extends 'accounts' ? Array < AccountGetPayload<S['include'][P]>>  :
         P extends 'sessions' ? Array < SessionGetPayload<S['include'][P]>>  :
         P extends '_count' ? UserCountOutputTypeGetPayload<S['include'][P]> :  never
@@ -3080,6 +3294,9 @@ export namespace Prisma {
     : S extends { select: any } & (UserArgs | UserFindManyArgs)
       ? {
     [P in TruthyKeys<S['select']>]:
+        P extends 'union' ? UnionGetPayload<S['select'][P]> | null :
+        P extends 'followedBy' ? Array < UserGetPayload<S['select'][P]>>  :
+        P extends 'following' ? Array < UserGetPayload<S['select'][P]>>  :
         P extends 'accounts' ? Array < AccountGetPayload<S['select'][P]>>  :
         P extends 'sessions' ? Array < SessionGetPayload<S['select'][P]>>  :
         P extends '_count' ? UserCountOutputTypeGetPayload<S['select'][P]> :  P extends keyof User ? User[P] : never
@@ -3454,6 +3671,12 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
     constructor(_dmmf: runtime.DMMFClass, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
 
+    union<T extends UnionArgs= {}>(args?: Subset<T, UnionArgs>): Prisma__UnionClient<UnionGetPayload<T> | Null>;
+
+    followedBy<T extends User$followedByArgs= {}>(args?: Subset<T, User$followedByArgs>): Prisma.PrismaPromise<Array<UserGetPayload<T>>| Null>;
+
+    following<T extends User$followingArgs= {}>(args?: Subset<T, User$followingArgs>): Prisma.PrismaPromise<Array<UserGetPayload<T>>| Null>;
+
     accounts<T extends User$accountsArgs= {}>(args?: Subset<T, User$accountsArgs>): Prisma.PrismaPromise<Array<AccountGetPayload<T>>| Null>;
 
     sessions<T extends User$sessionsArgs= {}>(args?: Subset<T, User$sessionsArgs>): Prisma.PrismaPromise<Array<SessionGetPayload<T>>| Null>;
@@ -3810,6 +4033,48 @@ export namespace Prisma {
      * Filter which Users to delete
      */
     where?: UserWhereInput
+  }
+
+
+  /**
+   * User.followedBy
+   */
+  export type User$followedByArgs = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UserInclude | null
+    where?: UserWhereInput
+    orderBy?: Enumerable<UserOrderByWithRelationInput>
+    cursor?: UserWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Enumerable<UserScalarFieldEnum>
+  }
+
+
+  /**
+   * User.following
+   */
+  export type User$followingArgs = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UserInclude | null
+    where?: UserWhereInput
+    orderBy?: Enumerable<UserOrderByWithRelationInput>
+    cursor?: UserWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Enumerable<UserScalarFieldEnum>
   }
 
 
@@ -4738,6 +5003,4690 @@ export namespace Prisma {
 
 
   /**
+   * Model Union
+   */
+
+
+  export type AggregateUnion = {
+    _count: UnionCountAggregateOutputType | null
+    _avg: UnionAvgAggregateOutputType | null
+    _sum: UnionSumAggregateOutputType | null
+    _min: UnionMinAggregateOutputType | null
+    _max: UnionMaxAggregateOutputType | null
+  }
+
+  export type UnionAvgAggregateOutputType = {
+    points: number | null
+  }
+
+  export type UnionSumAggregateOutputType = {
+    points: number | null
+  }
+
+  export type UnionMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    union_image: string | null
+    points: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type UnionMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    union_image: string | null
+    points: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type UnionCountAggregateOutputType = {
+    id: number
+    name: number
+    union_image: number
+    points: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type UnionAvgAggregateInputType = {
+    points?: true
+  }
+
+  export type UnionSumAggregateInputType = {
+    points?: true
+  }
+
+  export type UnionMinAggregateInputType = {
+    id?: true
+    name?: true
+    union_image?: true
+    points?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type UnionMaxAggregateInputType = {
+    id?: true
+    name?: true
+    union_image?: true
+    points?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type UnionCountAggregateInputType = {
+    id?: true
+    name?: true
+    union_image?: true
+    points?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type UnionAggregateArgs = {
+    /**
+     * Filter which Union to aggregate.
+     */
+    where?: UnionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Unions to fetch.
+     */
+    orderBy?: Enumerable<UnionOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UnionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Unions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Unions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Unions
+    **/
+    _count?: true | UnionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: UnionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: UnionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UnionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UnionMaxAggregateInputType
+  }
+
+  export type GetUnionAggregateType<T extends UnionAggregateArgs> = {
+        [P in keyof T & keyof AggregateUnion]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUnion[P]>
+      : GetScalarType<T[P], AggregateUnion[P]>
+  }
+
+
+
+
+  export type UnionGroupByArgs = {
+    where?: UnionWhereInput
+    orderBy?: Enumerable<UnionOrderByWithAggregationInput>
+    by: UnionScalarFieldEnum[]
+    having?: UnionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UnionCountAggregateInputType | true
+    _avg?: UnionAvgAggregateInputType
+    _sum?: UnionSumAggregateInputType
+    _min?: UnionMinAggregateInputType
+    _max?: UnionMaxAggregateInputType
+  }
+
+
+  export type UnionGroupByOutputType = {
+    id: string
+    name: string
+    union_image: string | null
+    points: number
+    createdAt: Date
+    updatedAt: Date
+    _count: UnionCountAggregateOutputType | null
+    _avg: UnionAvgAggregateOutputType | null
+    _sum: UnionSumAggregateOutputType | null
+    _min: UnionMinAggregateOutputType | null
+    _max: UnionMaxAggregateOutputType | null
+  }
+
+  type GetUnionGroupByPayload<T extends UnionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickArray<UnionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UnionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UnionGroupByOutputType[P]>
+            : GetScalarType<T[P], UnionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UnionSelect = {
+    id?: boolean
+    name?: boolean
+    union_image?: boolean
+    points?: boolean
+    user?: boolean | Union$userArgs
+    createdAt?: boolean
+    updatedAt?: boolean
+    _count?: boolean | UnionCountOutputTypeArgs
+  }
+
+
+  export type UnionInclude = {
+    user?: boolean | Union$userArgs
+    _count?: boolean | UnionCountOutputTypeArgs
+  }
+
+  export type UnionGetPayload<S extends boolean | null | undefined | UnionArgs> =
+    S extends { select: any, include: any } ? 'Please either choose `select` or `include`' :
+    S extends true ? Union :
+    S extends undefined ? never :
+    S extends { include: any } & (UnionArgs | UnionFindManyArgs)
+    ? Union  & {
+    [P in TruthyKeys<S['include']>]:
+        P extends 'user' ? Array < UserGetPayload<S['include'][P]>>  :
+        P extends '_count' ? UnionCountOutputTypeGetPayload<S['include'][P]> :  never
+  } 
+    : S extends { select: any } & (UnionArgs | UnionFindManyArgs)
+      ? {
+    [P in TruthyKeys<S['select']>]:
+        P extends 'user' ? Array < UserGetPayload<S['select'][P]>>  :
+        P extends '_count' ? UnionCountOutputTypeGetPayload<S['select'][P]> :  P extends keyof Union ? Union[P] : never
+  } 
+      : Union
+
+
+  type UnionCountArgs = 
+    Omit<UnionFindManyArgs, 'select' | 'include'> & {
+      select?: UnionCountAggregateInputType | true
+    }
+
+  export interface UnionDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined> {
+
+    /**
+     * Find zero or one Union that matches the filter.
+     * @param {UnionFindUniqueArgs} args - Arguments to find a Union
+     * @example
+     * // Get one Union
+     * const union = await prisma.union.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends UnionFindUniqueArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args: SelectSubset<T, UnionFindUniqueArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'Union'> extends True ? Prisma__UnionClient<UnionGetPayload<T>> : Prisma__UnionClient<UnionGetPayload<T> | null, null>
+
+    /**
+     * Find one Union that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {UnionFindUniqueOrThrowArgs} args - Arguments to find a Union
+     * @example
+     * // Get one Union
+     * const union = await prisma.union.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends UnionFindUniqueOrThrowArgs>(
+      args?: SelectSubset<T, UnionFindUniqueOrThrowArgs>
+    ): Prisma__UnionClient<UnionGetPayload<T>>
+
+    /**
+     * Find the first Union that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UnionFindFirstArgs} args - Arguments to find a Union
+     * @example
+     * // Get one Union
+     * const union = await prisma.union.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends UnionFindFirstArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args?: SelectSubset<T, UnionFindFirstArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'Union'> extends True ? Prisma__UnionClient<UnionGetPayload<T>> : Prisma__UnionClient<UnionGetPayload<T> | null, null>
+
+    /**
+     * Find the first Union that matches the filter or
+     * throw `NotFoundError` if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UnionFindFirstOrThrowArgs} args - Arguments to find a Union
+     * @example
+     * // Get one Union
+     * const union = await prisma.union.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends UnionFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, UnionFindFirstOrThrowArgs>
+    ): Prisma__UnionClient<UnionGetPayload<T>>
+
+    /**
+     * Find zero or more Unions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UnionFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Unions
+     * const unions = await prisma.union.findMany()
+     * 
+     * // Get first 10 Unions
+     * const unions = await prisma.union.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const unionWithIdOnly = await prisma.union.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends UnionFindManyArgs>(
+      args?: SelectSubset<T, UnionFindManyArgs>
+    ): Prisma.PrismaPromise<Array<UnionGetPayload<T>>>
+
+    /**
+     * Create a Union.
+     * @param {UnionCreateArgs} args - Arguments to create a Union.
+     * @example
+     * // Create one Union
+     * const Union = await prisma.union.create({
+     *   data: {
+     *     // ... data to create a Union
+     *   }
+     * })
+     * 
+    **/
+    create<T extends UnionCreateArgs>(
+      args: SelectSubset<T, UnionCreateArgs>
+    ): Prisma__UnionClient<UnionGetPayload<T>>
+
+    /**
+     * Create many Unions.
+     *     @param {UnionCreateManyArgs} args - Arguments to create many Unions.
+     *     @example
+     *     // Create many Unions
+     *     const union = await prisma.union.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends UnionCreateManyArgs>(
+      args?: SelectSubset<T, UnionCreateManyArgs>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Union.
+     * @param {UnionDeleteArgs} args - Arguments to delete one Union.
+     * @example
+     * // Delete one Union
+     * const Union = await prisma.union.delete({
+     *   where: {
+     *     // ... filter to delete one Union
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends UnionDeleteArgs>(
+      args: SelectSubset<T, UnionDeleteArgs>
+    ): Prisma__UnionClient<UnionGetPayload<T>>
+
+    /**
+     * Update one Union.
+     * @param {UnionUpdateArgs} args - Arguments to update one Union.
+     * @example
+     * // Update one Union
+     * const union = await prisma.union.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends UnionUpdateArgs>(
+      args: SelectSubset<T, UnionUpdateArgs>
+    ): Prisma__UnionClient<UnionGetPayload<T>>
+
+    /**
+     * Delete zero or more Unions.
+     * @param {UnionDeleteManyArgs} args - Arguments to filter Unions to delete.
+     * @example
+     * // Delete a few Unions
+     * const { count } = await prisma.union.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends UnionDeleteManyArgs>(
+      args?: SelectSubset<T, UnionDeleteManyArgs>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Unions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UnionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Unions
+     * const union = await prisma.union.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends UnionUpdateManyArgs>(
+      args: SelectSubset<T, UnionUpdateManyArgs>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Union.
+     * @param {UnionUpsertArgs} args - Arguments to update or create a Union.
+     * @example
+     * // Update or create a Union
+     * const union = await prisma.union.upsert({
+     *   create: {
+     *     // ... data to create a Union
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Union we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends UnionUpsertArgs>(
+      args: SelectSubset<T, UnionUpsertArgs>
+    ): Prisma__UnionClient<UnionGetPayload<T>>
+
+    /**
+     * Count the number of Unions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UnionCountArgs} args - Arguments to filter Unions to count.
+     * @example
+     * // Count the number of Unions
+     * const count = await prisma.union.count({
+     *   where: {
+     *     // ... the filter for the Unions we want to count
+     *   }
+     * })
+    **/
+    count<T extends UnionCountArgs>(
+      args?: Subset<T, UnionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends _Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UnionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Union.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UnionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UnionAggregateArgs>(args: Subset<T, UnionAggregateArgs>): Prisma.PrismaPromise<GetUnionAggregateType<T>>
+
+    /**
+     * Group by Union.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UnionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UnionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UnionGroupByArgs['orderBy'] }
+        : { orderBy?: UnionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends TupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UnionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUnionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Union.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export class Prisma__UnionClient<T, Null = never> implements Prisma.PrismaPromise<T> {
+    private readonly _dmmf;
+    private readonly _queryType;
+    private readonly _rootField;
+    private readonly _clientMethod;
+    private readonly _args;
+    private readonly _dataPath;
+    private readonly _errorFormat;
+    private readonly _measurePerformance?;
+    private _isList;
+    private _callsite;
+    private _requestPromise?;
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+    constructor(_dmmf: runtime.DMMFClass, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
+
+    user<T extends Union$userArgs= {}>(args?: Subset<T, Union$userArgs>): Prisma.PrismaPromise<Array<UserGetPayload<T>>| Null>;
+
+    private get _document();
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): Promise<T>;
+  }
+
+
+
+  // Custom InputTypes
+
+  /**
+   * Union base type for findUnique actions
+   */
+  export type UnionFindUniqueArgsBase = {
+    /**
+     * Select specific fields to fetch from the Union
+     */
+    select?: UnionSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UnionInclude | null
+    /**
+     * Filter, which Union to fetch.
+     */
+    where: UnionWhereUniqueInput
+  }
+
+  /**
+   * Union findUnique
+   */
+  export interface UnionFindUniqueArgs extends UnionFindUniqueArgsBase {
+   /**
+    * Throw an Error if query returns no results
+    * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
+    */
+    rejectOnNotFound?: RejectOnNotFound
+  }
+      
+
+  /**
+   * Union findUniqueOrThrow
+   */
+  export type UnionFindUniqueOrThrowArgs = {
+    /**
+     * Select specific fields to fetch from the Union
+     */
+    select?: UnionSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UnionInclude | null
+    /**
+     * Filter, which Union to fetch.
+     */
+    where: UnionWhereUniqueInput
+  }
+
+
+  /**
+   * Union base type for findFirst actions
+   */
+  export type UnionFindFirstArgsBase = {
+    /**
+     * Select specific fields to fetch from the Union
+     */
+    select?: UnionSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UnionInclude | null
+    /**
+     * Filter, which Union to fetch.
+     */
+    where?: UnionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Unions to fetch.
+     */
+    orderBy?: Enumerable<UnionOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Unions.
+     */
+    cursor?: UnionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Unions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Unions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Unions.
+     */
+    distinct?: Enumerable<UnionScalarFieldEnum>
+  }
+
+  /**
+   * Union findFirst
+   */
+  export interface UnionFindFirstArgs extends UnionFindFirstArgsBase {
+   /**
+    * Throw an Error if query returns no results
+    * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
+    */
+    rejectOnNotFound?: RejectOnNotFound
+  }
+      
+
+  /**
+   * Union findFirstOrThrow
+   */
+  export type UnionFindFirstOrThrowArgs = {
+    /**
+     * Select specific fields to fetch from the Union
+     */
+    select?: UnionSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UnionInclude | null
+    /**
+     * Filter, which Union to fetch.
+     */
+    where?: UnionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Unions to fetch.
+     */
+    orderBy?: Enumerable<UnionOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Unions.
+     */
+    cursor?: UnionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Unions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Unions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Unions.
+     */
+    distinct?: Enumerable<UnionScalarFieldEnum>
+  }
+
+
+  /**
+   * Union findMany
+   */
+  export type UnionFindManyArgs = {
+    /**
+     * Select specific fields to fetch from the Union
+     */
+    select?: UnionSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UnionInclude | null
+    /**
+     * Filter, which Unions to fetch.
+     */
+    where?: UnionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Unions to fetch.
+     */
+    orderBy?: Enumerable<UnionOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Unions.
+     */
+    cursor?: UnionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Unions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Unions.
+     */
+    skip?: number
+    distinct?: Enumerable<UnionScalarFieldEnum>
+  }
+
+
+  /**
+   * Union create
+   */
+  export type UnionCreateArgs = {
+    /**
+     * Select specific fields to fetch from the Union
+     */
+    select?: UnionSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UnionInclude | null
+    /**
+     * The data needed to create a Union.
+     */
+    data: XOR<UnionCreateInput, UnionUncheckedCreateInput>
+  }
+
+
+  /**
+   * Union createMany
+   */
+  export type UnionCreateManyArgs = {
+    /**
+     * The data used to create many Unions.
+     */
+    data: Enumerable<UnionCreateManyInput>
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * Union update
+   */
+  export type UnionUpdateArgs = {
+    /**
+     * Select specific fields to fetch from the Union
+     */
+    select?: UnionSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UnionInclude | null
+    /**
+     * The data needed to update a Union.
+     */
+    data: XOR<UnionUpdateInput, UnionUncheckedUpdateInput>
+    /**
+     * Choose, which Union to update.
+     */
+    where: UnionWhereUniqueInput
+  }
+
+
+  /**
+   * Union updateMany
+   */
+  export type UnionUpdateManyArgs = {
+    /**
+     * The data used to update Unions.
+     */
+    data: XOR<UnionUpdateManyMutationInput, UnionUncheckedUpdateManyInput>
+    /**
+     * Filter which Unions to update
+     */
+    where?: UnionWhereInput
+  }
+
+
+  /**
+   * Union upsert
+   */
+  export type UnionUpsertArgs = {
+    /**
+     * Select specific fields to fetch from the Union
+     */
+    select?: UnionSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UnionInclude | null
+    /**
+     * The filter to search for the Union to update in case it exists.
+     */
+    where: UnionWhereUniqueInput
+    /**
+     * In case the Union found by the `where` argument doesn't exist, create a new Union with this data.
+     */
+    create: XOR<UnionCreateInput, UnionUncheckedCreateInput>
+    /**
+     * In case the Union was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UnionUpdateInput, UnionUncheckedUpdateInput>
+  }
+
+
+  /**
+   * Union delete
+   */
+  export type UnionDeleteArgs = {
+    /**
+     * Select specific fields to fetch from the Union
+     */
+    select?: UnionSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UnionInclude | null
+    /**
+     * Filter which Union to delete.
+     */
+    where: UnionWhereUniqueInput
+  }
+
+
+  /**
+   * Union deleteMany
+   */
+  export type UnionDeleteManyArgs = {
+    /**
+     * Filter which Unions to delete
+     */
+    where?: UnionWhereInput
+  }
+
+
+  /**
+   * Union.user
+   */
+  export type Union$userArgs = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UserInclude | null
+    where?: UserWhereInput
+    orderBy?: Enumerable<UserOrderByWithRelationInput>
+    cursor?: UserWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Enumerable<UserScalarFieldEnum>
+  }
+
+
+  /**
+   * Union without action
+   */
+  export type UnionArgs = {
+    /**
+     * Select specific fields to fetch from the Union
+     */
+    select?: UnionSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UnionInclude | null
+  }
+
+
+
+  /**
+   * Model Zerosum
+   */
+
+
+  export type AggregateZerosum = {
+    _count: ZerosumCountAggregateOutputType | null
+    _avg: ZerosumAvgAggregateOutputType | null
+    _sum: ZerosumSumAggregateOutputType | null
+    _min: ZerosumMinAggregateOutputType | null
+    _max: ZerosumMaxAggregateOutputType | null
+  }
+
+  export type ZerosumAvgAggregateOutputType = {
+    numberOne: number | null
+    numberTwo: number | null
+    numberThree: number | null
+  }
+
+  export type ZerosumSumAggregateOutputType = {
+    numberOne: number | null
+    numberTwo: number | null
+    numberThree: number | null
+  }
+
+  export type ZerosumMinAggregateOutputType = {
+    id: string | null
+    numberOne: number | null
+    numberTwo: number | null
+    numberThree: number | null
+    operatorOne: string | null
+    operatorTwo: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ZerosumMaxAggregateOutputType = {
+    id: string | null
+    numberOne: number | null
+    numberTwo: number | null
+    numberThree: number | null
+    operatorOne: string | null
+    operatorTwo: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ZerosumCountAggregateOutputType = {
+    id: number
+    numberOne: number
+    numberTwo: number
+    numberThree: number
+    operatorOne: number
+    operatorTwo: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ZerosumAvgAggregateInputType = {
+    numberOne?: true
+    numberTwo?: true
+    numberThree?: true
+  }
+
+  export type ZerosumSumAggregateInputType = {
+    numberOne?: true
+    numberTwo?: true
+    numberThree?: true
+  }
+
+  export type ZerosumMinAggregateInputType = {
+    id?: true
+    numberOne?: true
+    numberTwo?: true
+    numberThree?: true
+    operatorOne?: true
+    operatorTwo?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ZerosumMaxAggregateInputType = {
+    id?: true
+    numberOne?: true
+    numberTwo?: true
+    numberThree?: true
+    operatorOne?: true
+    operatorTwo?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ZerosumCountAggregateInputType = {
+    id?: true
+    numberOne?: true
+    numberTwo?: true
+    numberThree?: true
+    operatorOne?: true
+    operatorTwo?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ZerosumAggregateArgs = {
+    /**
+     * Filter which Zerosum to aggregate.
+     */
+    where?: ZerosumWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Zerosums to fetch.
+     */
+    orderBy?: Enumerable<ZerosumOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ZerosumWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Zerosums from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Zerosums.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Zerosums
+    **/
+    _count?: true | ZerosumCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ZerosumAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ZerosumSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ZerosumMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ZerosumMaxAggregateInputType
+  }
+
+  export type GetZerosumAggregateType<T extends ZerosumAggregateArgs> = {
+        [P in keyof T & keyof AggregateZerosum]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateZerosum[P]>
+      : GetScalarType<T[P], AggregateZerosum[P]>
+  }
+
+
+
+
+  export type ZerosumGroupByArgs = {
+    where?: ZerosumWhereInput
+    orderBy?: Enumerable<ZerosumOrderByWithAggregationInput>
+    by: ZerosumScalarFieldEnum[]
+    having?: ZerosumScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ZerosumCountAggregateInputType | true
+    _avg?: ZerosumAvgAggregateInputType
+    _sum?: ZerosumSumAggregateInputType
+    _min?: ZerosumMinAggregateInputType
+    _max?: ZerosumMaxAggregateInputType
+  }
+
+
+  export type ZerosumGroupByOutputType = {
+    id: string
+    numberOne: number
+    numberTwo: number
+    numberThree: number
+    operatorOne: string
+    operatorTwo: string
+    createdAt: Date
+    updatedAt: Date
+    _count: ZerosumCountAggregateOutputType | null
+    _avg: ZerosumAvgAggregateOutputType | null
+    _sum: ZerosumSumAggregateOutputType | null
+    _min: ZerosumMinAggregateOutputType | null
+    _max: ZerosumMaxAggregateOutputType | null
+  }
+
+  type GetZerosumGroupByPayload<T extends ZerosumGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickArray<ZerosumGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ZerosumGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ZerosumGroupByOutputType[P]>
+            : GetScalarType<T[P], ZerosumGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ZerosumSelect = {
+    id?: boolean
+    numberOne?: boolean
+    numberTwo?: boolean
+    numberThree?: boolean
+    operatorOne?: boolean
+    operatorTwo?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+
+  export type ZerosumGetPayload<S extends boolean | null | undefined | ZerosumArgs> =
+    S extends { select: any, include: any } ? 'Please either choose `select` or `include`' :
+    S extends true ? Zerosum :
+    S extends undefined ? never :
+    S extends { include: any } & (ZerosumArgs | ZerosumFindManyArgs)
+    ? Zerosum 
+    : S extends { select: any } & (ZerosumArgs | ZerosumFindManyArgs)
+      ? {
+    [P in TruthyKeys<S['select']>]:
+    P extends keyof Zerosum ? Zerosum[P] : never
+  } 
+      : Zerosum
+
+
+  type ZerosumCountArgs = 
+    Omit<ZerosumFindManyArgs, 'select' | 'include'> & {
+      select?: ZerosumCountAggregateInputType | true
+    }
+
+  export interface ZerosumDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined> {
+
+    /**
+     * Find zero or one Zerosum that matches the filter.
+     * @param {ZerosumFindUniqueArgs} args - Arguments to find a Zerosum
+     * @example
+     * // Get one Zerosum
+     * const zerosum = await prisma.zerosum.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends ZerosumFindUniqueArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args: SelectSubset<T, ZerosumFindUniqueArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'Zerosum'> extends True ? Prisma__ZerosumClient<ZerosumGetPayload<T>> : Prisma__ZerosumClient<ZerosumGetPayload<T> | null, null>
+
+    /**
+     * Find one Zerosum that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {ZerosumFindUniqueOrThrowArgs} args - Arguments to find a Zerosum
+     * @example
+     * // Get one Zerosum
+     * const zerosum = await prisma.zerosum.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends ZerosumFindUniqueOrThrowArgs>(
+      args?: SelectSubset<T, ZerosumFindUniqueOrThrowArgs>
+    ): Prisma__ZerosumClient<ZerosumGetPayload<T>>
+
+    /**
+     * Find the first Zerosum that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ZerosumFindFirstArgs} args - Arguments to find a Zerosum
+     * @example
+     * // Get one Zerosum
+     * const zerosum = await prisma.zerosum.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends ZerosumFindFirstArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args?: SelectSubset<T, ZerosumFindFirstArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'Zerosum'> extends True ? Prisma__ZerosumClient<ZerosumGetPayload<T>> : Prisma__ZerosumClient<ZerosumGetPayload<T> | null, null>
+
+    /**
+     * Find the first Zerosum that matches the filter or
+     * throw `NotFoundError` if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ZerosumFindFirstOrThrowArgs} args - Arguments to find a Zerosum
+     * @example
+     * // Get one Zerosum
+     * const zerosum = await prisma.zerosum.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends ZerosumFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, ZerosumFindFirstOrThrowArgs>
+    ): Prisma__ZerosumClient<ZerosumGetPayload<T>>
+
+    /**
+     * Find zero or more Zerosums that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ZerosumFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Zerosums
+     * const zerosums = await prisma.zerosum.findMany()
+     * 
+     * // Get first 10 Zerosums
+     * const zerosums = await prisma.zerosum.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const zerosumWithIdOnly = await prisma.zerosum.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends ZerosumFindManyArgs>(
+      args?: SelectSubset<T, ZerosumFindManyArgs>
+    ): Prisma.PrismaPromise<Array<ZerosumGetPayload<T>>>
+
+    /**
+     * Create a Zerosum.
+     * @param {ZerosumCreateArgs} args - Arguments to create a Zerosum.
+     * @example
+     * // Create one Zerosum
+     * const Zerosum = await prisma.zerosum.create({
+     *   data: {
+     *     // ... data to create a Zerosum
+     *   }
+     * })
+     * 
+    **/
+    create<T extends ZerosumCreateArgs>(
+      args: SelectSubset<T, ZerosumCreateArgs>
+    ): Prisma__ZerosumClient<ZerosumGetPayload<T>>
+
+    /**
+     * Create many Zerosums.
+     *     @param {ZerosumCreateManyArgs} args - Arguments to create many Zerosums.
+     *     @example
+     *     // Create many Zerosums
+     *     const zerosum = await prisma.zerosum.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends ZerosumCreateManyArgs>(
+      args?: SelectSubset<T, ZerosumCreateManyArgs>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Zerosum.
+     * @param {ZerosumDeleteArgs} args - Arguments to delete one Zerosum.
+     * @example
+     * // Delete one Zerosum
+     * const Zerosum = await prisma.zerosum.delete({
+     *   where: {
+     *     // ... filter to delete one Zerosum
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends ZerosumDeleteArgs>(
+      args: SelectSubset<T, ZerosumDeleteArgs>
+    ): Prisma__ZerosumClient<ZerosumGetPayload<T>>
+
+    /**
+     * Update one Zerosum.
+     * @param {ZerosumUpdateArgs} args - Arguments to update one Zerosum.
+     * @example
+     * // Update one Zerosum
+     * const zerosum = await prisma.zerosum.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends ZerosumUpdateArgs>(
+      args: SelectSubset<T, ZerosumUpdateArgs>
+    ): Prisma__ZerosumClient<ZerosumGetPayload<T>>
+
+    /**
+     * Delete zero or more Zerosums.
+     * @param {ZerosumDeleteManyArgs} args - Arguments to filter Zerosums to delete.
+     * @example
+     * // Delete a few Zerosums
+     * const { count } = await prisma.zerosum.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends ZerosumDeleteManyArgs>(
+      args?: SelectSubset<T, ZerosumDeleteManyArgs>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Zerosums.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ZerosumUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Zerosums
+     * const zerosum = await prisma.zerosum.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends ZerosumUpdateManyArgs>(
+      args: SelectSubset<T, ZerosumUpdateManyArgs>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Zerosum.
+     * @param {ZerosumUpsertArgs} args - Arguments to update or create a Zerosum.
+     * @example
+     * // Update or create a Zerosum
+     * const zerosum = await prisma.zerosum.upsert({
+     *   create: {
+     *     // ... data to create a Zerosum
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Zerosum we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends ZerosumUpsertArgs>(
+      args: SelectSubset<T, ZerosumUpsertArgs>
+    ): Prisma__ZerosumClient<ZerosumGetPayload<T>>
+
+    /**
+     * Count the number of Zerosums.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ZerosumCountArgs} args - Arguments to filter Zerosums to count.
+     * @example
+     * // Count the number of Zerosums
+     * const count = await prisma.zerosum.count({
+     *   where: {
+     *     // ... the filter for the Zerosums we want to count
+     *   }
+     * })
+    **/
+    count<T extends ZerosumCountArgs>(
+      args?: Subset<T, ZerosumCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends _Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ZerosumCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Zerosum.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ZerosumAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ZerosumAggregateArgs>(args: Subset<T, ZerosumAggregateArgs>): Prisma.PrismaPromise<GetZerosumAggregateType<T>>
+
+    /**
+     * Group by Zerosum.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ZerosumGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ZerosumGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ZerosumGroupByArgs['orderBy'] }
+        : { orderBy?: ZerosumGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends TupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ZerosumGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetZerosumGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Zerosum.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export class Prisma__ZerosumClient<T, Null = never> implements Prisma.PrismaPromise<T> {
+    private readonly _dmmf;
+    private readonly _queryType;
+    private readonly _rootField;
+    private readonly _clientMethod;
+    private readonly _args;
+    private readonly _dataPath;
+    private readonly _errorFormat;
+    private readonly _measurePerformance?;
+    private _isList;
+    private _callsite;
+    private _requestPromise?;
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+    constructor(_dmmf: runtime.DMMFClass, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
+
+
+    private get _document();
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): Promise<T>;
+  }
+
+
+
+  // Custom InputTypes
+
+  /**
+   * Zerosum base type for findUnique actions
+   */
+  export type ZerosumFindUniqueArgsBase = {
+    /**
+     * Select specific fields to fetch from the Zerosum
+     */
+    select?: ZerosumSelect | null
+    /**
+     * Filter, which Zerosum to fetch.
+     */
+    where: ZerosumWhereUniqueInput
+  }
+
+  /**
+   * Zerosum findUnique
+   */
+  export interface ZerosumFindUniqueArgs extends ZerosumFindUniqueArgsBase {
+   /**
+    * Throw an Error if query returns no results
+    * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
+    */
+    rejectOnNotFound?: RejectOnNotFound
+  }
+      
+
+  /**
+   * Zerosum findUniqueOrThrow
+   */
+  export type ZerosumFindUniqueOrThrowArgs = {
+    /**
+     * Select specific fields to fetch from the Zerosum
+     */
+    select?: ZerosumSelect | null
+    /**
+     * Filter, which Zerosum to fetch.
+     */
+    where: ZerosumWhereUniqueInput
+  }
+
+
+  /**
+   * Zerosum base type for findFirst actions
+   */
+  export type ZerosumFindFirstArgsBase = {
+    /**
+     * Select specific fields to fetch from the Zerosum
+     */
+    select?: ZerosumSelect | null
+    /**
+     * Filter, which Zerosum to fetch.
+     */
+    where?: ZerosumWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Zerosums to fetch.
+     */
+    orderBy?: Enumerable<ZerosumOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Zerosums.
+     */
+    cursor?: ZerosumWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Zerosums from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Zerosums.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Zerosums.
+     */
+    distinct?: Enumerable<ZerosumScalarFieldEnum>
+  }
+
+  /**
+   * Zerosum findFirst
+   */
+  export interface ZerosumFindFirstArgs extends ZerosumFindFirstArgsBase {
+   /**
+    * Throw an Error if query returns no results
+    * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
+    */
+    rejectOnNotFound?: RejectOnNotFound
+  }
+      
+
+  /**
+   * Zerosum findFirstOrThrow
+   */
+  export type ZerosumFindFirstOrThrowArgs = {
+    /**
+     * Select specific fields to fetch from the Zerosum
+     */
+    select?: ZerosumSelect | null
+    /**
+     * Filter, which Zerosum to fetch.
+     */
+    where?: ZerosumWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Zerosums to fetch.
+     */
+    orderBy?: Enumerable<ZerosumOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Zerosums.
+     */
+    cursor?: ZerosumWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Zerosums from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Zerosums.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Zerosums.
+     */
+    distinct?: Enumerable<ZerosumScalarFieldEnum>
+  }
+
+
+  /**
+   * Zerosum findMany
+   */
+  export type ZerosumFindManyArgs = {
+    /**
+     * Select specific fields to fetch from the Zerosum
+     */
+    select?: ZerosumSelect | null
+    /**
+     * Filter, which Zerosums to fetch.
+     */
+    where?: ZerosumWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Zerosums to fetch.
+     */
+    orderBy?: Enumerable<ZerosumOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Zerosums.
+     */
+    cursor?: ZerosumWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Zerosums from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Zerosums.
+     */
+    skip?: number
+    distinct?: Enumerable<ZerosumScalarFieldEnum>
+  }
+
+
+  /**
+   * Zerosum create
+   */
+  export type ZerosumCreateArgs = {
+    /**
+     * Select specific fields to fetch from the Zerosum
+     */
+    select?: ZerosumSelect | null
+    /**
+     * The data needed to create a Zerosum.
+     */
+    data: XOR<ZerosumCreateInput, ZerosumUncheckedCreateInput>
+  }
+
+
+  /**
+   * Zerosum createMany
+   */
+  export type ZerosumCreateManyArgs = {
+    /**
+     * The data used to create many Zerosums.
+     */
+    data: Enumerable<ZerosumCreateManyInput>
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * Zerosum update
+   */
+  export type ZerosumUpdateArgs = {
+    /**
+     * Select specific fields to fetch from the Zerosum
+     */
+    select?: ZerosumSelect | null
+    /**
+     * The data needed to update a Zerosum.
+     */
+    data: XOR<ZerosumUpdateInput, ZerosumUncheckedUpdateInput>
+    /**
+     * Choose, which Zerosum to update.
+     */
+    where: ZerosumWhereUniqueInput
+  }
+
+
+  /**
+   * Zerosum updateMany
+   */
+  export type ZerosumUpdateManyArgs = {
+    /**
+     * The data used to update Zerosums.
+     */
+    data: XOR<ZerosumUpdateManyMutationInput, ZerosumUncheckedUpdateManyInput>
+    /**
+     * Filter which Zerosums to update
+     */
+    where?: ZerosumWhereInput
+  }
+
+
+  /**
+   * Zerosum upsert
+   */
+  export type ZerosumUpsertArgs = {
+    /**
+     * Select specific fields to fetch from the Zerosum
+     */
+    select?: ZerosumSelect | null
+    /**
+     * The filter to search for the Zerosum to update in case it exists.
+     */
+    where: ZerosumWhereUniqueInput
+    /**
+     * In case the Zerosum found by the `where` argument doesn't exist, create a new Zerosum with this data.
+     */
+    create: XOR<ZerosumCreateInput, ZerosumUncheckedCreateInput>
+    /**
+     * In case the Zerosum was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ZerosumUpdateInput, ZerosumUncheckedUpdateInput>
+  }
+
+
+  /**
+   * Zerosum delete
+   */
+  export type ZerosumDeleteArgs = {
+    /**
+     * Select specific fields to fetch from the Zerosum
+     */
+    select?: ZerosumSelect | null
+    /**
+     * Filter which Zerosum to delete.
+     */
+    where: ZerosumWhereUniqueInput
+  }
+
+
+  /**
+   * Zerosum deleteMany
+   */
+  export type ZerosumDeleteManyArgs = {
+    /**
+     * Filter which Zerosums to delete
+     */
+    where?: ZerosumWhereInput
+  }
+
+
+  /**
+   * Zerosum without action
+   */
+  export type ZerosumArgs = {
+    /**
+     * Select specific fields to fetch from the Zerosum
+     */
+    select?: ZerosumSelect | null
+  }
+
+
+
+  /**
+   * Model TrasferTransaction
+   */
+
+
+  export type AggregateTrasferTransaction = {
+    _count: TrasferTransactionCountAggregateOutputType | null
+    _avg: TrasferTransactionAvgAggregateOutputType | null
+    _sum: TrasferTransactionSumAggregateOutputType | null
+    _min: TrasferTransactionMinAggregateOutputType | null
+    _max: TrasferTransactionMaxAggregateOutputType | null
+  }
+
+  export type TrasferTransactionAvgAggregateOutputType = {
+    amount: number | null
+  }
+
+  export type TrasferTransactionSumAggregateOutputType = {
+    amount: number | null
+  }
+
+  export type TrasferTransactionMinAggregateOutputType = {
+    id: string | null
+    sender: string | null
+    receiver: string | null
+    amount: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TrasferTransactionMaxAggregateOutputType = {
+    id: string | null
+    sender: string | null
+    receiver: string | null
+    amount: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TrasferTransactionCountAggregateOutputType = {
+    id: number
+    sender: number
+    receiver: number
+    amount: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type TrasferTransactionAvgAggregateInputType = {
+    amount?: true
+  }
+
+  export type TrasferTransactionSumAggregateInputType = {
+    amount?: true
+  }
+
+  export type TrasferTransactionMinAggregateInputType = {
+    id?: true
+    sender?: true
+    receiver?: true
+    amount?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TrasferTransactionMaxAggregateInputType = {
+    id?: true
+    sender?: true
+    receiver?: true
+    amount?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TrasferTransactionCountAggregateInputType = {
+    id?: true
+    sender?: true
+    receiver?: true
+    amount?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type TrasferTransactionAggregateArgs = {
+    /**
+     * Filter which TrasferTransaction to aggregate.
+     */
+    where?: TrasferTransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TrasferTransactions to fetch.
+     */
+    orderBy?: Enumerable<TrasferTransactionOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TrasferTransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TrasferTransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TrasferTransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TrasferTransactions
+    **/
+    _count?: true | TrasferTransactionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TrasferTransactionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TrasferTransactionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TrasferTransactionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TrasferTransactionMaxAggregateInputType
+  }
+
+  export type GetTrasferTransactionAggregateType<T extends TrasferTransactionAggregateArgs> = {
+        [P in keyof T & keyof AggregateTrasferTransaction]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTrasferTransaction[P]>
+      : GetScalarType<T[P], AggregateTrasferTransaction[P]>
+  }
+
+
+
+
+  export type TrasferTransactionGroupByArgs = {
+    where?: TrasferTransactionWhereInput
+    orderBy?: Enumerable<TrasferTransactionOrderByWithAggregationInput>
+    by: TrasferTransactionScalarFieldEnum[]
+    having?: TrasferTransactionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TrasferTransactionCountAggregateInputType | true
+    _avg?: TrasferTransactionAvgAggregateInputType
+    _sum?: TrasferTransactionSumAggregateInputType
+    _min?: TrasferTransactionMinAggregateInputType
+    _max?: TrasferTransactionMaxAggregateInputType
+  }
+
+
+  export type TrasferTransactionGroupByOutputType = {
+    id: string
+    sender: string
+    receiver: string
+    amount: number
+    createdAt: Date
+    updatedAt: Date
+    _count: TrasferTransactionCountAggregateOutputType | null
+    _avg: TrasferTransactionAvgAggregateOutputType | null
+    _sum: TrasferTransactionSumAggregateOutputType | null
+    _min: TrasferTransactionMinAggregateOutputType | null
+    _max: TrasferTransactionMaxAggregateOutputType | null
+  }
+
+  type GetTrasferTransactionGroupByPayload<T extends TrasferTransactionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickArray<TrasferTransactionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TrasferTransactionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TrasferTransactionGroupByOutputType[P]>
+            : GetScalarType<T[P], TrasferTransactionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TrasferTransactionSelect = {
+    id?: boolean
+    sender?: boolean
+    receiver?: boolean
+    amount?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+
+  export type TrasferTransactionGetPayload<S extends boolean | null | undefined | TrasferTransactionArgs> =
+    S extends { select: any, include: any } ? 'Please either choose `select` or `include`' :
+    S extends true ? TrasferTransaction :
+    S extends undefined ? never :
+    S extends { include: any } & (TrasferTransactionArgs | TrasferTransactionFindManyArgs)
+    ? TrasferTransaction 
+    : S extends { select: any } & (TrasferTransactionArgs | TrasferTransactionFindManyArgs)
+      ? {
+    [P in TruthyKeys<S['select']>]:
+    P extends keyof TrasferTransaction ? TrasferTransaction[P] : never
+  } 
+      : TrasferTransaction
+
+
+  type TrasferTransactionCountArgs = 
+    Omit<TrasferTransactionFindManyArgs, 'select' | 'include'> & {
+      select?: TrasferTransactionCountAggregateInputType | true
+    }
+
+  export interface TrasferTransactionDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined> {
+
+    /**
+     * Find zero or one TrasferTransaction that matches the filter.
+     * @param {TrasferTransactionFindUniqueArgs} args - Arguments to find a TrasferTransaction
+     * @example
+     * // Get one TrasferTransaction
+     * const trasferTransaction = await prisma.trasferTransaction.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends TrasferTransactionFindUniqueArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args: SelectSubset<T, TrasferTransactionFindUniqueArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'TrasferTransaction'> extends True ? Prisma__TrasferTransactionClient<TrasferTransactionGetPayload<T>> : Prisma__TrasferTransactionClient<TrasferTransactionGetPayload<T> | null, null>
+
+    /**
+     * Find one TrasferTransaction that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {TrasferTransactionFindUniqueOrThrowArgs} args - Arguments to find a TrasferTransaction
+     * @example
+     * // Get one TrasferTransaction
+     * const trasferTransaction = await prisma.trasferTransaction.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends TrasferTransactionFindUniqueOrThrowArgs>(
+      args?: SelectSubset<T, TrasferTransactionFindUniqueOrThrowArgs>
+    ): Prisma__TrasferTransactionClient<TrasferTransactionGetPayload<T>>
+
+    /**
+     * Find the first TrasferTransaction that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TrasferTransactionFindFirstArgs} args - Arguments to find a TrasferTransaction
+     * @example
+     * // Get one TrasferTransaction
+     * const trasferTransaction = await prisma.trasferTransaction.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends TrasferTransactionFindFirstArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args?: SelectSubset<T, TrasferTransactionFindFirstArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'TrasferTransaction'> extends True ? Prisma__TrasferTransactionClient<TrasferTransactionGetPayload<T>> : Prisma__TrasferTransactionClient<TrasferTransactionGetPayload<T> | null, null>
+
+    /**
+     * Find the first TrasferTransaction that matches the filter or
+     * throw `NotFoundError` if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TrasferTransactionFindFirstOrThrowArgs} args - Arguments to find a TrasferTransaction
+     * @example
+     * // Get one TrasferTransaction
+     * const trasferTransaction = await prisma.trasferTransaction.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends TrasferTransactionFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, TrasferTransactionFindFirstOrThrowArgs>
+    ): Prisma__TrasferTransactionClient<TrasferTransactionGetPayload<T>>
+
+    /**
+     * Find zero or more TrasferTransactions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TrasferTransactionFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TrasferTransactions
+     * const trasferTransactions = await prisma.trasferTransaction.findMany()
+     * 
+     * // Get first 10 TrasferTransactions
+     * const trasferTransactions = await prisma.trasferTransaction.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const trasferTransactionWithIdOnly = await prisma.trasferTransaction.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends TrasferTransactionFindManyArgs>(
+      args?: SelectSubset<T, TrasferTransactionFindManyArgs>
+    ): Prisma.PrismaPromise<Array<TrasferTransactionGetPayload<T>>>
+
+    /**
+     * Create a TrasferTransaction.
+     * @param {TrasferTransactionCreateArgs} args - Arguments to create a TrasferTransaction.
+     * @example
+     * // Create one TrasferTransaction
+     * const TrasferTransaction = await prisma.trasferTransaction.create({
+     *   data: {
+     *     // ... data to create a TrasferTransaction
+     *   }
+     * })
+     * 
+    **/
+    create<T extends TrasferTransactionCreateArgs>(
+      args: SelectSubset<T, TrasferTransactionCreateArgs>
+    ): Prisma__TrasferTransactionClient<TrasferTransactionGetPayload<T>>
+
+    /**
+     * Create many TrasferTransactions.
+     *     @param {TrasferTransactionCreateManyArgs} args - Arguments to create many TrasferTransactions.
+     *     @example
+     *     // Create many TrasferTransactions
+     *     const trasferTransaction = await prisma.trasferTransaction.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends TrasferTransactionCreateManyArgs>(
+      args?: SelectSubset<T, TrasferTransactionCreateManyArgs>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a TrasferTransaction.
+     * @param {TrasferTransactionDeleteArgs} args - Arguments to delete one TrasferTransaction.
+     * @example
+     * // Delete one TrasferTransaction
+     * const TrasferTransaction = await prisma.trasferTransaction.delete({
+     *   where: {
+     *     // ... filter to delete one TrasferTransaction
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends TrasferTransactionDeleteArgs>(
+      args: SelectSubset<T, TrasferTransactionDeleteArgs>
+    ): Prisma__TrasferTransactionClient<TrasferTransactionGetPayload<T>>
+
+    /**
+     * Update one TrasferTransaction.
+     * @param {TrasferTransactionUpdateArgs} args - Arguments to update one TrasferTransaction.
+     * @example
+     * // Update one TrasferTransaction
+     * const trasferTransaction = await prisma.trasferTransaction.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends TrasferTransactionUpdateArgs>(
+      args: SelectSubset<T, TrasferTransactionUpdateArgs>
+    ): Prisma__TrasferTransactionClient<TrasferTransactionGetPayload<T>>
+
+    /**
+     * Delete zero or more TrasferTransactions.
+     * @param {TrasferTransactionDeleteManyArgs} args - Arguments to filter TrasferTransactions to delete.
+     * @example
+     * // Delete a few TrasferTransactions
+     * const { count } = await prisma.trasferTransaction.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends TrasferTransactionDeleteManyArgs>(
+      args?: SelectSubset<T, TrasferTransactionDeleteManyArgs>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TrasferTransactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TrasferTransactionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TrasferTransactions
+     * const trasferTransaction = await prisma.trasferTransaction.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends TrasferTransactionUpdateManyArgs>(
+      args: SelectSubset<T, TrasferTransactionUpdateManyArgs>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one TrasferTransaction.
+     * @param {TrasferTransactionUpsertArgs} args - Arguments to update or create a TrasferTransaction.
+     * @example
+     * // Update or create a TrasferTransaction
+     * const trasferTransaction = await prisma.trasferTransaction.upsert({
+     *   create: {
+     *     // ... data to create a TrasferTransaction
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TrasferTransaction we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends TrasferTransactionUpsertArgs>(
+      args: SelectSubset<T, TrasferTransactionUpsertArgs>
+    ): Prisma__TrasferTransactionClient<TrasferTransactionGetPayload<T>>
+
+    /**
+     * Count the number of TrasferTransactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TrasferTransactionCountArgs} args - Arguments to filter TrasferTransactions to count.
+     * @example
+     * // Count the number of TrasferTransactions
+     * const count = await prisma.trasferTransaction.count({
+     *   where: {
+     *     // ... the filter for the TrasferTransactions we want to count
+     *   }
+     * })
+    **/
+    count<T extends TrasferTransactionCountArgs>(
+      args?: Subset<T, TrasferTransactionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends _Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TrasferTransactionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TrasferTransaction.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TrasferTransactionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TrasferTransactionAggregateArgs>(args: Subset<T, TrasferTransactionAggregateArgs>): Prisma.PrismaPromise<GetTrasferTransactionAggregateType<T>>
+
+    /**
+     * Group by TrasferTransaction.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TrasferTransactionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TrasferTransactionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TrasferTransactionGroupByArgs['orderBy'] }
+        : { orderBy?: TrasferTransactionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends TupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TrasferTransactionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTrasferTransactionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TrasferTransaction.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export class Prisma__TrasferTransactionClient<T, Null = never> implements Prisma.PrismaPromise<T> {
+    private readonly _dmmf;
+    private readonly _queryType;
+    private readonly _rootField;
+    private readonly _clientMethod;
+    private readonly _args;
+    private readonly _dataPath;
+    private readonly _errorFormat;
+    private readonly _measurePerformance?;
+    private _isList;
+    private _callsite;
+    private _requestPromise?;
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+    constructor(_dmmf: runtime.DMMFClass, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
+
+
+    private get _document();
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): Promise<T>;
+  }
+
+
+
+  // Custom InputTypes
+
+  /**
+   * TrasferTransaction base type for findUnique actions
+   */
+  export type TrasferTransactionFindUniqueArgsBase = {
+    /**
+     * Select specific fields to fetch from the TrasferTransaction
+     */
+    select?: TrasferTransactionSelect | null
+    /**
+     * Filter, which TrasferTransaction to fetch.
+     */
+    where: TrasferTransactionWhereUniqueInput
+  }
+
+  /**
+   * TrasferTransaction findUnique
+   */
+  export interface TrasferTransactionFindUniqueArgs extends TrasferTransactionFindUniqueArgsBase {
+   /**
+    * Throw an Error if query returns no results
+    * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
+    */
+    rejectOnNotFound?: RejectOnNotFound
+  }
+      
+
+  /**
+   * TrasferTransaction findUniqueOrThrow
+   */
+  export type TrasferTransactionFindUniqueOrThrowArgs = {
+    /**
+     * Select specific fields to fetch from the TrasferTransaction
+     */
+    select?: TrasferTransactionSelect | null
+    /**
+     * Filter, which TrasferTransaction to fetch.
+     */
+    where: TrasferTransactionWhereUniqueInput
+  }
+
+
+  /**
+   * TrasferTransaction base type for findFirst actions
+   */
+  export type TrasferTransactionFindFirstArgsBase = {
+    /**
+     * Select specific fields to fetch from the TrasferTransaction
+     */
+    select?: TrasferTransactionSelect | null
+    /**
+     * Filter, which TrasferTransaction to fetch.
+     */
+    where?: TrasferTransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TrasferTransactions to fetch.
+     */
+    orderBy?: Enumerable<TrasferTransactionOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TrasferTransactions.
+     */
+    cursor?: TrasferTransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TrasferTransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TrasferTransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TrasferTransactions.
+     */
+    distinct?: Enumerable<TrasferTransactionScalarFieldEnum>
+  }
+
+  /**
+   * TrasferTransaction findFirst
+   */
+  export interface TrasferTransactionFindFirstArgs extends TrasferTransactionFindFirstArgsBase {
+   /**
+    * Throw an Error if query returns no results
+    * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
+    */
+    rejectOnNotFound?: RejectOnNotFound
+  }
+      
+
+  /**
+   * TrasferTransaction findFirstOrThrow
+   */
+  export type TrasferTransactionFindFirstOrThrowArgs = {
+    /**
+     * Select specific fields to fetch from the TrasferTransaction
+     */
+    select?: TrasferTransactionSelect | null
+    /**
+     * Filter, which TrasferTransaction to fetch.
+     */
+    where?: TrasferTransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TrasferTransactions to fetch.
+     */
+    orderBy?: Enumerable<TrasferTransactionOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TrasferTransactions.
+     */
+    cursor?: TrasferTransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TrasferTransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TrasferTransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TrasferTransactions.
+     */
+    distinct?: Enumerable<TrasferTransactionScalarFieldEnum>
+  }
+
+
+  /**
+   * TrasferTransaction findMany
+   */
+  export type TrasferTransactionFindManyArgs = {
+    /**
+     * Select specific fields to fetch from the TrasferTransaction
+     */
+    select?: TrasferTransactionSelect | null
+    /**
+     * Filter, which TrasferTransactions to fetch.
+     */
+    where?: TrasferTransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TrasferTransactions to fetch.
+     */
+    orderBy?: Enumerable<TrasferTransactionOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TrasferTransactions.
+     */
+    cursor?: TrasferTransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TrasferTransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TrasferTransactions.
+     */
+    skip?: number
+    distinct?: Enumerable<TrasferTransactionScalarFieldEnum>
+  }
+
+
+  /**
+   * TrasferTransaction create
+   */
+  export type TrasferTransactionCreateArgs = {
+    /**
+     * Select specific fields to fetch from the TrasferTransaction
+     */
+    select?: TrasferTransactionSelect | null
+    /**
+     * The data needed to create a TrasferTransaction.
+     */
+    data: XOR<TrasferTransactionCreateInput, TrasferTransactionUncheckedCreateInput>
+  }
+
+
+  /**
+   * TrasferTransaction createMany
+   */
+  export type TrasferTransactionCreateManyArgs = {
+    /**
+     * The data used to create many TrasferTransactions.
+     */
+    data: Enumerable<TrasferTransactionCreateManyInput>
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * TrasferTransaction update
+   */
+  export type TrasferTransactionUpdateArgs = {
+    /**
+     * Select specific fields to fetch from the TrasferTransaction
+     */
+    select?: TrasferTransactionSelect | null
+    /**
+     * The data needed to update a TrasferTransaction.
+     */
+    data: XOR<TrasferTransactionUpdateInput, TrasferTransactionUncheckedUpdateInput>
+    /**
+     * Choose, which TrasferTransaction to update.
+     */
+    where: TrasferTransactionWhereUniqueInput
+  }
+
+
+  /**
+   * TrasferTransaction updateMany
+   */
+  export type TrasferTransactionUpdateManyArgs = {
+    /**
+     * The data used to update TrasferTransactions.
+     */
+    data: XOR<TrasferTransactionUpdateManyMutationInput, TrasferTransactionUncheckedUpdateManyInput>
+    /**
+     * Filter which TrasferTransactions to update
+     */
+    where?: TrasferTransactionWhereInput
+  }
+
+
+  /**
+   * TrasferTransaction upsert
+   */
+  export type TrasferTransactionUpsertArgs = {
+    /**
+     * Select specific fields to fetch from the TrasferTransaction
+     */
+    select?: TrasferTransactionSelect | null
+    /**
+     * The filter to search for the TrasferTransaction to update in case it exists.
+     */
+    where: TrasferTransactionWhereUniqueInput
+    /**
+     * In case the TrasferTransaction found by the `where` argument doesn't exist, create a new TrasferTransaction with this data.
+     */
+    create: XOR<TrasferTransactionCreateInput, TrasferTransactionUncheckedCreateInput>
+    /**
+     * In case the TrasferTransaction was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TrasferTransactionUpdateInput, TrasferTransactionUncheckedUpdateInput>
+  }
+
+
+  /**
+   * TrasferTransaction delete
+   */
+  export type TrasferTransactionDeleteArgs = {
+    /**
+     * Select specific fields to fetch from the TrasferTransaction
+     */
+    select?: TrasferTransactionSelect | null
+    /**
+     * Filter which TrasferTransaction to delete.
+     */
+    where: TrasferTransactionWhereUniqueInput
+  }
+
+
+  /**
+   * TrasferTransaction deleteMany
+   */
+  export type TrasferTransactionDeleteManyArgs = {
+    /**
+     * Filter which TrasferTransactions to delete
+     */
+    where?: TrasferTransactionWhereInput
+  }
+
+
+  /**
+   * TrasferTransaction without action
+   */
+  export type TrasferTransactionArgs = {
+    /**
+     * Select specific fields to fetch from the TrasferTransaction
+     */
+    select?: TrasferTransactionSelect | null
+  }
+
+
+
+  /**
+   * Model DonationTransaction
+   */
+
+
+  export type AggregateDonationTransaction = {
+    _count: DonationTransactionCountAggregateOutputType | null
+    _avg: DonationTransactionAvgAggregateOutputType | null
+    _sum: DonationTransactionSumAggregateOutputType | null
+    _min: DonationTransactionMinAggregateOutputType | null
+    _max: DonationTransactionMaxAggregateOutputType | null
+  }
+
+  export type DonationTransactionAvgAggregateOutputType = {
+    amount: number | null
+  }
+
+  export type DonationTransactionSumAggregateOutputType = {
+    amount: number | null
+  }
+
+  export type DonationTransactionMinAggregateOutputType = {
+    id: string | null
+    sender: string | null
+    unionId: string | null
+    amount: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type DonationTransactionMaxAggregateOutputType = {
+    id: string | null
+    sender: string | null
+    unionId: string | null
+    amount: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type DonationTransactionCountAggregateOutputType = {
+    id: number
+    sender: number
+    unionId: number
+    amount: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type DonationTransactionAvgAggregateInputType = {
+    amount?: true
+  }
+
+  export type DonationTransactionSumAggregateInputType = {
+    amount?: true
+  }
+
+  export type DonationTransactionMinAggregateInputType = {
+    id?: true
+    sender?: true
+    unionId?: true
+    amount?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type DonationTransactionMaxAggregateInputType = {
+    id?: true
+    sender?: true
+    unionId?: true
+    amount?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type DonationTransactionCountAggregateInputType = {
+    id?: true
+    sender?: true
+    unionId?: true
+    amount?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type DonationTransactionAggregateArgs = {
+    /**
+     * Filter which DonationTransaction to aggregate.
+     */
+    where?: DonationTransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DonationTransactions to fetch.
+     */
+    orderBy?: Enumerable<DonationTransactionOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DonationTransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DonationTransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DonationTransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned DonationTransactions
+    **/
+    _count?: true | DonationTransactionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: DonationTransactionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: DonationTransactionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DonationTransactionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DonationTransactionMaxAggregateInputType
+  }
+
+  export type GetDonationTransactionAggregateType<T extends DonationTransactionAggregateArgs> = {
+        [P in keyof T & keyof AggregateDonationTransaction]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDonationTransaction[P]>
+      : GetScalarType<T[P], AggregateDonationTransaction[P]>
+  }
+
+
+
+
+  export type DonationTransactionGroupByArgs = {
+    where?: DonationTransactionWhereInput
+    orderBy?: Enumerable<DonationTransactionOrderByWithAggregationInput>
+    by: DonationTransactionScalarFieldEnum[]
+    having?: DonationTransactionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DonationTransactionCountAggregateInputType | true
+    _avg?: DonationTransactionAvgAggregateInputType
+    _sum?: DonationTransactionSumAggregateInputType
+    _min?: DonationTransactionMinAggregateInputType
+    _max?: DonationTransactionMaxAggregateInputType
+  }
+
+
+  export type DonationTransactionGroupByOutputType = {
+    id: string
+    sender: string
+    unionId: string
+    amount: number
+    createdAt: Date
+    updatedAt: Date
+    _count: DonationTransactionCountAggregateOutputType | null
+    _avg: DonationTransactionAvgAggregateOutputType | null
+    _sum: DonationTransactionSumAggregateOutputType | null
+    _min: DonationTransactionMinAggregateOutputType | null
+    _max: DonationTransactionMaxAggregateOutputType | null
+  }
+
+  type GetDonationTransactionGroupByPayload<T extends DonationTransactionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickArray<DonationTransactionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DonationTransactionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DonationTransactionGroupByOutputType[P]>
+            : GetScalarType<T[P], DonationTransactionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DonationTransactionSelect = {
+    id?: boolean
+    sender?: boolean
+    unionId?: boolean
+    amount?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+
+  export type DonationTransactionGetPayload<S extends boolean | null | undefined | DonationTransactionArgs> =
+    S extends { select: any, include: any } ? 'Please either choose `select` or `include`' :
+    S extends true ? DonationTransaction :
+    S extends undefined ? never :
+    S extends { include: any } & (DonationTransactionArgs | DonationTransactionFindManyArgs)
+    ? DonationTransaction 
+    : S extends { select: any } & (DonationTransactionArgs | DonationTransactionFindManyArgs)
+      ? {
+    [P in TruthyKeys<S['select']>]:
+    P extends keyof DonationTransaction ? DonationTransaction[P] : never
+  } 
+      : DonationTransaction
+
+
+  type DonationTransactionCountArgs = 
+    Omit<DonationTransactionFindManyArgs, 'select' | 'include'> & {
+      select?: DonationTransactionCountAggregateInputType | true
+    }
+
+  export interface DonationTransactionDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined> {
+
+    /**
+     * Find zero or one DonationTransaction that matches the filter.
+     * @param {DonationTransactionFindUniqueArgs} args - Arguments to find a DonationTransaction
+     * @example
+     * // Get one DonationTransaction
+     * const donationTransaction = await prisma.donationTransaction.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends DonationTransactionFindUniqueArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args: SelectSubset<T, DonationTransactionFindUniqueArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'DonationTransaction'> extends True ? Prisma__DonationTransactionClient<DonationTransactionGetPayload<T>> : Prisma__DonationTransactionClient<DonationTransactionGetPayload<T> | null, null>
+
+    /**
+     * Find one DonationTransaction that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {DonationTransactionFindUniqueOrThrowArgs} args - Arguments to find a DonationTransaction
+     * @example
+     * // Get one DonationTransaction
+     * const donationTransaction = await prisma.donationTransaction.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends DonationTransactionFindUniqueOrThrowArgs>(
+      args?: SelectSubset<T, DonationTransactionFindUniqueOrThrowArgs>
+    ): Prisma__DonationTransactionClient<DonationTransactionGetPayload<T>>
+
+    /**
+     * Find the first DonationTransaction that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DonationTransactionFindFirstArgs} args - Arguments to find a DonationTransaction
+     * @example
+     * // Get one DonationTransaction
+     * const donationTransaction = await prisma.donationTransaction.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends DonationTransactionFindFirstArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args?: SelectSubset<T, DonationTransactionFindFirstArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'DonationTransaction'> extends True ? Prisma__DonationTransactionClient<DonationTransactionGetPayload<T>> : Prisma__DonationTransactionClient<DonationTransactionGetPayload<T> | null, null>
+
+    /**
+     * Find the first DonationTransaction that matches the filter or
+     * throw `NotFoundError` if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DonationTransactionFindFirstOrThrowArgs} args - Arguments to find a DonationTransaction
+     * @example
+     * // Get one DonationTransaction
+     * const donationTransaction = await prisma.donationTransaction.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends DonationTransactionFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, DonationTransactionFindFirstOrThrowArgs>
+    ): Prisma__DonationTransactionClient<DonationTransactionGetPayload<T>>
+
+    /**
+     * Find zero or more DonationTransactions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DonationTransactionFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all DonationTransactions
+     * const donationTransactions = await prisma.donationTransaction.findMany()
+     * 
+     * // Get first 10 DonationTransactions
+     * const donationTransactions = await prisma.donationTransaction.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const donationTransactionWithIdOnly = await prisma.donationTransaction.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends DonationTransactionFindManyArgs>(
+      args?: SelectSubset<T, DonationTransactionFindManyArgs>
+    ): Prisma.PrismaPromise<Array<DonationTransactionGetPayload<T>>>
+
+    /**
+     * Create a DonationTransaction.
+     * @param {DonationTransactionCreateArgs} args - Arguments to create a DonationTransaction.
+     * @example
+     * // Create one DonationTransaction
+     * const DonationTransaction = await prisma.donationTransaction.create({
+     *   data: {
+     *     // ... data to create a DonationTransaction
+     *   }
+     * })
+     * 
+    **/
+    create<T extends DonationTransactionCreateArgs>(
+      args: SelectSubset<T, DonationTransactionCreateArgs>
+    ): Prisma__DonationTransactionClient<DonationTransactionGetPayload<T>>
+
+    /**
+     * Create many DonationTransactions.
+     *     @param {DonationTransactionCreateManyArgs} args - Arguments to create many DonationTransactions.
+     *     @example
+     *     // Create many DonationTransactions
+     *     const donationTransaction = await prisma.donationTransaction.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends DonationTransactionCreateManyArgs>(
+      args?: SelectSubset<T, DonationTransactionCreateManyArgs>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a DonationTransaction.
+     * @param {DonationTransactionDeleteArgs} args - Arguments to delete one DonationTransaction.
+     * @example
+     * // Delete one DonationTransaction
+     * const DonationTransaction = await prisma.donationTransaction.delete({
+     *   where: {
+     *     // ... filter to delete one DonationTransaction
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends DonationTransactionDeleteArgs>(
+      args: SelectSubset<T, DonationTransactionDeleteArgs>
+    ): Prisma__DonationTransactionClient<DonationTransactionGetPayload<T>>
+
+    /**
+     * Update one DonationTransaction.
+     * @param {DonationTransactionUpdateArgs} args - Arguments to update one DonationTransaction.
+     * @example
+     * // Update one DonationTransaction
+     * const donationTransaction = await prisma.donationTransaction.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends DonationTransactionUpdateArgs>(
+      args: SelectSubset<T, DonationTransactionUpdateArgs>
+    ): Prisma__DonationTransactionClient<DonationTransactionGetPayload<T>>
+
+    /**
+     * Delete zero or more DonationTransactions.
+     * @param {DonationTransactionDeleteManyArgs} args - Arguments to filter DonationTransactions to delete.
+     * @example
+     * // Delete a few DonationTransactions
+     * const { count } = await prisma.donationTransaction.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends DonationTransactionDeleteManyArgs>(
+      args?: SelectSubset<T, DonationTransactionDeleteManyArgs>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DonationTransactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DonationTransactionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many DonationTransactions
+     * const donationTransaction = await prisma.donationTransaction.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends DonationTransactionUpdateManyArgs>(
+      args: SelectSubset<T, DonationTransactionUpdateManyArgs>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one DonationTransaction.
+     * @param {DonationTransactionUpsertArgs} args - Arguments to update or create a DonationTransaction.
+     * @example
+     * // Update or create a DonationTransaction
+     * const donationTransaction = await prisma.donationTransaction.upsert({
+     *   create: {
+     *     // ... data to create a DonationTransaction
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the DonationTransaction we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends DonationTransactionUpsertArgs>(
+      args: SelectSubset<T, DonationTransactionUpsertArgs>
+    ): Prisma__DonationTransactionClient<DonationTransactionGetPayload<T>>
+
+    /**
+     * Count the number of DonationTransactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DonationTransactionCountArgs} args - Arguments to filter DonationTransactions to count.
+     * @example
+     * // Count the number of DonationTransactions
+     * const count = await prisma.donationTransaction.count({
+     *   where: {
+     *     // ... the filter for the DonationTransactions we want to count
+     *   }
+     * })
+    **/
+    count<T extends DonationTransactionCountArgs>(
+      args?: Subset<T, DonationTransactionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends _Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DonationTransactionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a DonationTransaction.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DonationTransactionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DonationTransactionAggregateArgs>(args: Subset<T, DonationTransactionAggregateArgs>): Prisma.PrismaPromise<GetDonationTransactionAggregateType<T>>
+
+    /**
+     * Group by DonationTransaction.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DonationTransactionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DonationTransactionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DonationTransactionGroupByArgs['orderBy'] }
+        : { orderBy?: DonationTransactionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends TupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DonationTransactionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDonationTransactionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for DonationTransaction.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export class Prisma__DonationTransactionClient<T, Null = never> implements Prisma.PrismaPromise<T> {
+    private readonly _dmmf;
+    private readonly _queryType;
+    private readonly _rootField;
+    private readonly _clientMethod;
+    private readonly _args;
+    private readonly _dataPath;
+    private readonly _errorFormat;
+    private readonly _measurePerformance?;
+    private _isList;
+    private _callsite;
+    private _requestPromise?;
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+    constructor(_dmmf: runtime.DMMFClass, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
+
+
+    private get _document();
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): Promise<T>;
+  }
+
+
+
+  // Custom InputTypes
+
+  /**
+   * DonationTransaction base type for findUnique actions
+   */
+  export type DonationTransactionFindUniqueArgsBase = {
+    /**
+     * Select specific fields to fetch from the DonationTransaction
+     */
+    select?: DonationTransactionSelect | null
+    /**
+     * Filter, which DonationTransaction to fetch.
+     */
+    where: DonationTransactionWhereUniqueInput
+  }
+
+  /**
+   * DonationTransaction findUnique
+   */
+  export interface DonationTransactionFindUniqueArgs extends DonationTransactionFindUniqueArgsBase {
+   /**
+    * Throw an Error if query returns no results
+    * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
+    */
+    rejectOnNotFound?: RejectOnNotFound
+  }
+      
+
+  /**
+   * DonationTransaction findUniqueOrThrow
+   */
+  export type DonationTransactionFindUniqueOrThrowArgs = {
+    /**
+     * Select specific fields to fetch from the DonationTransaction
+     */
+    select?: DonationTransactionSelect | null
+    /**
+     * Filter, which DonationTransaction to fetch.
+     */
+    where: DonationTransactionWhereUniqueInput
+  }
+
+
+  /**
+   * DonationTransaction base type for findFirst actions
+   */
+  export type DonationTransactionFindFirstArgsBase = {
+    /**
+     * Select specific fields to fetch from the DonationTransaction
+     */
+    select?: DonationTransactionSelect | null
+    /**
+     * Filter, which DonationTransaction to fetch.
+     */
+    where?: DonationTransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DonationTransactions to fetch.
+     */
+    orderBy?: Enumerable<DonationTransactionOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DonationTransactions.
+     */
+    cursor?: DonationTransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DonationTransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DonationTransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DonationTransactions.
+     */
+    distinct?: Enumerable<DonationTransactionScalarFieldEnum>
+  }
+
+  /**
+   * DonationTransaction findFirst
+   */
+  export interface DonationTransactionFindFirstArgs extends DonationTransactionFindFirstArgsBase {
+   /**
+    * Throw an Error if query returns no results
+    * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
+    */
+    rejectOnNotFound?: RejectOnNotFound
+  }
+      
+
+  /**
+   * DonationTransaction findFirstOrThrow
+   */
+  export type DonationTransactionFindFirstOrThrowArgs = {
+    /**
+     * Select specific fields to fetch from the DonationTransaction
+     */
+    select?: DonationTransactionSelect | null
+    /**
+     * Filter, which DonationTransaction to fetch.
+     */
+    where?: DonationTransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DonationTransactions to fetch.
+     */
+    orderBy?: Enumerable<DonationTransactionOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DonationTransactions.
+     */
+    cursor?: DonationTransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DonationTransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DonationTransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DonationTransactions.
+     */
+    distinct?: Enumerable<DonationTransactionScalarFieldEnum>
+  }
+
+
+  /**
+   * DonationTransaction findMany
+   */
+  export type DonationTransactionFindManyArgs = {
+    /**
+     * Select specific fields to fetch from the DonationTransaction
+     */
+    select?: DonationTransactionSelect | null
+    /**
+     * Filter, which DonationTransactions to fetch.
+     */
+    where?: DonationTransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DonationTransactions to fetch.
+     */
+    orderBy?: Enumerable<DonationTransactionOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing DonationTransactions.
+     */
+    cursor?: DonationTransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DonationTransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DonationTransactions.
+     */
+    skip?: number
+    distinct?: Enumerable<DonationTransactionScalarFieldEnum>
+  }
+
+
+  /**
+   * DonationTransaction create
+   */
+  export type DonationTransactionCreateArgs = {
+    /**
+     * Select specific fields to fetch from the DonationTransaction
+     */
+    select?: DonationTransactionSelect | null
+    /**
+     * The data needed to create a DonationTransaction.
+     */
+    data: XOR<DonationTransactionCreateInput, DonationTransactionUncheckedCreateInput>
+  }
+
+
+  /**
+   * DonationTransaction createMany
+   */
+  export type DonationTransactionCreateManyArgs = {
+    /**
+     * The data used to create many DonationTransactions.
+     */
+    data: Enumerable<DonationTransactionCreateManyInput>
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * DonationTransaction update
+   */
+  export type DonationTransactionUpdateArgs = {
+    /**
+     * Select specific fields to fetch from the DonationTransaction
+     */
+    select?: DonationTransactionSelect | null
+    /**
+     * The data needed to update a DonationTransaction.
+     */
+    data: XOR<DonationTransactionUpdateInput, DonationTransactionUncheckedUpdateInput>
+    /**
+     * Choose, which DonationTransaction to update.
+     */
+    where: DonationTransactionWhereUniqueInput
+  }
+
+
+  /**
+   * DonationTransaction updateMany
+   */
+  export type DonationTransactionUpdateManyArgs = {
+    /**
+     * The data used to update DonationTransactions.
+     */
+    data: XOR<DonationTransactionUpdateManyMutationInput, DonationTransactionUncheckedUpdateManyInput>
+    /**
+     * Filter which DonationTransactions to update
+     */
+    where?: DonationTransactionWhereInput
+  }
+
+
+  /**
+   * DonationTransaction upsert
+   */
+  export type DonationTransactionUpsertArgs = {
+    /**
+     * Select specific fields to fetch from the DonationTransaction
+     */
+    select?: DonationTransactionSelect | null
+    /**
+     * The filter to search for the DonationTransaction to update in case it exists.
+     */
+    where: DonationTransactionWhereUniqueInput
+    /**
+     * In case the DonationTransaction found by the `where` argument doesn't exist, create a new DonationTransaction with this data.
+     */
+    create: XOR<DonationTransactionCreateInput, DonationTransactionUncheckedCreateInput>
+    /**
+     * In case the DonationTransaction was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DonationTransactionUpdateInput, DonationTransactionUncheckedUpdateInput>
+  }
+
+
+  /**
+   * DonationTransaction delete
+   */
+  export type DonationTransactionDeleteArgs = {
+    /**
+     * Select specific fields to fetch from the DonationTransaction
+     */
+    select?: DonationTransactionSelect | null
+    /**
+     * Filter which DonationTransaction to delete.
+     */
+    where: DonationTransactionWhereUniqueInput
+  }
+
+
+  /**
+   * DonationTransaction deleteMany
+   */
+  export type DonationTransactionDeleteManyArgs = {
+    /**
+     * Filter which DonationTransactions to delete
+     */
+    where?: DonationTransactionWhereInput
+  }
+
+
+  /**
+   * DonationTransaction without action
+   */
+  export type DonationTransactionArgs = {
+    /**
+     * Select specific fields to fetch from the DonationTransaction
+     */
+    select?: DonationTransactionSelect | null
+  }
+
+
+
+  /**
+   * Model RequestFriendTransaction
+   */
+
+
+  export type AggregateRequestFriendTransaction = {
+    _count: RequestFriendTransactionCountAggregateOutputType | null
+    _min: RequestFriendTransactionMinAggregateOutputType | null
+    _max: RequestFriendTransactionMaxAggregateOutputType | null
+  }
+
+  export type RequestFriendTransactionMinAggregateOutputType = {
+    id: string | null
+    sender: string | null
+    receiver: string | null
+    status: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RequestFriendTransactionMaxAggregateOutputType = {
+    id: string | null
+    sender: string | null
+    receiver: string | null
+    status: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RequestFriendTransactionCountAggregateOutputType = {
+    id: number
+    sender: number
+    receiver: number
+    status: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type RequestFriendTransactionMinAggregateInputType = {
+    id?: true
+    sender?: true
+    receiver?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RequestFriendTransactionMaxAggregateInputType = {
+    id?: true
+    sender?: true
+    receiver?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RequestFriendTransactionCountAggregateInputType = {
+    id?: true
+    sender?: true
+    receiver?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type RequestFriendTransactionAggregateArgs = {
+    /**
+     * Filter which RequestFriendTransaction to aggregate.
+     */
+    where?: RequestFriendTransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RequestFriendTransactions to fetch.
+     */
+    orderBy?: Enumerable<RequestFriendTransactionOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RequestFriendTransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RequestFriendTransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RequestFriendTransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned RequestFriendTransactions
+    **/
+    _count?: true | RequestFriendTransactionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RequestFriendTransactionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RequestFriendTransactionMaxAggregateInputType
+  }
+
+  export type GetRequestFriendTransactionAggregateType<T extends RequestFriendTransactionAggregateArgs> = {
+        [P in keyof T & keyof AggregateRequestFriendTransaction]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRequestFriendTransaction[P]>
+      : GetScalarType<T[P], AggregateRequestFriendTransaction[P]>
+  }
+
+
+
+
+  export type RequestFriendTransactionGroupByArgs = {
+    where?: RequestFriendTransactionWhereInput
+    orderBy?: Enumerable<RequestFriendTransactionOrderByWithAggregationInput>
+    by: RequestFriendTransactionScalarFieldEnum[]
+    having?: RequestFriendTransactionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RequestFriendTransactionCountAggregateInputType | true
+    _min?: RequestFriendTransactionMinAggregateInputType
+    _max?: RequestFriendTransactionMaxAggregateInputType
+  }
+
+
+  export type RequestFriendTransactionGroupByOutputType = {
+    id: string
+    sender: string
+    receiver: string
+    status: string
+    createdAt: Date
+    updatedAt: Date
+    _count: RequestFriendTransactionCountAggregateOutputType | null
+    _min: RequestFriendTransactionMinAggregateOutputType | null
+    _max: RequestFriendTransactionMaxAggregateOutputType | null
+  }
+
+  type GetRequestFriendTransactionGroupByPayload<T extends RequestFriendTransactionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickArray<RequestFriendTransactionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RequestFriendTransactionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RequestFriendTransactionGroupByOutputType[P]>
+            : GetScalarType<T[P], RequestFriendTransactionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RequestFriendTransactionSelect = {
+    id?: boolean
+    sender?: boolean
+    receiver?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+
+  export type RequestFriendTransactionGetPayload<S extends boolean | null | undefined | RequestFriendTransactionArgs> =
+    S extends { select: any, include: any } ? 'Please either choose `select` or `include`' :
+    S extends true ? RequestFriendTransaction :
+    S extends undefined ? never :
+    S extends { include: any } & (RequestFriendTransactionArgs | RequestFriendTransactionFindManyArgs)
+    ? RequestFriendTransaction 
+    : S extends { select: any } & (RequestFriendTransactionArgs | RequestFriendTransactionFindManyArgs)
+      ? {
+    [P in TruthyKeys<S['select']>]:
+    P extends keyof RequestFriendTransaction ? RequestFriendTransaction[P] : never
+  } 
+      : RequestFriendTransaction
+
+
+  type RequestFriendTransactionCountArgs = 
+    Omit<RequestFriendTransactionFindManyArgs, 'select' | 'include'> & {
+      select?: RequestFriendTransactionCountAggregateInputType | true
+    }
+
+  export interface RequestFriendTransactionDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined> {
+
+    /**
+     * Find zero or one RequestFriendTransaction that matches the filter.
+     * @param {RequestFriendTransactionFindUniqueArgs} args - Arguments to find a RequestFriendTransaction
+     * @example
+     * // Get one RequestFriendTransaction
+     * const requestFriendTransaction = await prisma.requestFriendTransaction.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends RequestFriendTransactionFindUniqueArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args: SelectSubset<T, RequestFriendTransactionFindUniqueArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'RequestFriendTransaction'> extends True ? Prisma__RequestFriendTransactionClient<RequestFriendTransactionGetPayload<T>> : Prisma__RequestFriendTransactionClient<RequestFriendTransactionGetPayload<T> | null, null>
+
+    /**
+     * Find one RequestFriendTransaction that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {RequestFriendTransactionFindUniqueOrThrowArgs} args - Arguments to find a RequestFriendTransaction
+     * @example
+     * // Get one RequestFriendTransaction
+     * const requestFriendTransaction = await prisma.requestFriendTransaction.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends RequestFriendTransactionFindUniqueOrThrowArgs>(
+      args?: SelectSubset<T, RequestFriendTransactionFindUniqueOrThrowArgs>
+    ): Prisma__RequestFriendTransactionClient<RequestFriendTransactionGetPayload<T>>
+
+    /**
+     * Find the first RequestFriendTransaction that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RequestFriendTransactionFindFirstArgs} args - Arguments to find a RequestFriendTransaction
+     * @example
+     * // Get one RequestFriendTransaction
+     * const requestFriendTransaction = await prisma.requestFriendTransaction.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends RequestFriendTransactionFindFirstArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args?: SelectSubset<T, RequestFriendTransactionFindFirstArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'RequestFriendTransaction'> extends True ? Prisma__RequestFriendTransactionClient<RequestFriendTransactionGetPayload<T>> : Prisma__RequestFriendTransactionClient<RequestFriendTransactionGetPayload<T> | null, null>
+
+    /**
+     * Find the first RequestFriendTransaction that matches the filter or
+     * throw `NotFoundError` if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RequestFriendTransactionFindFirstOrThrowArgs} args - Arguments to find a RequestFriendTransaction
+     * @example
+     * // Get one RequestFriendTransaction
+     * const requestFriendTransaction = await prisma.requestFriendTransaction.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends RequestFriendTransactionFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, RequestFriendTransactionFindFirstOrThrowArgs>
+    ): Prisma__RequestFriendTransactionClient<RequestFriendTransactionGetPayload<T>>
+
+    /**
+     * Find zero or more RequestFriendTransactions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RequestFriendTransactionFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all RequestFriendTransactions
+     * const requestFriendTransactions = await prisma.requestFriendTransaction.findMany()
+     * 
+     * // Get first 10 RequestFriendTransactions
+     * const requestFriendTransactions = await prisma.requestFriendTransaction.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const requestFriendTransactionWithIdOnly = await prisma.requestFriendTransaction.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends RequestFriendTransactionFindManyArgs>(
+      args?: SelectSubset<T, RequestFriendTransactionFindManyArgs>
+    ): Prisma.PrismaPromise<Array<RequestFriendTransactionGetPayload<T>>>
+
+    /**
+     * Create a RequestFriendTransaction.
+     * @param {RequestFriendTransactionCreateArgs} args - Arguments to create a RequestFriendTransaction.
+     * @example
+     * // Create one RequestFriendTransaction
+     * const RequestFriendTransaction = await prisma.requestFriendTransaction.create({
+     *   data: {
+     *     // ... data to create a RequestFriendTransaction
+     *   }
+     * })
+     * 
+    **/
+    create<T extends RequestFriendTransactionCreateArgs>(
+      args: SelectSubset<T, RequestFriendTransactionCreateArgs>
+    ): Prisma__RequestFriendTransactionClient<RequestFriendTransactionGetPayload<T>>
+
+    /**
+     * Create many RequestFriendTransactions.
+     *     @param {RequestFriendTransactionCreateManyArgs} args - Arguments to create many RequestFriendTransactions.
+     *     @example
+     *     // Create many RequestFriendTransactions
+     *     const requestFriendTransaction = await prisma.requestFriendTransaction.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends RequestFriendTransactionCreateManyArgs>(
+      args?: SelectSubset<T, RequestFriendTransactionCreateManyArgs>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a RequestFriendTransaction.
+     * @param {RequestFriendTransactionDeleteArgs} args - Arguments to delete one RequestFriendTransaction.
+     * @example
+     * // Delete one RequestFriendTransaction
+     * const RequestFriendTransaction = await prisma.requestFriendTransaction.delete({
+     *   where: {
+     *     // ... filter to delete one RequestFriendTransaction
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends RequestFriendTransactionDeleteArgs>(
+      args: SelectSubset<T, RequestFriendTransactionDeleteArgs>
+    ): Prisma__RequestFriendTransactionClient<RequestFriendTransactionGetPayload<T>>
+
+    /**
+     * Update one RequestFriendTransaction.
+     * @param {RequestFriendTransactionUpdateArgs} args - Arguments to update one RequestFriendTransaction.
+     * @example
+     * // Update one RequestFriendTransaction
+     * const requestFriendTransaction = await prisma.requestFriendTransaction.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends RequestFriendTransactionUpdateArgs>(
+      args: SelectSubset<T, RequestFriendTransactionUpdateArgs>
+    ): Prisma__RequestFriendTransactionClient<RequestFriendTransactionGetPayload<T>>
+
+    /**
+     * Delete zero or more RequestFriendTransactions.
+     * @param {RequestFriendTransactionDeleteManyArgs} args - Arguments to filter RequestFriendTransactions to delete.
+     * @example
+     * // Delete a few RequestFriendTransactions
+     * const { count } = await prisma.requestFriendTransaction.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends RequestFriendTransactionDeleteManyArgs>(
+      args?: SelectSubset<T, RequestFriendTransactionDeleteManyArgs>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RequestFriendTransactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RequestFriendTransactionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many RequestFriendTransactions
+     * const requestFriendTransaction = await prisma.requestFriendTransaction.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends RequestFriendTransactionUpdateManyArgs>(
+      args: SelectSubset<T, RequestFriendTransactionUpdateManyArgs>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one RequestFriendTransaction.
+     * @param {RequestFriendTransactionUpsertArgs} args - Arguments to update or create a RequestFriendTransaction.
+     * @example
+     * // Update or create a RequestFriendTransaction
+     * const requestFriendTransaction = await prisma.requestFriendTransaction.upsert({
+     *   create: {
+     *     // ... data to create a RequestFriendTransaction
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the RequestFriendTransaction we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends RequestFriendTransactionUpsertArgs>(
+      args: SelectSubset<T, RequestFriendTransactionUpsertArgs>
+    ): Prisma__RequestFriendTransactionClient<RequestFriendTransactionGetPayload<T>>
+
+    /**
+     * Count the number of RequestFriendTransactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RequestFriendTransactionCountArgs} args - Arguments to filter RequestFriendTransactions to count.
+     * @example
+     * // Count the number of RequestFriendTransactions
+     * const count = await prisma.requestFriendTransaction.count({
+     *   where: {
+     *     // ... the filter for the RequestFriendTransactions we want to count
+     *   }
+     * })
+    **/
+    count<T extends RequestFriendTransactionCountArgs>(
+      args?: Subset<T, RequestFriendTransactionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends _Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RequestFriendTransactionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a RequestFriendTransaction.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RequestFriendTransactionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RequestFriendTransactionAggregateArgs>(args: Subset<T, RequestFriendTransactionAggregateArgs>): Prisma.PrismaPromise<GetRequestFriendTransactionAggregateType<T>>
+
+    /**
+     * Group by RequestFriendTransaction.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RequestFriendTransactionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RequestFriendTransactionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RequestFriendTransactionGroupByArgs['orderBy'] }
+        : { orderBy?: RequestFriendTransactionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends TupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RequestFriendTransactionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRequestFriendTransactionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for RequestFriendTransaction.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export class Prisma__RequestFriendTransactionClient<T, Null = never> implements Prisma.PrismaPromise<T> {
+    private readonly _dmmf;
+    private readonly _queryType;
+    private readonly _rootField;
+    private readonly _clientMethod;
+    private readonly _args;
+    private readonly _dataPath;
+    private readonly _errorFormat;
+    private readonly _measurePerformance?;
+    private _isList;
+    private _callsite;
+    private _requestPromise?;
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+    constructor(_dmmf: runtime.DMMFClass, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
+
+
+    private get _document();
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): Promise<T>;
+  }
+
+
+
+  // Custom InputTypes
+
+  /**
+   * RequestFriendTransaction base type for findUnique actions
+   */
+  export type RequestFriendTransactionFindUniqueArgsBase = {
+    /**
+     * Select specific fields to fetch from the RequestFriendTransaction
+     */
+    select?: RequestFriendTransactionSelect | null
+    /**
+     * Filter, which RequestFriendTransaction to fetch.
+     */
+    where: RequestFriendTransactionWhereUniqueInput
+  }
+
+  /**
+   * RequestFriendTransaction findUnique
+   */
+  export interface RequestFriendTransactionFindUniqueArgs extends RequestFriendTransactionFindUniqueArgsBase {
+   /**
+    * Throw an Error if query returns no results
+    * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
+    */
+    rejectOnNotFound?: RejectOnNotFound
+  }
+      
+
+  /**
+   * RequestFriendTransaction findUniqueOrThrow
+   */
+  export type RequestFriendTransactionFindUniqueOrThrowArgs = {
+    /**
+     * Select specific fields to fetch from the RequestFriendTransaction
+     */
+    select?: RequestFriendTransactionSelect | null
+    /**
+     * Filter, which RequestFriendTransaction to fetch.
+     */
+    where: RequestFriendTransactionWhereUniqueInput
+  }
+
+
+  /**
+   * RequestFriendTransaction base type for findFirst actions
+   */
+  export type RequestFriendTransactionFindFirstArgsBase = {
+    /**
+     * Select specific fields to fetch from the RequestFriendTransaction
+     */
+    select?: RequestFriendTransactionSelect | null
+    /**
+     * Filter, which RequestFriendTransaction to fetch.
+     */
+    where?: RequestFriendTransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RequestFriendTransactions to fetch.
+     */
+    orderBy?: Enumerable<RequestFriendTransactionOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RequestFriendTransactions.
+     */
+    cursor?: RequestFriendTransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RequestFriendTransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RequestFriendTransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RequestFriendTransactions.
+     */
+    distinct?: Enumerable<RequestFriendTransactionScalarFieldEnum>
+  }
+
+  /**
+   * RequestFriendTransaction findFirst
+   */
+  export interface RequestFriendTransactionFindFirstArgs extends RequestFriendTransactionFindFirstArgsBase {
+   /**
+    * Throw an Error if query returns no results
+    * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
+    */
+    rejectOnNotFound?: RejectOnNotFound
+  }
+      
+
+  /**
+   * RequestFriendTransaction findFirstOrThrow
+   */
+  export type RequestFriendTransactionFindFirstOrThrowArgs = {
+    /**
+     * Select specific fields to fetch from the RequestFriendTransaction
+     */
+    select?: RequestFriendTransactionSelect | null
+    /**
+     * Filter, which RequestFriendTransaction to fetch.
+     */
+    where?: RequestFriendTransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RequestFriendTransactions to fetch.
+     */
+    orderBy?: Enumerable<RequestFriendTransactionOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RequestFriendTransactions.
+     */
+    cursor?: RequestFriendTransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RequestFriendTransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RequestFriendTransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RequestFriendTransactions.
+     */
+    distinct?: Enumerable<RequestFriendTransactionScalarFieldEnum>
+  }
+
+
+  /**
+   * RequestFriendTransaction findMany
+   */
+  export type RequestFriendTransactionFindManyArgs = {
+    /**
+     * Select specific fields to fetch from the RequestFriendTransaction
+     */
+    select?: RequestFriendTransactionSelect | null
+    /**
+     * Filter, which RequestFriendTransactions to fetch.
+     */
+    where?: RequestFriendTransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RequestFriendTransactions to fetch.
+     */
+    orderBy?: Enumerable<RequestFriendTransactionOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing RequestFriendTransactions.
+     */
+    cursor?: RequestFriendTransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RequestFriendTransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RequestFriendTransactions.
+     */
+    skip?: number
+    distinct?: Enumerable<RequestFriendTransactionScalarFieldEnum>
+  }
+
+
+  /**
+   * RequestFriendTransaction create
+   */
+  export type RequestFriendTransactionCreateArgs = {
+    /**
+     * Select specific fields to fetch from the RequestFriendTransaction
+     */
+    select?: RequestFriendTransactionSelect | null
+    /**
+     * The data needed to create a RequestFriendTransaction.
+     */
+    data: XOR<RequestFriendTransactionCreateInput, RequestFriendTransactionUncheckedCreateInput>
+  }
+
+
+  /**
+   * RequestFriendTransaction createMany
+   */
+  export type RequestFriendTransactionCreateManyArgs = {
+    /**
+     * The data used to create many RequestFriendTransactions.
+     */
+    data: Enumerable<RequestFriendTransactionCreateManyInput>
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * RequestFriendTransaction update
+   */
+  export type RequestFriendTransactionUpdateArgs = {
+    /**
+     * Select specific fields to fetch from the RequestFriendTransaction
+     */
+    select?: RequestFriendTransactionSelect | null
+    /**
+     * The data needed to update a RequestFriendTransaction.
+     */
+    data: XOR<RequestFriendTransactionUpdateInput, RequestFriendTransactionUncheckedUpdateInput>
+    /**
+     * Choose, which RequestFriendTransaction to update.
+     */
+    where: RequestFriendTransactionWhereUniqueInput
+  }
+
+
+  /**
+   * RequestFriendTransaction updateMany
+   */
+  export type RequestFriendTransactionUpdateManyArgs = {
+    /**
+     * The data used to update RequestFriendTransactions.
+     */
+    data: XOR<RequestFriendTransactionUpdateManyMutationInput, RequestFriendTransactionUncheckedUpdateManyInput>
+    /**
+     * Filter which RequestFriendTransactions to update
+     */
+    where?: RequestFriendTransactionWhereInput
+  }
+
+
+  /**
+   * RequestFriendTransaction upsert
+   */
+  export type RequestFriendTransactionUpsertArgs = {
+    /**
+     * Select specific fields to fetch from the RequestFriendTransaction
+     */
+    select?: RequestFriendTransactionSelect | null
+    /**
+     * The filter to search for the RequestFriendTransaction to update in case it exists.
+     */
+    where: RequestFriendTransactionWhereUniqueInput
+    /**
+     * In case the RequestFriendTransaction found by the `where` argument doesn't exist, create a new RequestFriendTransaction with this data.
+     */
+    create: XOR<RequestFriendTransactionCreateInput, RequestFriendTransactionUncheckedCreateInput>
+    /**
+     * In case the RequestFriendTransaction was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RequestFriendTransactionUpdateInput, RequestFriendTransactionUncheckedUpdateInput>
+  }
+
+
+  /**
+   * RequestFriendTransaction delete
+   */
+  export type RequestFriendTransactionDeleteArgs = {
+    /**
+     * Select specific fields to fetch from the RequestFriendTransaction
+     */
+    select?: RequestFriendTransactionSelect | null
+    /**
+     * Filter which RequestFriendTransaction to delete.
+     */
+    where: RequestFriendTransactionWhereUniqueInput
+  }
+
+
+  /**
+   * RequestFriendTransaction deleteMany
+   */
+  export type RequestFriendTransactionDeleteManyArgs = {
+    /**
+     * Filter which RequestFriendTransactions to delete
+     */
+    where?: RequestFriendTransactionWhereInput
+  }
+
+
+  /**
+   * RequestFriendTransaction without action
+   */
+  export type RequestFriendTransactionArgs = {
+    /**
+     * Select specific fields to fetch from the RequestFriendTransaction
+     */
+    select?: RequestFriendTransactionSelect | null
+  }
+
+
+
+  /**
    * Enums
    */
 
@@ -4760,6 +9709,30 @@ export namespace Prisma {
   };
 
   export type AccountScalarFieldEnum = (typeof AccountScalarFieldEnum)[keyof typeof AccountScalarFieldEnum]
+
+
+  export const DonationTransactionScalarFieldEnum: {
+    id: 'id',
+    sender: 'sender',
+    unionId: 'unionId',
+    amount: 'amount',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type DonationTransactionScalarFieldEnum = (typeof DonationTransactionScalarFieldEnum)[keyof typeof DonationTransactionScalarFieldEnum]
+
+
+  export const RequestFriendTransactionScalarFieldEnum: {
+    id: 'id',
+    sender: 'sender',
+    receiver: 'receiver',
+    status: 'status',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type RequestFriendTransactionScalarFieldEnum = (typeof RequestFriendTransactionScalarFieldEnum)[keyof typeof RequestFriendTransactionScalarFieldEnum]
 
 
   export const SessionScalarFieldEnum: {
@@ -4790,13 +9763,41 @@ export namespace Prisma {
   export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+  export const TrasferTransactionScalarFieldEnum: {
+    id: 'id',
+    sender: 'sender',
+    receiver: 'receiver',
+    amount: 'amount',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type TrasferTransactionScalarFieldEnum = (typeof TrasferTransactionScalarFieldEnum)[keyof typeof TrasferTransactionScalarFieldEnum]
+
+
+  export const UnionScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    union_image: 'union_image',
+    points: 'points',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type UnionScalarFieldEnum = (typeof UnionScalarFieldEnum)[keyof typeof UnionScalarFieldEnum]
+
+
   export const UserScalarFieldEnum: {
     id: 'id',
     name: 'name',
     email: 'email',
     emailVerified: 'emailVerified',
     profile_image: 'profile_image',
-    points: 'points'
+    points: 'points',
+    unionId: 'unionId',
+    doneTime: 'doneTime',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -4809,6 +9810,20 @@ export namespace Prisma {
   };
 
   export type VerificationTokenScalarFieldEnum = (typeof VerificationTokenScalarFieldEnum)[keyof typeof VerificationTokenScalarFieldEnum]
+
+
+  export const ZerosumScalarFieldEnum: {
+    id: 'id',
+    numberOne: 'numberOne',
+    numberTwo: 'numberTwo',
+    numberThree: 'numberThree',
+    operatorOne: 'operatorOne',
+    operatorTwo: 'operatorTwo',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ZerosumScalarFieldEnum = (typeof ZerosumScalarFieldEnum)[keyof typeof ZerosumScalarFieldEnum]
 
 
   /**
@@ -4948,8 +9963,15 @@ export namespace Prisma {
     emailVerified?: DateTimeNullableFilter | Date | string | null
     profile_image?: StringNullableFilter | string | null
     points?: IntFilter | number
+    unionId?: StringNullableFilter | string | null
+    doneTime?: DateTimeNullableFilter | Date | string | null
+    union?: XOR<UnionRelationFilter, UnionWhereInput> | null
+    followedBy?: UserListRelationFilter
+    following?: UserListRelationFilter
     accounts?: AccountListRelationFilter
     sessions?: SessionListRelationFilter
+    createdAt?: DateTimeFilter | Date | string
+    updatedAt?: DateTimeFilter | Date | string
   }
 
   export type UserOrderByWithRelationInput = {
@@ -4959,8 +9981,15 @@ export namespace Prisma {
     emailVerified?: SortOrder
     profile_image?: SortOrder
     points?: SortOrder
+    unionId?: SortOrder
+    doneTime?: SortOrder
+    union?: UnionOrderByWithRelationInput
+    followedBy?: UserOrderByRelationAggregateInput
+    following?: UserOrderByRelationAggregateInput
     accounts?: AccountOrderByRelationAggregateInput
     sessions?: SessionOrderByRelationAggregateInput
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type UserWhereUniqueInput = {
@@ -4975,6 +10004,10 @@ export namespace Prisma {
     emailVerified?: SortOrder
     profile_image?: SortOrder
     points?: SortOrder
+    unionId?: SortOrder
+    doneTime?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -4992,6 +10025,10 @@ export namespace Prisma {
     emailVerified?: DateTimeNullableWithAggregatesFilter | Date | string | null
     profile_image?: StringNullableWithAggregatesFilter | string | null
     points?: IntWithAggregatesFilter | number
+    unionId?: StringNullableWithAggregatesFilter | string | null
+    doneTime?: DateTimeNullableWithAggregatesFilter | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter | Date | string
   }
 
   export type VerificationTokenWhereInput = {
@@ -5030,6 +10067,270 @@ export namespace Prisma {
     identifier?: StringWithAggregatesFilter | string
     token?: StringWithAggregatesFilter | string
     expires?: DateTimeWithAggregatesFilter | Date | string
+  }
+
+  export type UnionWhereInput = {
+    AND?: Enumerable<UnionWhereInput>
+    OR?: Enumerable<UnionWhereInput>
+    NOT?: Enumerable<UnionWhereInput>
+    id?: StringFilter | string
+    name?: StringFilter | string
+    union_image?: StringNullableFilter | string | null
+    points?: IntFilter | number
+    user?: UserListRelationFilter
+    createdAt?: DateTimeFilter | Date | string
+    updatedAt?: DateTimeFilter | Date | string
+  }
+
+  export type UnionOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    union_image?: SortOrder
+    points?: SortOrder
+    user?: UserOrderByRelationAggregateInput
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UnionWhereUniqueInput = {
+    id?: string
+    name?: string
+  }
+
+  export type UnionOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    union_image?: SortOrder
+    points?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: UnionCountOrderByAggregateInput
+    _avg?: UnionAvgOrderByAggregateInput
+    _max?: UnionMaxOrderByAggregateInput
+    _min?: UnionMinOrderByAggregateInput
+    _sum?: UnionSumOrderByAggregateInput
+  }
+
+  export type UnionScalarWhereWithAggregatesInput = {
+    AND?: Enumerable<UnionScalarWhereWithAggregatesInput>
+    OR?: Enumerable<UnionScalarWhereWithAggregatesInput>
+    NOT?: Enumerable<UnionScalarWhereWithAggregatesInput>
+    id?: StringWithAggregatesFilter | string
+    name?: StringWithAggregatesFilter | string
+    union_image?: StringNullableWithAggregatesFilter | string | null
+    points?: IntWithAggregatesFilter | number
+    createdAt?: DateTimeWithAggregatesFilter | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter | Date | string
+  }
+
+  export type ZerosumWhereInput = {
+    AND?: Enumerable<ZerosumWhereInput>
+    OR?: Enumerable<ZerosumWhereInput>
+    NOT?: Enumerable<ZerosumWhereInput>
+    id?: StringFilter | string
+    numberOne?: IntFilter | number
+    numberTwo?: IntFilter | number
+    numberThree?: IntFilter | number
+    operatorOne?: StringFilter | string
+    operatorTwo?: StringFilter | string
+    createdAt?: DateTimeFilter | Date | string
+    updatedAt?: DateTimeFilter | Date | string
+  }
+
+  export type ZerosumOrderByWithRelationInput = {
+    id?: SortOrder
+    numberOne?: SortOrder
+    numberTwo?: SortOrder
+    numberThree?: SortOrder
+    operatorOne?: SortOrder
+    operatorTwo?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ZerosumWhereUniqueInput = {
+    id?: string
+  }
+
+  export type ZerosumOrderByWithAggregationInput = {
+    id?: SortOrder
+    numberOne?: SortOrder
+    numberTwo?: SortOrder
+    numberThree?: SortOrder
+    operatorOne?: SortOrder
+    operatorTwo?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ZerosumCountOrderByAggregateInput
+    _avg?: ZerosumAvgOrderByAggregateInput
+    _max?: ZerosumMaxOrderByAggregateInput
+    _min?: ZerosumMinOrderByAggregateInput
+    _sum?: ZerosumSumOrderByAggregateInput
+  }
+
+  export type ZerosumScalarWhereWithAggregatesInput = {
+    AND?: Enumerable<ZerosumScalarWhereWithAggregatesInput>
+    OR?: Enumerable<ZerosumScalarWhereWithAggregatesInput>
+    NOT?: Enumerable<ZerosumScalarWhereWithAggregatesInput>
+    id?: StringWithAggregatesFilter | string
+    numberOne?: IntWithAggregatesFilter | number
+    numberTwo?: IntWithAggregatesFilter | number
+    numberThree?: IntWithAggregatesFilter | number
+    operatorOne?: StringWithAggregatesFilter | string
+    operatorTwo?: StringWithAggregatesFilter | string
+    createdAt?: DateTimeWithAggregatesFilter | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter | Date | string
+  }
+
+  export type TrasferTransactionWhereInput = {
+    AND?: Enumerable<TrasferTransactionWhereInput>
+    OR?: Enumerable<TrasferTransactionWhereInput>
+    NOT?: Enumerable<TrasferTransactionWhereInput>
+    id?: StringFilter | string
+    sender?: StringFilter | string
+    receiver?: StringFilter | string
+    amount?: IntFilter | number
+    createdAt?: DateTimeFilter | Date | string
+    updatedAt?: DateTimeFilter | Date | string
+  }
+
+  export type TrasferTransactionOrderByWithRelationInput = {
+    id?: SortOrder
+    sender?: SortOrder
+    receiver?: SortOrder
+    amount?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TrasferTransactionWhereUniqueInput = {
+    id?: string
+  }
+
+  export type TrasferTransactionOrderByWithAggregationInput = {
+    id?: SortOrder
+    sender?: SortOrder
+    receiver?: SortOrder
+    amount?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: TrasferTransactionCountOrderByAggregateInput
+    _avg?: TrasferTransactionAvgOrderByAggregateInput
+    _max?: TrasferTransactionMaxOrderByAggregateInput
+    _min?: TrasferTransactionMinOrderByAggregateInput
+    _sum?: TrasferTransactionSumOrderByAggregateInput
+  }
+
+  export type TrasferTransactionScalarWhereWithAggregatesInput = {
+    AND?: Enumerable<TrasferTransactionScalarWhereWithAggregatesInput>
+    OR?: Enumerable<TrasferTransactionScalarWhereWithAggregatesInput>
+    NOT?: Enumerable<TrasferTransactionScalarWhereWithAggregatesInput>
+    id?: StringWithAggregatesFilter | string
+    sender?: StringWithAggregatesFilter | string
+    receiver?: StringWithAggregatesFilter | string
+    amount?: IntWithAggregatesFilter | number
+    createdAt?: DateTimeWithAggregatesFilter | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter | Date | string
+  }
+
+  export type DonationTransactionWhereInput = {
+    AND?: Enumerable<DonationTransactionWhereInput>
+    OR?: Enumerable<DonationTransactionWhereInput>
+    NOT?: Enumerable<DonationTransactionWhereInput>
+    id?: StringFilter | string
+    sender?: StringFilter | string
+    unionId?: StringFilter | string
+    amount?: IntFilter | number
+    createdAt?: DateTimeFilter | Date | string
+    updatedAt?: DateTimeFilter | Date | string
+  }
+
+  export type DonationTransactionOrderByWithRelationInput = {
+    id?: SortOrder
+    sender?: SortOrder
+    unionId?: SortOrder
+    amount?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type DonationTransactionWhereUniqueInput = {
+    id?: string
+  }
+
+  export type DonationTransactionOrderByWithAggregationInput = {
+    id?: SortOrder
+    sender?: SortOrder
+    unionId?: SortOrder
+    amount?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: DonationTransactionCountOrderByAggregateInput
+    _avg?: DonationTransactionAvgOrderByAggregateInput
+    _max?: DonationTransactionMaxOrderByAggregateInput
+    _min?: DonationTransactionMinOrderByAggregateInput
+    _sum?: DonationTransactionSumOrderByAggregateInput
+  }
+
+  export type DonationTransactionScalarWhereWithAggregatesInput = {
+    AND?: Enumerable<DonationTransactionScalarWhereWithAggregatesInput>
+    OR?: Enumerable<DonationTransactionScalarWhereWithAggregatesInput>
+    NOT?: Enumerable<DonationTransactionScalarWhereWithAggregatesInput>
+    id?: StringWithAggregatesFilter | string
+    sender?: StringWithAggregatesFilter | string
+    unionId?: StringWithAggregatesFilter | string
+    amount?: IntWithAggregatesFilter | number
+    createdAt?: DateTimeWithAggregatesFilter | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter | Date | string
+  }
+
+  export type RequestFriendTransactionWhereInput = {
+    AND?: Enumerable<RequestFriendTransactionWhereInput>
+    OR?: Enumerable<RequestFriendTransactionWhereInput>
+    NOT?: Enumerable<RequestFriendTransactionWhereInput>
+    id?: StringFilter | string
+    sender?: StringFilter | string
+    receiver?: StringFilter | string
+    status?: StringFilter | string
+    createdAt?: DateTimeFilter | Date | string
+    updatedAt?: DateTimeFilter | Date | string
+  }
+
+  export type RequestFriendTransactionOrderByWithRelationInput = {
+    id?: SortOrder
+    sender?: SortOrder
+    receiver?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RequestFriendTransactionWhereUniqueInput = {
+    id?: string
+  }
+
+  export type RequestFriendTransactionOrderByWithAggregationInput = {
+    id?: SortOrder
+    sender?: SortOrder
+    receiver?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: RequestFriendTransactionCountOrderByAggregateInput
+    _max?: RequestFriendTransactionMaxOrderByAggregateInput
+    _min?: RequestFriendTransactionMinOrderByAggregateInput
+  }
+
+  export type RequestFriendTransactionScalarWhereWithAggregatesInput = {
+    AND?: Enumerable<RequestFriendTransactionScalarWhereWithAggregatesInput>
+    OR?: Enumerable<RequestFriendTransactionScalarWhereWithAggregatesInput>
+    NOT?: Enumerable<RequestFriendTransactionScalarWhereWithAggregatesInput>
+    id?: StringWithAggregatesFilter | string
+    sender?: StringWithAggregatesFilter | string
+    receiver?: StringWithAggregatesFilter | string
+    status?: StringWithAggregatesFilter | string
+    createdAt?: DateTimeWithAggregatesFilter | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter | Date | string
   }
 
   export type AccountCreateInput = {
@@ -5190,9 +10491,15 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     profile_image?: string | null
-    points: number
+    points?: number
+    doneTime?: Date | string | null
+    union?: UnionCreateNestedOneWithoutUserInput
+    followedBy?: UserCreateNestedManyWithoutFollowingInput
+    following?: UserCreateNestedManyWithoutFollowedByInput
     accounts?: AccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type UserUncheckedCreateInput = {
@@ -5201,9 +10508,15 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     profile_image?: string | null
-    points: number
+    points?: number
+    unionId?: string | null
+    doneTime?: Date | string | null
+    followedBy?: UserUncheckedCreateNestedManyWithoutFollowingInput
+    following?: UserUncheckedCreateNestedManyWithoutFollowedByInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type UserUpdateInput = {
@@ -5213,8 +10526,14 @@ export namespace Prisma {
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profile_image?: NullableStringFieldUpdateOperationsInput | string | null
     points?: IntFieldUpdateOperationsInput | number
+    doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    union?: UnionUpdateOneWithoutUserNestedInput
+    followedBy?: UserUpdateManyWithoutFollowingNestedInput
+    following?: UserUpdateManyWithoutFollowedByNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUncheckedUpdateInput = {
@@ -5224,8 +10543,14 @@ export namespace Prisma {
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profile_image?: NullableStringFieldUpdateOperationsInput | string | null
     points?: IntFieldUpdateOperationsInput | number
+    unionId?: NullableStringFieldUpdateOperationsInput | string | null
+    doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    followedBy?: UserUncheckedUpdateManyWithoutFollowingNestedInput
+    following?: UserUncheckedUpdateManyWithoutFollowedByNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserCreateManyInput = {
@@ -5234,7 +10559,11 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     profile_image?: string | null
-    points: number
+    points?: number
+    unionId?: string | null
+    doneTime?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type UserUpdateManyMutationInput = {
@@ -5244,6 +10573,9 @@ export namespace Prisma {
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profile_image?: NullableStringFieldUpdateOperationsInput | string | null
     points?: IntFieldUpdateOperationsInput | number
+    doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -5253,6 +10585,10 @@ export namespace Prisma {
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profile_image?: NullableStringFieldUpdateOperationsInput | string | null
     points?: IntFieldUpdateOperationsInput | number
+    unionId?: NullableStringFieldUpdateOperationsInput | string | null
+    doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type VerificationTokenCreateInput = {
@@ -5295,6 +10631,339 @@ export namespace Prisma {
     identifier?: StringFieldUpdateOperationsInput | string
     token?: StringFieldUpdateOperationsInput | string
     expires?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UnionCreateInput = {
+    id?: string
+    name: string
+    union_image?: string | null
+    points?: number
+    user?: UserCreateNestedManyWithoutUnionInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UnionUncheckedCreateInput = {
+    id?: string
+    name: string
+    union_image?: string | null
+    points?: number
+    user?: UserUncheckedCreateNestedManyWithoutUnionInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UnionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    union_image?: NullableStringFieldUpdateOperationsInput | string | null
+    points?: IntFieldUpdateOperationsInput | number
+    user?: UserUpdateManyWithoutUnionNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UnionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    union_image?: NullableStringFieldUpdateOperationsInput | string | null
+    points?: IntFieldUpdateOperationsInput | number
+    user?: UserUncheckedUpdateManyWithoutUnionNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UnionCreateManyInput = {
+    id?: string
+    name: string
+    union_image?: string | null
+    points?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UnionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    union_image?: NullableStringFieldUpdateOperationsInput | string | null
+    points?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UnionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    union_image?: NullableStringFieldUpdateOperationsInput | string | null
+    points?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ZerosumCreateInput = {
+    id?: string
+    numberOne: number
+    numberTwo: number
+    numberThree: number
+    operatorOne: string
+    operatorTwo: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ZerosumUncheckedCreateInput = {
+    id?: string
+    numberOne: number
+    numberTwo: number
+    numberThree: number
+    operatorOne: string
+    operatorTwo: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ZerosumUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numberOne?: IntFieldUpdateOperationsInput | number
+    numberTwo?: IntFieldUpdateOperationsInput | number
+    numberThree?: IntFieldUpdateOperationsInput | number
+    operatorOne?: StringFieldUpdateOperationsInput | string
+    operatorTwo?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ZerosumUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numberOne?: IntFieldUpdateOperationsInput | number
+    numberTwo?: IntFieldUpdateOperationsInput | number
+    numberThree?: IntFieldUpdateOperationsInput | number
+    operatorOne?: StringFieldUpdateOperationsInput | string
+    operatorTwo?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ZerosumCreateManyInput = {
+    id?: string
+    numberOne: number
+    numberTwo: number
+    numberThree: number
+    operatorOne: string
+    operatorTwo: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ZerosumUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numberOne?: IntFieldUpdateOperationsInput | number
+    numberTwo?: IntFieldUpdateOperationsInput | number
+    numberThree?: IntFieldUpdateOperationsInput | number
+    operatorOne?: StringFieldUpdateOperationsInput | string
+    operatorTwo?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ZerosumUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numberOne?: IntFieldUpdateOperationsInput | number
+    numberTwo?: IntFieldUpdateOperationsInput | number
+    numberThree?: IntFieldUpdateOperationsInput | number
+    operatorOne?: StringFieldUpdateOperationsInput | string
+    operatorTwo?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TrasferTransactionCreateInput = {
+    id?: string
+    sender: string
+    receiver: string
+    amount: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TrasferTransactionUncheckedCreateInput = {
+    id?: string
+    sender: string
+    receiver: string
+    amount: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TrasferTransactionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sender?: StringFieldUpdateOperationsInput | string
+    receiver?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TrasferTransactionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sender?: StringFieldUpdateOperationsInput | string
+    receiver?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TrasferTransactionCreateManyInput = {
+    id?: string
+    sender: string
+    receiver: string
+    amount: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TrasferTransactionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sender?: StringFieldUpdateOperationsInput | string
+    receiver?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TrasferTransactionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sender?: StringFieldUpdateOperationsInput | string
+    receiver?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DonationTransactionCreateInput = {
+    id?: string
+    sender: string
+    unionId: string
+    amount: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DonationTransactionUncheckedCreateInput = {
+    id?: string
+    sender: string
+    unionId: string
+    amount: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DonationTransactionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sender?: StringFieldUpdateOperationsInput | string
+    unionId?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DonationTransactionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sender?: StringFieldUpdateOperationsInput | string
+    unionId?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DonationTransactionCreateManyInput = {
+    id?: string
+    sender: string
+    unionId: string
+    amount: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DonationTransactionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sender?: StringFieldUpdateOperationsInput | string
+    unionId?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DonationTransactionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sender?: StringFieldUpdateOperationsInput | string
+    unionId?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RequestFriendTransactionCreateInput = {
+    id?: string
+    sender: string
+    receiver: string
+    status: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RequestFriendTransactionUncheckedCreateInput = {
+    id?: string
+    sender: string
+    receiver: string
+    status: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RequestFriendTransactionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sender?: StringFieldUpdateOperationsInput | string
+    receiver?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RequestFriendTransactionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sender?: StringFieldUpdateOperationsInput | string
+    receiver?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RequestFriendTransactionCreateManyInput = {
+    id?: string
+    sender: string
+    receiver: string
+    status: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RequestFriendTransactionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sender?: StringFieldUpdateOperationsInput | string
+    receiver?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RequestFriendTransactionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sender?: StringFieldUpdateOperationsInput | string
+    receiver?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter = {
@@ -5517,6 +11186,17 @@ export namespace Prisma {
     not?: NestedIntFilter | number
   }
 
+  export type UnionRelationFilter = {
+    is?: UnionWhereInput | null
+    isNot?: UnionWhereInput | null
+  }
+
+  export type UserListRelationFilter = {
+    every?: UserWhereInput
+    some?: UserWhereInput
+    none?: UserWhereInput
+  }
+
   export type AccountListRelationFilter = {
     every?: AccountWhereInput
     some?: AccountWhereInput
@@ -5527,6 +11207,10 @@ export namespace Prisma {
     every?: SessionWhereInput
     some?: SessionWhereInput
     none?: SessionWhereInput
+  }
+
+  export type UserOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type AccountOrderByRelationAggregateInput = {
@@ -5544,6 +11228,10 @@ export namespace Prisma {
     emailVerified?: SortOrder
     profile_image?: SortOrder
     points?: SortOrder
+    unionId?: SortOrder
+    doneTime?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type UserAvgOrderByAggregateInput = {
@@ -5557,6 +11245,10 @@ export namespace Prisma {
     emailVerified?: SortOrder
     profile_image?: SortOrder
     points?: SortOrder
+    unionId?: SortOrder
+    doneTime?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -5566,6 +11258,10 @@ export namespace Prisma {
     emailVerified?: SortOrder
     profile_image?: SortOrder
     points?: SortOrder
+    unionId?: SortOrder
+    doneTime?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type UserSumOrderByAggregateInput = {
@@ -5625,6 +11321,183 @@ export namespace Prisma {
     expires?: SortOrder
   }
 
+  export type UnionCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    union_image?: SortOrder
+    points?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UnionAvgOrderByAggregateInput = {
+    points?: SortOrder
+  }
+
+  export type UnionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    union_image?: SortOrder
+    points?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UnionMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    union_image?: SortOrder
+    points?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UnionSumOrderByAggregateInput = {
+    points?: SortOrder
+  }
+
+  export type ZerosumCountOrderByAggregateInput = {
+    id?: SortOrder
+    numberOne?: SortOrder
+    numberTwo?: SortOrder
+    numberThree?: SortOrder
+    operatorOne?: SortOrder
+    operatorTwo?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ZerosumAvgOrderByAggregateInput = {
+    numberOne?: SortOrder
+    numberTwo?: SortOrder
+    numberThree?: SortOrder
+  }
+
+  export type ZerosumMaxOrderByAggregateInput = {
+    id?: SortOrder
+    numberOne?: SortOrder
+    numberTwo?: SortOrder
+    numberThree?: SortOrder
+    operatorOne?: SortOrder
+    operatorTwo?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ZerosumMinOrderByAggregateInput = {
+    id?: SortOrder
+    numberOne?: SortOrder
+    numberTwo?: SortOrder
+    numberThree?: SortOrder
+    operatorOne?: SortOrder
+    operatorTwo?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ZerosumSumOrderByAggregateInput = {
+    numberOne?: SortOrder
+    numberTwo?: SortOrder
+    numberThree?: SortOrder
+  }
+
+  export type TrasferTransactionCountOrderByAggregateInput = {
+    id?: SortOrder
+    sender?: SortOrder
+    receiver?: SortOrder
+    amount?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TrasferTransactionAvgOrderByAggregateInput = {
+    amount?: SortOrder
+  }
+
+  export type TrasferTransactionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    sender?: SortOrder
+    receiver?: SortOrder
+    amount?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TrasferTransactionMinOrderByAggregateInput = {
+    id?: SortOrder
+    sender?: SortOrder
+    receiver?: SortOrder
+    amount?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TrasferTransactionSumOrderByAggregateInput = {
+    amount?: SortOrder
+  }
+
+  export type DonationTransactionCountOrderByAggregateInput = {
+    id?: SortOrder
+    sender?: SortOrder
+    unionId?: SortOrder
+    amount?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type DonationTransactionAvgOrderByAggregateInput = {
+    amount?: SortOrder
+  }
+
+  export type DonationTransactionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    sender?: SortOrder
+    unionId?: SortOrder
+    amount?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type DonationTransactionMinOrderByAggregateInput = {
+    id?: SortOrder
+    sender?: SortOrder
+    unionId?: SortOrder
+    amount?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type DonationTransactionSumOrderByAggregateInput = {
+    amount?: SortOrder
+  }
+
+  export type RequestFriendTransactionCountOrderByAggregateInput = {
+    id?: SortOrder
+    sender?: SortOrder
+    receiver?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RequestFriendTransactionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    sender?: SortOrder
+    receiver?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RequestFriendTransactionMinOrderByAggregateInput = {
+    id?: SortOrder
+    sender?: SortOrder
+    receiver?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
   export type UserCreateNestedOneWithoutAccountsInput = {
     create?: XOR<UserCreateWithoutAccountsInput, UserUncheckedCreateWithoutAccountsInput>
     connectOrCreate?: UserCreateOrConnectWithoutAccountsInput
@@ -5673,6 +11546,24 @@ export namespace Prisma {
     update?: XOR<UserUpdateWithoutSessionsInput, UserUncheckedUpdateWithoutSessionsInput>
   }
 
+  export type UnionCreateNestedOneWithoutUserInput = {
+    create?: XOR<UnionCreateWithoutUserInput, UnionUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UnionCreateOrConnectWithoutUserInput
+    connect?: UnionWhereUniqueInput
+  }
+
+  export type UserCreateNestedManyWithoutFollowingInput = {
+    create?: XOR<Enumerable<UserCreateWithoutFollowingInput>, Enumerable<UserUncheckedCreateWithoutFollowingInput>>
+    connectOrCreate?: Enumerable<UserCreateOrConnectWithoutFollowingInput>
+    connect?: Enumerable<UserWhereUniqueInput>
+  }
+
+  export type UserCreateNestedManyWithoutFollowedByInput = {
+    create?: XOR<Enumerable<UserCreateWithoutFollowedByInput>, Enumerable<UserUncheckedCreateWithoutFollowedByInput>>
+    connectOrCreate?: Enumerable<UserCreateOrConnectWithoutFollowedByInput>
+    connect?: Enumerable<UserWhereUniqueInput>
+  }
+
   export type AccountCreateNestedManyWithoutUserInput = {
     create?: XOR<Enumerable<AccountCreateWithoutUserInput>, Enumerable<AccountUncheckedCreateWithoutUserInput>>
     connectOrCreate?: Enumerable<AccountCreateOrConnectWithoutUserInput>
@@ -5685,6 +11576,18 @@ export namespace Prisma {
     connectOrCreate?: Enumerable<SessionCreateOrConnectWithoutUserInput>
     createMany?: SessionCreateManyUserInputEnvelope
     connect?: Enumerable<SessionWhereUniqueInput>
+  }
+
+  export type UserUncheckedCreateNestedManyWithoutFollowingInput = {
+    create?: XOR<Enumerable<UserCreateWithoutFollowingInput>, Enumerable<UserUncheckedCreateWithoutFollowingInput>>
+    connectOrCreate?: Enumerable<UserCreateOrConnectWithoutFollowingInput>
+    connect?: Enumerable<UserWhereUniqueInput>
+  }
+
+  export type UserUncheckedCreateNestedManyWithoutFollowedByInput = {
+    create?: XOR<Enumerable<UserCreateWithoutFollowedByInput>, Enumerable<UserUncheckedCreateWithoutFollowedByInput>>
+    connectOrCreate?: Enumerable<UserCreateOrConnectWithoutFollowedByInput>
+    connect?: Enumerable<UserWhereUniqueInput>
   }
 
   export type AccountUncheckedCreateNestedManyWithoutUserInput = {
@@ -5711,6 +11614,42 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type UnionUpdateOneWithoutUserNestedInput = {
+    create?: XOR<UnionCreateWithoutUserInput, UnionUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UnionCreateOrConnectWithoutUserInput
+    upsert?: UnionUpsertWithoutUserInput
+    disconnect?: boolean
+    delete?: boolean
+    connect?: UnionWhereUniqueInput
+    update?: XOR<UnionUpdateWithoutUserInput, UnionUncheckedUpdateWithoutUserInput>
+  }
+
+  export type UserUpdateManyWithoutFollowingNestedInput = {
+    create?: XOR<Enumerable<UserCreateWithoutFollowingInput>, Enumerable<UserUncheckedCreateWithoutFollowingInput>>
+    connectOrCreate?: Enumerable<UserCreateOrConnectWithoutFollowingInput>
+    upsert?: Enumerable<UserUpsertWithWhereUniqueWithoutFollowingInput>
+    set?: Enumerable<UserWhereUniqueInput>
+    disconnect?: Enumerable<UserWhereUniqueInput>
+    delete?: Enumerable<UserWhereUniqueInput>
+    connect?: Enumerable<UserWhereUniqueInput>
+    update?: Enumerable<UserUpdateWithWhereUniqueWithoutFollowingInput>
+    updateMany?: Enumerable<UserUpdateManyWithWhereWithoutFollowingInput>
+    deleteMany?: Enumerable<UserScalarWhereInput>
+  }
+
+  export type UserUpdateManyWithoutFollowedByNestedInput = {
+    create?: XOR<Enumerable<UserCreateWithoutFollowedByInput>, Enumerable<UserUncheckedCreateWithoutFollowedByInput>>
+    connectOrCreate?: Enumerable<UserCreateOrConnectWithoutFollowedByInput>
+    upsert?: Enumerable<UserUpsertWithWhereUniqueWithoutFollowedByInput>
+    set?: Enumerable<UserWhereUniqueInput>
+    disconnect?: Enumerable<UserWhereUniqueInput>
+    delete?: Enumerable<UserWhereUniqueInput>
+    connect?: Enumerable<UserWhereUniqueInput>
+    update?: Enumerable<UserUpdateWithWhereUniqueWithoutFollowedByInput>
+    updateMany?: Enumerable<UserUpdateManyWithWhereWithoutFollowedByInput>
+    deleteMany?: Enumerable<UserScalarWhereInput>
   }
 
   export type AccountUpdateManyWithoutUserNestedInput = {
@@ -5741,6 +11680,32 @@ export namespace Prisma {
     deleteMany?: Enumerable<SessionScalarWhereInput>
   }
 
+  export type UserUncheckedUpdateManyWithoutFollowingNestedInput = {
+    create?: XOR<Enumerable<UserCreateWithoutFollowingInput>, Enumerable<UserUncheckedCreateWithoutFollowingInput>>
+    connectOrCreate?: Enumerable<UserCreateOrConnectWithoutFollowingInput>
+    upsert?: Enumerable<UserUpsertWithWhereUniqueWithoutFollowingInput>
+    set?: Enumerable<UserWhereUniqueInput>
+    disconnect?: Enumerable<UserWhereUniqueInput>
+    delete?: Enumerable<UserWhereUniqueInput>
+    connect?: Enumerable<UserWhereUniqueInput>
+    update?: Enumerable<UserUpdateWithWhereUniqueWithoutFollowingInput>
+    updateMany?: Enumerable<UserUpdateManyWithWhereWithoutFollowingInput>
+    deleteMany?: Enumerable<UserScalarWhereInput>
+  }
+
+  export type UserUncheckedUpdateManyWithoutFollowedByNestedInput = {
+    create?: XOR<Enumerable<UserCreateWithoutFollowedByInput>, Enumerable<UserUncheckedCreateWithoutFollowedByInput>>
+    connectOrCreate?: Enumerable<UserCreateOrConnectWithoutFollowedByInput>
+    upsert?: Enumerable<UserUpsertWithWhereUniqueWithoutFollowedByInput>
+    set?: Enumerable<UserWhereUniqueInput>
+    disconnect?: Enumerable<UserWhereUniqueInput>
+    delete?: Enumerable<UserWhereUniqueInput>
+    connect?: Enumerable<UserWhereUniqueInput>
+    update?: Enumerable<UserUpdateWithWhereUniqueWithoutFollowedByInput>
+    updateMany?: Enumerable<UserUpdateManyWithWhereWithoutFollowedByInput>
+    deleteMany?: Enumerable<UserScalarWhereInput>
+  }
+
   export type AccountUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<Enumerable<AccountCreateWithoutUserInput>, Enumerable<AccountUncheckedCreateWithoutUserInput>>
     connectOrCreate?: Enumerable<AccountCreateOrConnectWithoutUserInput>
@@ -5767,6 +11732,48 @@ export namespace Prisma {
     update?: Enumerable<SessionUpdateWithWhereUniqueWithoutUserInput>
     updateMany?: Enumerable<SessionUpdateManyWithWhereWithoutUserInput>
     deleteMany?: Enumerable<SessionScalarWhereInput>
+  }
+
+  export type UserCreateNestedManyWithoutUnionInput = {
+    create?: XOR<Enumerable<UserCreateWithoutUnionInput>, Enumerable<UserUncheckedCreateWithoutUnionInput>>
+    connectOrCreate?: Enumerable<UserCreateOrConnectWithoutUnionInput>
+    createMany?: UserCreateManyUnionInputEnvelope
+    connect?: Enumerable<UserWhereUniqueInput>
+  }
+
+  export type UserUncheckedCreateNestedManyWithoutUnionInput = {
+    create?: XOR<Enumerable<UserCreateWithoutUnionInput>, Enumerable<UserUncheckedCreateWithoutUnionInput>>
+    connectOrCreate?: Enumerable<UserCreateOrConnectWithoutUnionInput>
+    createMany?: UserCreateManyUnionInputEnvelope
+    connect?: Enumerable<UserWhereUniqueInput>
+  }
+
+  export type UserUpdateManyWithoutUnionNestedInput = {
+    create?: XOR<Enumerable<UserCreateWithoutUnionInput>, Enumerable<UserUncheckedCreateWithoutUnionInput>>
+    connectOrCreate?: Enumerable<UserCreateOrConnectWithoutUnionInput>
+    upsert?: Enumerable<UserUpsertWithWhereUniqueWithoutUnionInput>
+    createMany?: UserCreateManyUnionInputEnvelope
+    set?: Enumerable<UserWhereUniqueInput>
+    disconnect?: Enumerable<UserWhereUniqueInput>
+    delete?: Enumerable<UserWhereUniqueInput>
+    connect?: Enumerable<UserWhereUniqueInput>
+    update?: Enumerable<UserUpdateWithWhereUniqueWithoutUnionInput>
+    updateMany?: Enumerable<UserUpdateManyWithWhereWithoutUnionInput>
+    deleteMany?: Enumerable<UserScalarWhereInput>
+  }
+
+  export type UserUncheckedUpdateManyWithoutUnionNestedInput = {
+    create?: XOR<Enumerable<UserCreateWithoutUnionInput>, Enumerable<UserUncheckedCreateWithoutUnionInput>>
+    connectOrCreate?: Enumerable<UserCreateOrConnectWithoutUnionInput>
+    upsert?: Enumerable<UserUpsertWithWhereUniqueWithoutUnionInput>
+    createMany?: UserCreateManyUnionInputEnvelope
+    set?: Enumerable<UserWhereUniqueInput>
+    disconnect?: Enumerable<UserWhereUniqueInput>
+    delete?: Enumerable<UserWhereUniqueInput>
+    connect?: Enumerable<UserWhereUniqueInput>
+    update?: Enumerable<UserUpdateWithWhereUniqueWithoutUnionInput>
+    updateMany?: Enumerable<UserUpdateManyWithWhereWithoutUnionInput>
+    deleteMany?: Enumerable<UserScalarWhereInput>
   }
 
   export type NestedStringFilter = {
@@ -5963,8 +11970,14 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     profile_image?: string | null
-    points: number
+    points?: number
+    doneTime?: Date | string | null
+    union?: UnionCreateNestedOneWithoutUserInput
+    followedBy?: UserCreateNestedManyWithoutFollowingInput
+    following?: UserCreateNestedManyWithoutFollowedByInput
     sessions?: SessionCreateNestedManyWithoutUserInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -5973,8 +11986,14 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     profile_image?: string | null
-    points: number
+    points?: number
+    unionId?: string | null
+    doneTime?: Date | string | null
+    followedBy?: UserUncheckedCreateNestedManyWithoutFollowingInput
+    following?: UserUncheckedCreateNestedManyWithoutFollowedByInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -5994,7 +12013,13 @@ export namespace Prisma {
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profile_image?: NullableStringFieldUpdateOperationsInput | string | null
     points?: IntFieldUpdateOperationsInput | number
+    doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    union?: UnionUpdateOneWithoutUserNestedInput
+    followedBy?: UserUpdateManyWithoutFollowingNestedInput
+    following?: UserUpdateManyWithoutFollowedByNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -6004,7 +12029,13 @@ export namespace Prisma {
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profile_image?: NullableStringFieldUpdateOperationsInput | string | null
     points?: IntFieldUpdateOperationsInput | number
+    unionId?: NullableStringFieldUpdateOperationsInput | string | null
+    doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    followedBy?: UserUncheckedUpdateManyWithoutFollowingNestedInput
+    following?: UserUncheckedUpdateManyWithoutFollowedByNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -6013,8 +12044,14 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     profile_image?: string | null
-    points: number
+    points?: number
+    doneTime?: Date | string | null
+    union?: UnionCreateNestedOneWithoutUserInput
+    followedBy?: UserCreateNestedManyWithoutFollowingInput
+    following?: UserCreateNestedManyWithoutFollowedByInput
     accounts?: AccountCreateNestedManyWithoutUserInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -6023,8 +12060,14 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     profile_image?: string | null
-    points: number
+    points?: number
+    unionId?: string | null
+    doneTime?: Date | string | null
+    followedBy?: UserUncheckedCreateNestedManyWithoutFollowingInput
+    following?: UserUncheckedCreateNestedManyWithoutFollowedByInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -6044,7 +12087,13 @@ export namespace Prisma {
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profile_image?: NullableStringFieldUpdateOperationsInput | string | null
     points?: IntFieldUpdateOperationsInput | number
+    doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    union?: UnionUpdateOneWithoutUserNestedInput
+    followedBy?: UserUpdateManyWithoutFollowingNestedInput
+    following?: UserUpdateManyWithoutFollowedByNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -6054,7 +12103,110 @@ export namespace Prisma {
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profile_image?: NullableStringFieldUpdateOperationsInput | string | null
     points?: IntFieldUpdateOperationsInput | number
+    unionId?: NullableStringFieldUpdateOperationsInput | string | null
+    doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    followedBy?: UserUncheckedUpdateManyWithoutFollowingNestedInput
+    following?: UserUncheckedUpdateManyWithoutFollowedByNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UnionCreateWithoutUserInput = {
+    id?: string
+    name: string
+    union_image?: string | null
+    points?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UnionUncheckedCreateWithoutUserInput = {
+    id?: string
+    name: string
+    union_image?: string | null
+    points?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UnionCreateOrConnectWithoutUserInput = {
+    where: UnionWhereUniqueInput
+    create: XOR<UnionCreateWithoutUserInput, UnionUncheckedCreateWithoutUserInput>
+  }
+
+  export type UserCreateWithoutFollowingInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    emailVerified?: Date | string | null
+    profile_image?: string | null
+    points?: number
+    doneTime?: Date | string | null
+    union?: UnionCreateNestedOneWithoutUserInput
+    followedBy?: UserCreateNestedManyWithoutFollowingInput
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserUncheckedCreateWithoutFollowingInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    emailVerified?: Date | string | null
+    profile_image?: string | null
+    points?: number
+    unionId?: string | null
+    doneTime?: Date | string | null
+    followedBy?: UserUncheckedCreateNestedManyWithoutFollowingInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserCreateOrConnectWithoutFollowingInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutFollowingInput, UserUncheckedCreateWithoutFollowingInput>
+  }
+
+  export type UserCreateWithoutFollowedByInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    emailVerified?: Date | string | null
+    profile_image?: string | null
+    points?: number
+    doneTime?: Date | string | null
+    union?: UnionCreateNestedOneWithoutUserInput
+    following?: UserCreateNestedManyWithoutFollowedByInput
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserUncheckedCreateWithoutFollowedByInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    emailVerified?: Date | string | null
+    profile_image?: string | null
+    points?: number
+    unionId?: string | null
+    doneTime?: Date | string | null
+    following?: UserUncheckedCreateNestedManyWithoutFollowedByInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserCreateOrConnectWithoutFollowedByInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutFollowedByInput, UserUncheckedCreateWithoutFollowedByInput>
   }
 
   export type AccountCreateWithoutUserInput = {
@@ -6117,6 +12269,77 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type UnionUpsertWithoutUserInput = {
+    update: XOR<UnionUpdateWithoutUserInput, UnionUncheckedUpdateWithoutUserInput>
+    create: XOR<UnionCreateWithoutUserInput, UnionUncheckedCreateWithoutUserInput>
+  }
+
+  export type UnionUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    union_image?: NullableStringFieldUpdateOperationsInput | string | null
+    points?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UnionUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    union_image?: NullableStringFieldUpdateOperationsInput | string | null
+    points?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUpsertWithWhereUniqueWithoutFollowingInput = {
+    where: UserWhereUniqueInput
+    update: XOR<UserUpdateWithoutFollowingInput, UserUncheckedUpdateWithoutFollowingInput>
+    create: XOR<UserCreateWithoutFollowingInput, UserUncheckedCreateWithoutFollowingInput>
+  }
+
+  export type UserUpdateWithWhereUniqueWithoutFollowingInput = {
+    where: UserWhereUniqueInput
+    data: XOR<UserUpdateWithoutFollowingInput, UserUncheckedUpdateWithoutFollowingInput>
+  }
+
+  export type UserUpdateManyWithWhereWithoutFollowingInput = {
+    where: UserScalarWhereInput
+    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyWithoutFollowedByInput>
+  }
+
+  export type UserScalarWhereInput = {
+    AND?: Enumerable<UserScalarWhereInput>
+    OR?: Enumerable<UserScalarWhereInput>
+    NOT?: Enumerable<UserScalarWhereInput>
+    id?: StringFilter | string
+    name?: StringNullableFilter | string | null
+    email?: StringNullableFilter | string | null
+    emailVerified?: DateTimeNullableFilter | Date | string | null
+    profile_image?: StringNullableFilter | string | null
+    points?: IntFilter | number
+    unionId?: StringNullableFilter | string | null
+    doneTime?: DateTimeNullableFilter | Date | string | null
+    createdAt?: DateTimeFilter | Date | string
+    updatedAt?: DateTimeFilter | Date | string
+  }
+
+  export type UserUpsertWithWhereUniqueWithoutFollowedByInput = {
+    where: UserWhereUniqueInput
+    update: XOR<UserUpdateWithoutFollowedByInput, UserUncheckedUpdateWithoutFollowedByInput>
+    create: XOR<UserCreateWithoutFollowedByInput, UserUncheckedCreateWithoutFollowedByInput>
+  }
+
+  export type UserUpdateWithWhereUniqueWithoutFollowedByInput = {
+    where: UserWhereUniqueInput
+    data: XOR<UserUpdateWithoutFollowedByInput, UserUncheckedUpdateWithoutFollowedByInput>
+  }
+
+  export type UserUpdateManyWithWhereWithoutFollowedByInput = {
+    where: UserScalarWhereInput
+    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyWithoutFollowingInput>
+  }
+
   export type AccountUpsertWithWhereUniqueWithoutUserInput = {
     where: AccountWhereUniqueInput
     update: XOR<AccountUpdateWithoutUserInput, AccountUncheckedUpdateWithoutUserInput>
@@ -6177,6 +12400,64 @@ export namespace Prisma {
     expires?: DateTimeFilter | Date | string
   }
 
+  export type UserCreateWithoutUnionInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    emailVerified?: Date | string | null
+    profile_image?: string | null
+    points?: number
+    doneTime?: Date | string | null
+    followedBy?: UserCreateNestedManyWithoutFollowingInput
+    following?: UserCreateNestedManyWithoutFollowedByInput
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserUncheckedCreateWithoutUnionInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    emailVerified?: Date | string | null
+    profile_image?: string | null
+    points?: number
+    doneTime?: Date | string | null
+    followedBy?: UserUncheckedCreateNestedManyWithoutFollowingInput
+    following?: UserUncheckedCreateNestedManyWithoutFollowedByInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserCreateOrConnectWithoutUnionInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutUnionInput, UserUncheckedCreateWithoutUnionInput>
+  }
+
+  export type UserCreateManyUnionInputEnvelope = {
+    data: Enumerable<UserCreateManyUnionInput>
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithWhereUniqueWithoutUnionInput = {
+    where: UserWhereUniqueInput
+    update: XOR<UserUpdateWithoutUnionInput, UserUncheckedUpdateWithoutUnionInput>
+    create: XOR<UserCreateWithoutUnionInput, UserUncheckedCreateWithoutUnionInput>
+  }
+
+  export type UserUpdateWithWhereUniqueWithoutUnionInput = {
+    where: UserWhereUniqueInput
+    data: XOR<UserUpdateWithoutUnionInput, UserUncheckedUpdateWithoutUnionInput>
+  }
+
+  export type UserUpdateManyWithWhereWithoutUnionInput = {
+    where: UserScalarWhereInput
+    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyWithoutUserInput>
+  }
+
   export type AccountCreateManyUserInput = {
     id?: string
     type: string
@@ -6195,6 +12476,96 @@ export namespace Prisma {
     id?: string
     sessionToken: string
     expires: Date | string
+  }
+
+  export type UserUpdateWithoutFollowingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profile_image?: NullableStringFieldUpdateOperationsInput | string | null
+    points?: IntFieldUpdateOperationsInput | number
+    doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    union?: UnionUpdateOneWithoutUserNestedInput
+    followedBy?: UserUpdateManyWithoutFollowingNestedInput
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUncheckedUpdateWithoutFollowingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profile_image?: NullableStringFieldUpdateOperationsInput | string | null
+    points?: IntFieldUpdateOperationsInput | number
+    unionId?: NullableStringFieldUpdateOperationsInput | string | null
+    doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    followedBy?: UserUncheckedUpdateManyWithoutFollowingNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUncheckedUpdateManyWithoutFollowedByInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profile_image?: NullableStringFieldUpdateOperationsInput | string | null
+    points?: IntFieldUpdateOperationsInput | number
+    unionId?: NullableStringFieldUpdateOperationsInput | string | null
+    doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUpdateWithoutFollowedByInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profile_image?: NullableStringFieldUpdateOperationsInput | string | null
+    points?: IntFieldUpdateOperationsInput | number
+    doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    union?: UnionUpdateOneWithoutUserNestedInput
+    following?: UserUpdateManyWithoutFollowedByNestedInput
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUncheckedUpdateWithoutFollowedByInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profile_image?: NullableStringFieldUpdateOperationsInput | string | null
+    points?: IntFieldUpdateOperationsInput | number
+    unionId?: NullableStringFieldUpdateOperationsInput | string | null
+    doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    following?: UserUncheckedUpdateManyWithoutFollowedByNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUncheckedUpdateManyWithoutFollowingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profile_image?: NullableStringFieldUpdateOperationsInput | string | null
+    points?: IntFieldUpdateOperationsInput | number
+    unionId?: NullableStringFieldUpdateOperationsInput | string | null
+    doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AccountUpdateWithoutUserInput = {
@@ -6255,6 +12626,62 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     sessionToken?: StringFieldUpdateOperationsInput | string
     expires?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserCreateManyUnionInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    emailVerified?: Date | string | null
+    profile_image?: string | null
+    points?: number
+    doneTime?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserUpdateWithoutUnionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profile_image?: NullableStringFieldUpdateOperationsInput | string | null
+    points?: IntFieldUpdateOperationsInput | number
+    doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    followedBy?: UserUpdateManyWithoutFollowingNestedInput
+    following?: UserUpdateManyWithoutFollowedByNestedInput
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUncheckedUpdateWithoutUnionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profile_image?: NullableStringFieldUpdateOperationsInput | string | null
+    points?: IntFieldUpdateOperationsInput | number
+    doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    followedBy?: UserUncheckedUpdateManyWithoutFollowingNestedInput
+    following?: UserUncheckedUpdateManyWithoutFollowedByNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profile_image?: NullableStringFieldUpdateOperationsInput | string | null
+    points?: IntFieldUpdateOperationsInput | number
+    doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 
