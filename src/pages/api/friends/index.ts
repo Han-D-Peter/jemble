@@ -130,10 +130,12 @@ async function handler(
   assert(session !== null, "session is null");
   if (req.method === "GET") {
     getFriends(session, res, req);
+    return;
   }
 
   if (req.method === "POST") {
     requestFriends(session, res, req);
+    return;
   }
 }
 
