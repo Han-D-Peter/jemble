@@ -7,6 +7,7 @@ import withHandler from "@/libs/server/withHandler";
 import { authOptions } from "../auth/[...nextauth]";
 import { Union, User } from "@/api/server/generated";
 import { transferUnion } from "@/libs/server/trade";
+import { makeDonationTransaction } from "@/libs/server/transaction";
 
 export interface DonationMutationResponse {
   me: User;
@@ -57,6 +58,12 @@ async function handler(
       transferRequest.targetUnion,
       transferRequest.amount,
       res
+    );
+
+    await makeDonationTransaction(
+      session.user.id,
+      transferRequest.targetUnion,
+      transferRequest.amount
     );
   } catch (error) {
     console.log(error);

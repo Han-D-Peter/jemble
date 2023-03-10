@@ -7,6 +7,7 @@ import withHandler from "@/libs/server/withHandler";
 import { authOptions } from "../auth/[...nextauth]";
 import { User } from "@/api/server/generated";
 import { transferUser } from "@/libs/server/trade";
+import { makeTransferTransaction } from "@/libs/server/transaction";
 
 export interface TransferMutationResponse {
   me: User;
@@ -57,6 +58,11 @@ async function handler(
       transferRequest.targetUser,
       transferRequest.amount,
       res
+    );
+    await makeTransferTransaction(
+      session.user.id,
+      transferRequest.targetUser,
+      transferRequest.amount
     );
   } catch (error) {
     console.log(error);

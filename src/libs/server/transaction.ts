@@ -1,5 +1,45 @@
 import client from "@/libs/client";
 
+type ID = string;
+
+export async function makeTransferTransaction(
+  from: ID,
+  to: ID,
+  amount: number
+) {
+  try {
+    await client.trasferTransaction.create({
+      data: {
+        sender: from,
+        receiver: to,
+        amount,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    throw Error("Error while making transaction");
+  }
+}
+
+export async function makeDonationTransaction(
+  from: ID,
+  toUnion: ID,
+  amount: number
+) {
+  try {
+    await client.donationTransaction.create({
+      data: {
+        sender: from,
+        unionId: toUnion,
+        amount,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    throw Error("Error while making transaction");
+  }
+}
+
 export async function getFriendTransactions(myId: string) {
   try {
     const transactions = await client.requestFriendTransaction.findMany({
