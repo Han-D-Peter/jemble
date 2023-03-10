@@ -4,7 +4,12 @@ import { Union } from "@/interface/model/union";
 import { User } from "@/interface/model/user";
 import { NetworkResult } from "@/interface/network";
 import client from "@/libs/client";
-import { createUnion, getUnionById, getUnionByName } from "@/libs/server/union";
+import {
+  createUnion,
+  getUnionById,
+  getUnionByName,
+  getUnions,
+} from "@/libs/server/union";
 import withHandler from "@/libs/server/withHandler";
 import assert from "assert";
 import type { NextApiRequest, NextApiResponse } from "next";
@@ -15,15 +20,29 @@ interface CreateUnionRespnse {
   union: Union;
 }
 
+interface CheckUnionsResponse {
+  unions: UnionModel[];
+}
+
 async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<NetworkResult<CreateUnionRespnse>>
+  res: NextApiResponse<
+    NetworkResult<CreateUnionRespnse | CheckUnionsResponse | any[]>
+  >
 ) {
   const body: { name: string; union_image: string } = req.body;
 
   const session = await getServerSession(req, res, authOptions);
 
   assert(session !== null, "session is null");
+
+  if (req.method === "GET") {
+    const unions = await getUnions();
+    return res.status(200).json({
+      status: "Success",
+      data: unions,
+    });
+  }
 
   if (req.method === "POST") {
     const existedUnionByName = await getUnionByName(req.body.name);
