@@ -32,13 +32,51 @@ export async function getUnionByName(name: string) {
   }
 }
 
-export async function getUnions() {
-  try {
-    const unions = await client.union.findMany({});
-    return unions;
-  } catch (e) {
-    console.log("error", e);
-    return [];
+type UnionOrderBy = "Higher" | "Lower";
+
+export async function getUnions({
+  orderBy = "Higher",
+}: {
+  orderBy?: UnionOrderBy;
+}) {
+  if (orderBy === "Higher") {
+    try {
+      const unions = await client.union.findMany({
+        orderBy: [
+          {
+            points: "desc",
+          },
+        ],
+      });
+      return unions;
+    } catch (e) {
+      console.log("error", e);
+      return [];
+    }
+  }
+  if (orderBy === "Lower") {
+    try {
+      const unions = await client.union.findMany({
+        orderBy: [
+          {
+            points: "asc",
+          },
+        ],
+      });
+      return unions;
+    } catch (e) {
+      console.log("error", e);
+      return [];
+    }
+  }
+  if (!orderBy) {
+    try {
+      const unions = await client.union.findMany({});
+      return unions;
+    } catch (e) {
+      console.log("error", e);
+      return [];
+    }
   }
 }
 

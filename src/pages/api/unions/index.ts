@@ -35,7 +35,7 @@ async function handler(
   assert(session !== null, "session is null");
 
   if (req.method === "GET") {
-    const unions = await getUnions();
+    const unions = await getUnions({ orderBy: "Higher" });
     return res.status(200).json({
       status: "Success",
       data: unions,
