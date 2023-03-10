@@ -1,14 +1,9 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import assert from "assert";
-import { NetworkResult } from "@/interface/network";
+import { CheckUserResponse, NetworkResult } from "@/interface/network";
 import withHandler from "@/libs/server/withHandler";
-import { User } from "@/api/server/generated";
 import client from "@/libs/client";
-
-interface CheckUserResponse {
-  user: User;
-}
 
 async function handler(
   req: NextApiRequest,

@@ -2,15 +2,10 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
 import assert from "assert";
-import { NetworkResult } from "@/interface/network";
+import { CheckUsersResponse, NetworkResult } from "@/interface/network";
 import withHandler from "@/libs/server/withHandler";
 import { authOptions } from "../auth/[...nextauth]";
-import { User } from "@/api/server/generated";
 import client from "@/libs/client";
-
-interface CheckUsersResponse {
-  users: User[];
-}
 
 async function handler(
   req: NextApiRequest,

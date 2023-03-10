@@ -2,22 +2,15 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
 import assert from "assert";
-import { NetworkResult } from "@/interface/network";
+import {
+  NetworkResult,
+  TransferMutationRequest,
+  TransferMutationResponse,
+} from "@/interface/network";
 import withHandler from "@/libs/server/withHandler";
 import { authOptions } from "../auth/[...nextauth]";
-import { User } from "@/api/server/generated";
 import { transferUser } from "@/libs/server/trade";
 import { makeTransferTransaction } from "@/libs/server/transaction";
-
-export interface TransferMutationResponse {
-  me: User;
-  friend: User;
-}
-
-interface TransferMutationRequest {
-  targetUser: string;
-  amount: number;
-}
 
 async function handler(
   req: NextApiRequest,

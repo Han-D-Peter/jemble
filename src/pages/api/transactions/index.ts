@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
 import assert from "assert";
 import { isEqualOrAfter } from "@toss/date";
-import { NetworkResult } from "@/interface/network";
+import { CheckTransactionResponse, NetworkResult } from "@/interface/network";
 import withHandler from "@/libs/server/withHandler";
 import { authOptions } from "../auth/[...nextauth]";
 import {
@@ -11,19 +11,6 @@ import {
   getFriendTransactions,
   getTransferTransactions,
 } from "@/libs/server/transaction";
-import {
-  DonationTransaction,
-  RequestFriendTransaction,
-  TrasferTransaction,
-} from "@/api/server/generated";
-
-interface CheckTransactionResponse {
-  transactions: (
-    | DonationTransaction
-    | TrasferTransaction
-    | RequestFriendTransaction
-  )[];
-}
 
 async function handler(
   req: NextApiRequest,

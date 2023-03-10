@@ -3,18 +3,13 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
 import assert from "assert";
 import { authOptions } from "../../auth/[...nextauth]";
-import { NetworkResult } from "@/interface/network";
+import {
+  CheckUnionsRankResponse,
+  NetworkResult,
+  UnionWithRank,
+} from "@/interface/network";
 import { getUnions } from "@/libs/server/union";
 import withHandler from "@/libs/server/withHandler";
-import { Union } from "@/interface/model/union";
-
-interface UnionWithRank extends Union {
-  rank: number;
-}
-
-interface CheckUnionsRankResponse {
-  unions: UnionWithRank[];
-}
 
 async function handler(
   req: NextApiRequest,

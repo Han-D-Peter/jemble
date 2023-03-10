@@ -2,17 +2,15 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession, Session } from "next-auth";
 import assert from "assert";
-import { NetworkResult, RequestFriendStatus } from "@/interface/network";
+import {
+  CheckFriendsResponse,
+  CreateFriendResponse,
+  NetworkResult,
+  RequestFriendStatus,
+} from "@/interface/network";
 import withHandler from "@/libs/server/withHandler";
 import { authOptions } from "../auth/[...nextauth]";
-import { User } from "@/interface/model/user";
 import client from "@/libs/client";
-
-interface CheckFriendsResponse {
-  friends: User[];
-}
-
-interface CreateFriendResponse {}
 
 async function getFriends(
   session: Session,

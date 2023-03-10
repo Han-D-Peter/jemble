@@ -3,14 +3,9 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
 import assert from "assert";
 import { getUnionByMyId, getUnionByName, joinUnion } from "@/libs/server/union";
-import { NetworkResult } from "@/interface/network";
+import { CheckUnionResponse, NetworkResult } from "@/interface/network";
 import withHandler from "@/libs/server/withHandler";
 import { authOptions } from "../auth/[...nextauth]";
-import { Union } from "@/interface/model/union";
-
-interface CheckUnionResponse {
-  union: Union;
-}
 
 async function handler(
   req: NextApiRequest,
