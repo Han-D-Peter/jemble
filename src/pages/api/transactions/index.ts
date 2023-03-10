@@ -1,14 +1,11 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
-import _ from "lodash";
 import assert from "assert";
 import { isEqualOrAfter } from "@toss/date";
 import { NetworkResult } from "@/interface/network";
 import withHandler from "@/libs/server/withHandler";
 import { authOptions } from "../auth/[...nextauth]";
-import { User } from "@/interface/model/user";
-import client from "@/libs/client";
 import {
   getDonationTransactions,
   getFriendTransactions,
