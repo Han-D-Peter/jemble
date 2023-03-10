@@ -11,33 +11,16 @@ import {
   getFriendTransactions,
   getTransferTransactions,
 } from "@/libs/server/transaction";
-
-type DonationTransaction = {
-  id: string;
-  sender: string;
-  unionId: string;
-  amount: number;
-};
-
-type TransferTransaction = {
-  id: string;
-  sender: string;
-  receiver: string;
-  unionId: string;
-  amount: number;
-};
-
-type RequestFriendTransaction = {
-  id: string;
-  sender: string;
-  reciever: string;
-  status: "Accepted" | "Rejected" | "Pending";
-};
+import {
+  DonationTransaction,
+  RequestFriendTransaction,
+  TrasferTransaction,
+} from "@/api/server/generated";
 
 interface CheckTransactionResponse {
-  transaction: (
+  transactions: (
     | DonationTransaction
-    | TransferTransaction
+    | TrasferTransaction
     | RequestFriendTransaction
   )[];
 }
@@ -68,7 +51,9 @@ async function handler(
       }
     });
     console.log("sortedTransactions", sortedTransactions);
-    return res.status(200).json({ status: "Success" });
+    return res
+      .status(200)
+      .json({ status: "Success", data: { transactions: sortedTransactions } });
   } catch (error) {
     console.log(error);
     res.status(400).json({
