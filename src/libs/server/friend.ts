@@ -30,3 +30,17 @@ export async function acceptRequestFriend(myId: string, friendId: string) {
     console.log(error);
   }
 }
+
+export async function getUser(id: string) {
+  try {
+    const user = await client.user.findUnique({
+      where: {
+        id,
+      },
+    });
+    return user;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
