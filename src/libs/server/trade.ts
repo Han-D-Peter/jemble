@@ -1,8 +1,11 @@
 import { NextApiResponse } from "next";
 import assert from "assert";
-import { NetworkResult } from "@/interface/network";
-import { DonationMutationResponse } from "@/pages/api/trade/union";
-import { TransferMutationResponse } from "@/pages/api/trade/user";
+import {
+  DonationMutationResponse,
+  NetworkResult,
+  TransferMutationResponse,
+} from "@/interface/network";
+
 import client from "../client";
 import { getUser } from "./friend";
 import { getUnionById } from "./union";
