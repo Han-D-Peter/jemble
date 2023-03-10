@@ -80,7 +80,7 @@ export async function getUnions({
   }
 }
 
-export async function getUnionById(myId: string) {
+export async function getUnionByMyId(myId: string) {
   try {
     const myUnion = await client.union.findFirst({
       where: {
@@ -93,6 +93,21 @@ export async function getUnionById(myId: string) {
     });
     if (myUnion) return myUnion;
     if (!myUnion) return null;
+  } catch (e) {
+    console.log("error", e);
+    return null;
+  }
+}
+
+export async function getUnionById(unionId: string) {
+  try {
+    const union = await client.union.findFirst({
+      where: {
+        id: unionId,
+      },
+    });
+    if (union) return union;
+    if (!union) return null;
   } catch (e) {
     console.log("error", e);
     return null;

@@ -9,7 +9,7 @@ import { authOptions } from "../auth/[...nextauth]";
 import { Union } from "@/interface/model/union";
 import {
   createUnion,
-  getUnionById,
+  getUnionByMyId,
   getUnionByName,
   getUnions,
 } from "@/libs/server/union";
@@ -52,7 +52,7 @@ async function handler(
       });
     }
 
-    const myUnion = await getUnionById(session.user.id);
+    const myUnion = await getUnionByMyId(session.user.id);
 
     if (myUnion) {
       return res.status(400).json({

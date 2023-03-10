@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
 import assert from "assert";
 import { NetworkResult } from "@/interface/network";
-import { getUnionById } from "@/libs/server/union";
+import { getUnionByMyId } from "@/libs/server/union";
 import withHandler from "@/libs/server/withHandler";
 import { authOptions } from "../auth/[...nextauth]";
 import { Union } from "@/interface/model/union";
@@ -20,7 +20,7 @@ async function handler(
 
   assert(session !== null, "session is null");
 
-  const union = await getUnionById(session.user.id);
+  const union = await getUnionByMyId(session.user.id);
 
   if (union) {
     return res.status(200).json({
