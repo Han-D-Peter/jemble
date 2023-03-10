@@ -85,3 +85,25 @@ export async function createUnion(
     return null;
   }
 }
+
+export async function joinUnion(myId: string, unionName: string) {
+  try {
+    const union = await client.union.update({
+      where: {
+        name: unionName,
+      },
+      data: {
+        user: {
+          connect: {
+            id: myId,
+          },
+        },
+      },
+    });
+
+    return union;
+  } catch (e) {
+    console.log("error", e);
+    return null;
+  }
+}
