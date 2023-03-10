@@ -50,7 +50,6 @@ async function handler(
         return 1;
       }
     });
-    console.log("sortedTransactions", sortedTransactions);
     return res
       .status(200)
       .json({ status: "Success", data: { transactions: sortedTransactions } });
