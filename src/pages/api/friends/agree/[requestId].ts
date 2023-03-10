@@ -1,12 +1,12 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { NetworkResult } from "@/interface/network";
-import client from "@/libs/client";
-import { acceptRequestFriend } from "@/libs/server/friend";
-import withHandler from "@/libs/server/withHandler";
-import assert from "assert";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
+import assert from "assert";
+import { acceptRequestFriend } from "@/libs/server/friend";
 import { authOptions } from "../../auth/[...nextauth]";
+import { NetworkResult } from "@/interface/network";
+import withHandler from "@/libs/server/withHandler";
+import client from "@/libs/client";
 
 async function handler(
   req: NextApiRequest,

@@ -1,14 +1,12 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { PrismaClient } from "@/api/server/generated";
-import { Union } from "@/interface/model/union";
-import { User } from "@/interface/model/user";
-import { NetworkResult, RequestFriendStatus } from "@/interface/network";
-import client from "@/libs/client";
-import withHandler from "@/libs/server/withHandler";
-import assert from "assert";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession, Session } from "next-auth";
+import assert from "assert";
+import { NetworkResult, RequestFriendStatus } from "@/interface/network";
+import withHandler from "@/libs/server/withHandler";
 import { authOptions } from "../auth/[...nextauth]";
+import { User } from "@/interface/model/user";
+import client from "@/libs/client";
 
 interface CheckFriendsResponse {
   friends: User[];

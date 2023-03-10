@@ -2,11 +2,11 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
 import assert from "assert";
-import { User } from "@/api/server/generated";
 import { NetworkResult } from "@/interface/network";
-import client from "@/libs/client";
 import withHandler from "@/libs/server/withHandler";
 import { authOptions } from "../auth/[...nextauth]";
+import { User } from "@/api/server/generated";
+import client from "@/libs/client";
 
 interface CheckUsersResponse {
   users: User[];

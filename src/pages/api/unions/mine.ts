@@ -1,12 +1,12 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { Union } from "@/interface/model/union";
+import type { NextApiRequest, NextApiResponse } from "next";
+import { getServerSession } from "next-auth";
+import assert from "assert";
 import { NetworkResult } from "@/interface/network";
 import { getUnionById } from "@/libs/server/union";
 import withHandler from "@/libs/server/withHandler";
-import assert from "assert";
-import type { NextApiRequest, NextApiResponse } from "next";
-import { getServerSession, Session } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
+import { Union } from "@/interface/model/union";
 
 interface CheckMyUnionResponse {
   union: Union;
