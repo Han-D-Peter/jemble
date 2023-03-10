@@ -607,6 +607,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@toss/date@npm:^1.1.6":
+  version: 1.1.6
+  resolution: "@toss/date@npm:1.1.6"
+  dependencies:
+    date-fns: ^2.25.0
+  checksum: 07b4d6f9f8faaa4180a76599948233d70bad2c372fd6752459549b003839af32770ac9b2fb9a98b18c297e6a280e667c2c0ab70784f74a314cf00c7314771d9d
+  languageName: node
+  linkType: hard
+
 "@types/cacheable-request@npm:^6.0.1":
   version: 6.0.3
   resolution: "@types/cacheable-request@npm:6.0.3"
@@ -663,6 +672,13 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: e009a2bfb50e90ca9b7c6e8f648f8464067271fd99116f881073fa6fa76dc8d0133181dd65e6614d5fb1220d671d67b0124aef7d97dc02d7e342ab143a47779d
+  languageName: node
+  linkType: hard
+
+"@types/lodash@npm:^4":
+  version: 4.14.191
+  resolution: "@types/lodash@npm:4.14.191"
+  checksum: ba0d5434e10690869f32d5ea49095250157cae502f10d57de0a723fd72229ce6c6a4979576f0f13e0aa9fbe3ce2457bfb9fa7d4ec3d6daba56730a51906d1491
   languageName: node
   linkType: hard
 
@@ -1196,6 +1212,13 @@ __metadata:
   version: 3.1.1
   resolution: "csstype@npm:3.1.1"
   checksum: 1f7b4f5fdd955b7444b18ebdddf3f5c699159f13e9cf8ac9027ae4a60ae226aef9bbb14a6e12ca7dba3358b007cee6354b116e720262867c398de6c955ea451d
+  languageName: node
+  linkType: hard
+
+"date-fns@npm:^2.25.0":
+  version: 2.29.3
+  resolution: "date-fns@npm:2.29.3"
+  checksum: e01cf5b62af04e05dfff921bb9c9933310ed0e1ae9a81eb8653452e64dc841acf7f6e01e1a5ae5644d0337e9a7f936175fd2cb6819dc122fdd9c5e86c56be484
   languageName: node
   linkType: hard
 
@@ -1850,13 +1873,16 @@ __metadata:
     "@prisma/client": 4.11.0
     "@tanstack/react-query": ^4.26.1
     "@tanstack/react-query-devtools": ^4.26.1
+    "@toss/date": ^1.1.6
     "@types/eslint": ^8
+    "@types/lodash": ^4
     "@types/node": 18.14.2
     "@types/react": 18.0.28
     "@yarnpkg/pnpify": ^4.0.0-rc.39
     eslint: ^8.35.0
     got: ^12.6.0
     ky: ^0.33.2
+    lodash: ^4.17.21
     next: ^13.2.1
     next-auth: ^4.19.2
     prisma: 4.11.0
@@ -1988,7 +2014,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.15":
+"lodash@npm:^4.17.15, lodash@npm:^4.17.21":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: eb835a2e51d381e561e508ce932ea50a8e5a68f4ebdd771ea240d3048244a8d13658acbd502cd4829768c56f2e16bdd4340b9ea141297d472517b83868e677f7
