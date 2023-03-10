@@ -2,7 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
 import assert from "assert";
-import { getUnionById, getUnionByName, joinUnion } from "@/libs/server/union";
+import { getUnionByMyId, getUnionByName, joinUnion } from "@/libs/server/union";
 import { NetworkResult } from "@/interface/network";
 import withHandler from "@/libs/server/withHandler";
 import { authOptions } from "../auth/[...nextauth]";
@@ -37,7 +37,7 @@ async function handler(
   }
 
   if (req.method === "POST") {
-    const myUnion = await getUnionById(session.user.id);
+    const myUnion = await getUnionByMyId(session.user.id);
     if (myUnion)
       return res
         .status(400)
