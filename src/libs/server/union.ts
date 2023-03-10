@@ -1,3 +1,4 @@
+import { Union } from "@/api/server/generated";
 import client from "../client";
 
 export async function isExistedUnionByName(name: string): Promise<boolean> {
@@ -28,6 +29,16 @@ export async function getUnionByName(name: string) {
   } catch (e) {
     console.log("error", e);
     return null;
+  }
+}
+
+export async function getUnions() {
+  try {
+    const unions = await client.union.findMany({});
+    return unions;
+  } catch (e) {
+    console.log("error", e);
+    return [];
   }
 }
 
