@@ -2,11 +2,11 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import UnionRepository, { CreateUnionPayload } from "../repository/unions";
 
 export const useGetMyUnion = () => {
-  return useQuery(["myUnion"], () => UnionRepository.getGetMyUnion());
+  return useQuery(["myUnion"], UnionRepository.getGetMyUnion);
 };
 
 export const useGetUnions = () => {
-  return useQuery(["unions"], () => UnionRepository.getUnions());
+  return useQuery(["unions"], UnionRepository.getUnions);
 };
 
 export const useGetUnion = (name: string) => {
@@ -14,7 +14,7 @@ export const useGetUnion = (name: string) => {
 };
 
 export const useGetUnionsRank = () => {
-  return useQuery(["unionsRank"], () => UnionRepository.getUnionsRank());
+  return useQuery(["unionsRank"], UnionRepository.getUnionsRank);
 };
 
 export const useGetUnionRank = (name: string) => {
@@ -24,11 +24,9 @@ export const useGetUnionRank = (name: string) => {
 };
 
 export const useCreateUnionMutation = () => {
-  return useMutation(["createUnion"], (payload: CreateUnionPayload) =>
-    UnionRepository.createUnion(payload)
-  );
+  return useMutation(["createUnion"], UnionRepository.createUnion);
 };
 
-export const useJoinUnionMutation = (name: string) => {
-  return useMutation(["joinUnion"], () => UnionRepository.joinUnion(name));
+export const useJoinUnionMutation = () => {
+  return useMutation(["joinUnion"], UnionRepository.joinUnion);
 };
