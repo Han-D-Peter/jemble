@@ -160,3 +160,19 @@ export async function joinUnion(myId: string, unionName: string) {
     return null;
   }
 }
+
+export async function getUnionName(unionId: string) {
+  try {
+    const union = await client.union.findFirst({
+      where: {
+        id: unionId,
+      },
+    });
+    if (!union) return "";
+    if (!union.name) return "";
+    return union.name;
+  } catch (e) {
+    console.log("error", e);
+    return "";
+  }
+}

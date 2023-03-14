@@ -94,7 +94,9 @@ model Zerosum {
 model TrasferTransaction {
   id String @id @default(cuid())
   sender String
+  senderName String
   receiver String
+  receiverName String
   amount Int
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
@@ -103,7 +105,9 @@ model TrasferTransaction {
 model DonationTransaction {
   id String @id @default(cuid())
   sender String
+  senderName String
   unionId String
+  receiverName String
   amount Int
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
@@ -112,7 +116,9 @@ model DonationTransaction {
 model RequestFriendTransaction {
   id String @id @default(cuid())
   sender String
+  senderName String
   receiver String
+  receiverName String
   status String
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt

@@ -4,14 +4,18 @@ type ID = string;
 
 export async function makeTransferTransaction(
   from: ID,
+  fromName: string,
   to: ID,
+  toName: string,
   amount: number
 ) {
   try {
     await client.trasferTransaction.create({
       data: {
         sender: from,
+        senderName: fromName,
         receiver: to,
+        receiverName: toName,
         amount,
       },
     });
@@ -21,16 +25,26 @@ export async function makeTransferTransaction(
   }
 }
 
-export async function makeDonationTransaction(
-  from: ID,
-  toUnion: ID,
-  amount: number
-) {
+export async function makeDonationTransaction({
+  fromId,
+  fromName,
+  toUnionId,
+  unionName,
+  amount,
+}: {
+  fromId: ID;
+  toUnionId: ID;
+  fromName: string;
+  unionName: string;
+  amount: number;
+}) {
   try {
     await client.donationTransaction.create({
       data: {
-        sender: from,
-        unionId: toUnion,
+        sender: fromId,
+        senderName: fromName,
+        unionId: toUnionId,
+        receiverName: unionName,
         amount,
       },
     });

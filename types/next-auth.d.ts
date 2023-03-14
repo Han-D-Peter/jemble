@@ -12,6 +12,7 @@ declare module "next-auth" {
       points: number;
       email: string;
       image: string;
+      name: string;
     };
   }
 }

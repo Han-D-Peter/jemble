@@ -46,18 +46,20 @@ async function handler(
   }
 
   try {
-    await transferUnion(
+    const union = await transferUnion(
       session.user.id,
       transferRequest.targetUnion,
       transferRequest.amount,
       res
     );
 
-    await makeDonationTransaction(
-      session.user.id,
-      transferRequest.targetUnion,
-      transferRequest.amount
-    );
+    await makeDonationTransaction({
+      fromId: session.user.id,
+      fromName: session.user.name as string,
+      toUnionId: transferRequest.targetUnion,
+      unionName: union.name,
+      amount: transferRequest.amount,
+    });
   } catch (error) {
     console.log(error);
     res.status(400).json({

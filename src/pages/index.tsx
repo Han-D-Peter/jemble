@@ -2,15 +2,12 @@ import {
   useGetFriends,
   useRequestFriendMutation,
 } from "@/domains/query-hook/queries/friends";
-import {
-  useGetMyUnion,
-  useGetUnion,
-} from "@/domains/query-hook/queries/unions";
+import { useGetTransactions } from "@/domains/query-hook/queries/transactions";
 
 export default function Home() {
-  const { mutate } = useRequestFriendMutation();
+  const { data } = useGetTransactions();
 
-  // console.log("data", data);
+  console.log("data", data);
   return (
     <>
       <div>hello</div>

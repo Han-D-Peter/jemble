@@ -81,17 +81,29 @@ async function requestFriends(
         receiver: targetFriendId,
       },
     });
+
+    const targetFriend = await client.user.findUnique({
+      where: {
+        id: targetFriendId,
+      },
+    });
+
+    assert(targetFriend !== null, "targetFriend is not null");
     if (existRequestArr.length === 0) {
       await client.requestFriendTransaction.create<{
         data: {
           sender: string;
+          senderName: string;
           receiver: string;
+          receiverName: string;
           status: RequestFriendStatus;
         };
       }>({
         data: {
           sender: session.user.id,
+          senderName: session.user.name,
           receiver: targetFriendId,
+          receiverName: targetFriend.name as string,
           status: "Pending",
         },
       });

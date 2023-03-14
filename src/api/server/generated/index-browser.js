@@ -107,7 +107,9 @@ exports.Prisma.AccountScalarFieldEnum = makeEnum({
 exports.Prisma.DonationTransactionScalarFieldEnum = makeEnum({
   id: 'id',
   sender: 'sender',
+  senderName: 'senderName',
   unionId: 'unionId',
+  receiverName: 'receiverName',
   amount: 'amount',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -116,7 +118,9 @@ exports.Prisma.DonationTransactionScalarFieldEnum = makeEnum({
 exports.Prisma.RequestFriendTransactionScalarFieldEnum = makeEnum({
   id: 'id',
   sender: 'sender',
+  senderName: 'senderName',
   receiver: 'receiver',
+  receiverName: 'receiverName',
   status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -144,7 +148,9 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 exports.Prisma.TrasferTransactionScalarFieldEnum = makeEnum({
   id: 'id',
   sender: 'sender',
+  senderName: 'senderName',
   receiver: 'receiver',
+  receiverName: 'receiverName',
   amount: 'amount',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'

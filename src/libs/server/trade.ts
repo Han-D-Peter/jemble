@@ -47,13 +47,14 @@ export async function transferUser(
         points: targetUser.points + amount,
       },
     });
-    return res.status(200).json({
+    res.status(200).json({
       status: "Success",
       data: {
         me: updatedMe,
         friend: updatedTarget,
       },
     });
+    return updatedTarget;
   } catch (error) {
     console.log(error);
     return res
@@ -99,13 +100,14 @@ export async function transferUnion(
         points: targetUnion.points + amount,
       },
     });
-    return res.status(200).json({
+    res.status(200).json({
       status: "Success",
       data: {
         me: updatedMe,
         union: updatedTarget,
       },
     });
+    return updatedTarget;
   } catch (error) {
     console.log(error);
     return res

@@ -1,3 +1,4 @@
+import client from "@/libs/client";
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
@@ -52,9 +53,20 @@ async function handler(
       transferRequest.amount,
       res
     );
+    const target = await client.user.findUnique({
+      where: {
+        id: transferRequest.targetUser,
+      },
+    });
+
+    assert(target !== null, "target is not null");
+    assert(target.name !== null, "target name is not null");
+
     await makeTransferTransaction(
       session.user.id,
+      session.user.name,
       transferRequest.targetUser,
+      target.name,
       transferRequest.amount
     );
   } catch (error) {

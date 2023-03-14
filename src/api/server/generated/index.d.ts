@@ -102,7 +102,9 @@ export type Zerosum = {
 export type TrasferTransaction = {
   id: string
   sender: string
+  senderName: string
   receiver: string
+  receiverName: string
   amount: number
   createdAt: Date
   updatedAt: Date
@@ -115,7 +117,9 @@ export type TrasferTransaction = {
 export type DonationTransaction = {
   id: string
   sender: string
+  senderName: string
   unionId: string
+  receiverName: string
   amount: number
   createdAt: Date
   updatedAt: Date
@@ -128,7 +132,9 @@ export type DonationTransaction = {
 export type RequestFriendTransaction = {
   id: string
   sender: string
+  senderName: string
   receiver: string
+  receiverName: string
   status: string
   createdAt: Date
   updatedAt: Date
@@ -6972,7 +6978,9 @@ export namespace Prisma {
   export type TrasferTransactionMinAggregateOutputType = {
     id: string | null
     sender: string | null
+    senderName: string | null
     receiver: string | null
+    receiverName: string | null
     amount: number | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -6981,7 +6989,9 @@ export namespace Prisma {
   export type TrasferTransactionMaxAggregateOutputType = {
     id: string | null
     sender: string | null
+    senderName: string | null
     receiver: string | null
+    receiverName: string | null
     amount: number | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -6990,7 +7000,9 @@ export namespace Prisma {
   export type TrasferTransactionCountAggregateOutputType = {
     id: number
     sender: number
+    senderName: number
     receiver: number
+    receiverName: number
     amount: number
     createdAt: number
     updatedAt: number
@@ -7009,7 +7021,9 @@ export namespace Prisma {
   export type TrasferTransactionMinAggregateInputType = {
     id?: true
     sender?: true
+    senderName?: true
     receiver?: true
+    receiverName?: true
     amount?: true
     createdAt?: true
     updatedAt?: true
@@ -7018,7 +7032,9 @@ export namespace Prisma {
   export type TrasferTransactionMaxAggregateInputType = {
     id?: true
     sender?: true
+    senderName?: true
     receiver?: true
+    receiverName?: true
     amount?: true
     createdAt?: true
     updatedAt?: true
@@ -7027,7 +7043,9 @@ export namespace Prisma {
   export type TrasferTransactionCountAggregateInputType = {
     id?: true
     sender?: true
+    senderName?: true
     receiver?: true
+    receiverName?: true
     amount?: true
     createdAt?: true
     updatedAt?: true
@@ -7124,7 +7142,9 @@ export namespace Prisma {
   export type TrasferTransactionGroupByOutputType = {
     id: string
     sender: string
+    senderName: string
     receiver: string
+    receiverName: string
     amount: number
     createdAt: Date
     updatedAt: Date
@@ -7152,7 +7172,9 @@ export namespace Prisma {
   export type TrasferTransactionSelect = {
     id?: boolean
     sender?: boolean
+    senderName?: boolean
     receiver?: boolean
+    receiverName?: boolean
     amount?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -7896,7 +7918,9 @@ export namespace Prisma {
   export type DonationTransactionMinAggregateOutputType = {
     id: string | null
     sender: string | null
+    senderName: string | null
     unionId: string | null
+    receiverName: string | null
     amount: number | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -7905,7 +7929,9 @@ export namespace Prisma {
   export type DonationTransactionMaxAggregateOutputType = {
     id: string | null
     sender: string | null
+    senderName: string | null
     unionId: string | null
+    receiverName: string | null
     amount: number | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -7914,7 +7940,9 @@ export namespace Prisma {
   export type DonationTransactionCountAggregateOutputType = {
     id: number
     sender: number
+    senderName: number
     unionId: number
+    receiverName: number
     amount: number
     createdAt: number
     updatedAt: number
@@ -7933,7 +7961,9 @@ export namespace Prisma {
   export type DonationTransactionMinAggregateInputType = {
     id?: true
     sender?: true
+    senderName?: true
     unionId?: true
+    receiverName?: true
     amount?: true
     createdAt?: true
     updatedAt?: true
@@ -7942,7 +7972,9 @@ export namespace Prisma {
   export type DonationTransactionMaxAggregateInputType = {
     id?: true
     sender?: true
+    senderName?: true
     unionId?: true
+    receiverName?: true
     amount?: true
     createdAt?: true
     updatedAt?: true
@@ -7951,7 +7983,9 @@ export namespace Prisma {
   export type DonationTransactionCountAggregateInputType = {
     id?: true
     sender?: true
+    senderName?: true
     unionId?: true
+    receiverName?: true
     amount?: true
     createdAt?: true
     updatedAt?: true
@@ -8048,7 +8082,9 @@ export namespace Prisma {
   export type DonationTransactionGroupByOutputType = {
     id: string
     sender: string
+    senderName: string
     unionId: string
+    receiverName: string
     amount: number
     createdAt: Date
     updatedAt: Date
@@ -8076,7 +8112,9 @@ export namespace Prisma {
   export type DonationTransactionSelect = {
     id?: boolean
     sender?: boolean
+    senderName?: boolean
     unionId?: boolean
+    receiverName?: boolean
     amount?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -8810,7 +8848,9 @@ export namespace Prisma {
   export type RequestFriendTransactionMinAggregateOutputType = {
     id: string | null
     sender: string | null
+    senderName: string | null
     receiver: string | null
+    receiverName: string | null
     status: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -8819,7 +8859,9 @@ export namespace Prisma {
   export type RequestFriendTransactionMaxAggregateOutputType = {
     id: string | null
     sender: string | null
+    senderName: string | null
     receiver: string | null
+    receiverName: string | null
     status: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -8828,7 +8870,9 @@ export namespace Prisma {
   export type RequestFriendTransactionCountAggregateOutputType = {
     id: number
     sender: number
+    senderName: number
     receiver: number
+    receiverName: number
     status: number
     createdAt: number
     updatedAt: number
@@ -8839,7 +8883,9 @@ export namespace Prisma {
   export type RequestFriendTransactionMinAggregateInputType = {
     id?: true
     sender?: true
+    senderName?: true
     receiver?: true
+    receiverName?: true
     status?: true
     createdAt?: true
     updatedAt?: true
@@ -8848,7 +8894,9 @@ export namespace Prisma {
   export type RequestFriendTransactionMaxAggregateInputType = {
     id?: true
     sender?: true
+    senderName?: true
     receiver?: true
+    receiverName?: true
     status?: true
     createdAt?: true
     updatedAt?: true
@@ -8857,7 +8905,9 @@ export namespace Prisma {
   export type RequestFriendTransactionCountAggregateInputType = {
     id?: true
     sender?: true
+    senderName?: true
     receiver?: true
+    receiverName?: true
     status?: true
     createdAt?: true
     updatedAt?: true
@@ -8940,7 +8990,9 @@ export namespace Prisma {
   export type RequestFriendTransactionGroupByOutputType = {
     id: string
     sender: string
+    senderName: string
     receiver: string
+    receiverName: string
     status: string
     createdAt: Date
     updatedAt: Date
@@ -8966,7 +9018,9 @@ export namespace Prisma {
   export type RequestFriendTransactionSelect = {
     id?: boolean
     sender?: boolean
+    senderName?: boolean
     receiver?: boolean
+    receiverName?: boolean
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -9714,7 +9768,9 @@ export namespace Prisma {
   export const DonationTransactionScalarFieldEnum: {
     id: 'id',
     sender: 'sender',
+    senderName: 'senderName',
     unionId: 'unionId',
+    receiverName: 'receiverName',
     amount: 'amount',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -9726,7 +9782,9 @@ export namespace Prisma {
   export const RequestFriendTransactionScalarFieldEnum: {
     id: 'id',
     sender: 'sender',
+    senderName: 'senderName',
     receiver: 'receiver',
+    receiverName: 'receiverName',
     status: 'status',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -9766,7 +9824,9 @@ export namespace Prisma {
   export const TrasferTransactionScalarFieldEnum: {
     id: 'id',
     sender: 'sender',
+    senderName: 'senderName',
     receiver: 'receiver',
+    receiverName: 'receiverName',
     amount: 'amount',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -10188,7 +10248,9 @@ export namespace Prisma {
     NOT?: Enumerable<TrasferTransactionWhereInput>
     id?: StringFilter | string
     sender?: StringFilter | string
+    senderName?: StringFilter | string
     receiver?: StringFilter | string
+    receiverName?: StringFilter | string
     amount?: IntFilter | number
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
@@ -10197,7 +10259,9 @@ export namespace Prisma {
   export type TrasferTransactionOrderByWithRelationInput = {
     id?: SortOrder
     sender?: SortOrder
+    senderName?: SortOrder
     receiver?: SortOrder
+    receiverName?: SortOrder
     amount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -10210,7 +10274,9 @@ export namespace Prisma {
   export type TrasferTransactionOrderByWithAggregationInput = {
     id?: SortOrder
     sender?: SortOrder
+    senderName?: SortOrder
     receiver?: SortOrder
+    receiverName?: SortOrder
     amount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -10227,7 +10293,9 @@ export namespace Prisma {
     NOT?: Enumerable<TrasferTransactionScalarWhereWithAggregatesInput>
     id?: StringWithAggregatesFilter | string
     sender?: StringWithAggregatesFilter | string
+    senderName?: StringWithAggregatesFilter | string
     receiver?: StringWithAggregatesFilter | string
+    receiverName?: StringWithAggregatesFilter | string
     amount?: IntWithAggregatesFilter | number
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
@@ -10239,7 +10307,9 @@ export namespace Prisma {
     NOT?: Enumerable<DonationTransactionWhereInput>
     id?: StringFilter | string
     sender?: StringFilter | string
+    senderName?: StringFilter | string
     unionId?: StringFilter | string
+    receiverName?: StringFilter | string
     amount?: IntFilter | number
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
@@ -10248,7 +10318,9 @@ export namespace Prisma {
   export type DonationTransactionOrderByWithRelationInput = {
     id?: SortOrder
     sender?: SortOrder
+    senderName?: SortOrder
     unionId?: SortOrder
+    receiverName?: SortOrder
     amount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -10261,7 +10333,9 @@ export namespace Prisma {
   export type DonationTransactionOrderByWithAggregationInput = {
     id?: SortOrder
     sender?: SortOrder
+    senderName?: SortOrder
     unionId?: SortOrder
+    receiverName?: SortOrder
     amount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -10278,7 +10352,9 @@ export namespace Prisma {
     NOT?: Enumerable<DonationTransactionScalarWhereWithAggregatesInput>
     id?: StringWithAggregatesFilter | string
     sender?: StringWithAggregatesFilter | string
+    senderName?: StringWithAggregatesFilter | string
     unionId?: StringWithAggregatesFilter | string
+    receiverName?: StringWithAggregatesFilter | string
     amount?: IntWithAggregatesFilter | number
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
@@ -10290,7 +10366,9 @@ export namespace Prisma {
     NOT?: Enumerable<RequestFriendTransactionWhereInput>
     id?: StringFilter | string
     sender?: StringFilter | string
+    senderName?: StringFilter | string
     receiver?: StringFilter | string
+    receiverName?: StringFilter | string
     status?: StringFilter | string
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
@@ -10299,7 +10377,9 @@ export namespace Prisma {
   export type RequestFriendTransactionOrderByWithRelationInput = {
     id?: SortOrder
     sender?: SortOrder
+    senderName?: SortOrder
     receiver?: SortOrder
+    receiverName?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -10312,7 +10392,9 @@ export namespace Prisma {
   export type RequestFriendTransactionOrderByWithAggregationInput = {
     id?: SortOrder
     sender?: SortOrder
+    senderName?: SortOrder
     receiver?: SortOrder
+    receiverName?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -10327,7 +10409,9 @@ export namespace Prisma {
     NOT?: Enumerable<RequestFriendTransactionScalarWhereWithAggregatesInput>
     id?: StringWithAggregatesFilter | string
     sender?: StringWithAggregatesFilter | string
+    senderName?: StringWithAggregatesFilter | string
     receiver?: StringWithAggregatesFilter | string
+    receiverName?: StringWithAggregatesFilter | string
     status?: StringWithAggregatesFilter | string
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
@@ -10780,7 +10864,9 @@ export namespace Prisma {
   export type TrasferTransactionCreateInput = {
     id?: string
     sender: string
+    senderName: string
     receiver: string
+    receiverName: string
     amount: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10789,7 +10875,9 @@ export namespace Prisma {
   export type TrasferTransactionUncheckedCreateInput = {
     id?: string
     sender: string
+    senderName: string
     receiver: string
+    receiverName: string
     amount: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10798,7 +10886,9 @@ export namespace Prisma {
   export type TrasferTransactionUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     sender?: StringFieldUpdateOperationsInput | string
+    senderName?: StringFieldUpdateOperationsInput | string
     receiver?: StringFieldUpdateOperationsInput | string
+    receiverName?: StringFieldUpdateOperationsInput | string
     amount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10807,7 +10897,9 @@ export namespace Prisma {
   export type TrasferTransactionUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     sender?: StringFieldUpdateOperationsInput | string
+    senderName?: StringFieldUpdateOperationsInput | string
     receiver?: StringFieldUpdateOperationsInput | string
+    receiverName?: StringFieldUpdateOperationsInput | string
     amount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10816,7 +10908,9 @@ export namespace Prisma {
   export type TrasferTransactionCreateManyInput = {
     id?: string
     sender: string
+    senderName: string
     receiver: string
+    receiverName: string
     amount: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10825,7 +10919,9 @@ export namespace Prisma {
   export type TrasferTransactionUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     sender?: StringFieldUpdateOperationsInput | string
+    senderName?: StringFieldUpdateOperationsInput | string
     receiver?: StringFieldUpdateOperationsInput | string
+    receiverName?: StringFieldUpdateOperationsInput | string
     amount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10834,7 +10930,9 @@ export namespace Prisma {
   export type TrasferTransactionUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     sender?: StringFieldUpdateOperationsInput | string
+    senderName?: StringFieldUpdateOperationsInput | string
     receiver?: StringFieldUpdateOperationsInput | string
+    receiverName?: StringFieldUpdateOperationsInput | string
     amount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10843,7 +10941,9 @@ export namespace Prisma {
   export type DonationTransactionCreateInput = {
     id?: string
     sender: string
+    senderName: string
     unionId: string
+    receiverName: string
     amount: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10852,7 +10952,9 @@ export namespace Prisma {
   export type DonationTransactionUncheckedCreateInput = {
     id?: string
     sender: string
+    senderName: string
     unionId: string
+    receiverName: string
     amount: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10861,7 +10963,9 @@ export namespace Prisma {
   export type DonationTransactionUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     sender?: StringFieldUpdateOperationsInput | string
+    senderName?: StringFieldUpdateOperationsInput | string
     unionId?: StringFieldUpdateOperationsInput | string
+    receiverName?: StringFieldUpdateOperationsInput | string
     amount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10870,7 +10974,9 @@ export namespace Prisma {
   export type DonationTransactionUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     sender?: StringFieldUpdateOperationsInput | string
+    senderName?: StringFieldUpdateOperationsInput | string
     unionId?: StringFieldUpdateOperationsInput | string
+    receiverName?: StringFieldUpdateOperationsInput | string
     amount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10879,7 +10985,9 @@ export namespace Prisma {
   export type DonationTransactionCreateManyInput = {
     id?: string
     sender: string
+    senderName: string
     unionId: string
+    receiverName: string
     amount: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10888,7 +10996,9 @@ export namespace Prisma {
   export type DonationTransactionUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     sender?: StringFieldUpdateOperationsInput | string
+    senderName?: StringFieldUpdateOperationsInput | string
     unionId?: StringFieldUpdateOperationsInput | string
+    receiverName?: StringFieldUpdateOperationsInput | string
     amount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10897,7 +11007,9 @@ export namespace Prisma {
   export type DonationTransactionUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     sender?: StringFieldUpdateOperationsInput | string
+    senderName?: StringFieldUpdateOperationsInput | string
     unionId?: StringFieldUpdateOperationsInput | string
+    receiverName?: StringFieldUpdateOperationsInput | string
     amount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10906,7 +11018,9 @@ export namespace Prisma {
   export type RequestFriendTransactionCreateInput = {
     id?: string
     sender: string
+    senderName: string
     receiver: string
+    receiverName: string
     status: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10915,7 +11029,9 @@ export namespace Prisma {
   export type RequestFriendTransactionUncheckedCreateInput = {
     id?: string
     sender: string
+    senderName: string
     receiver: string
+    receiverName: string
     status: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10924,7 +11040,9 @@ export namespace Prisma {
   export type RequestFriendTransactionUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     sender?: StringFieldUpdateOperationsInput | string
+    senderName?: StringFieldUpdateOperationsInput | string
     receiver?: StringFieldUpdateOperationsInput | string
+    receiverName?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10933,7 +11051,9 @@ export namespace Prisma {
   export type RequestFriendTransactionUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     sender?: StringFieldUpdateOperationsInput | string
+    senderName?: StringFieldUpdateOperationsInput | string
     receiver?: StringFieldUpdateOperationsInput | string
+    receiverName?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10942,7 +11062,9 @@ export namespace Prisma {
   export type RequestFriendTransactionCreateManyInput = {
     id?: string
     sender: string
+    senderName: string
     receiver: string
+    receiverName: string
     status: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10951,7 +11073,9 @@ export namespace Prisma {
   export type RequestFriendTransactionUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     sender?: StringFieldUpdateOperationsInput | string
+    senderName?: StringFieldUpdateOperationsInput | string
     receiver?: StringFieldUpdateOperationsInput | string
+    receiverName?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10960,7 +11084,9 @@ export namespace Prisma {
   export type RequestFriendTransactionUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     sender?: StringFieldUpdateOperationsInput | string
+    senderName?: StringFieldUpdateOperationsInput | string
     receiver?: StringFieldUpdateOperationsInput | string
+    receiverName?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11404,7 +11530,9 @@ export namespace Prisma {
   export type TrasferTransactionCountOrderByAggregateInput = {
     id?: SortOrder
     sender?: SortOrder
+    senderName?: SortOrder
     receiver?: SortOrder
+    receiverName?: SortOrder
     amount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -11417,7 +11545,9 @@ export namespace Prisma {
   export type TrasferTransactionMaxOrderByAggregateInput = {
     id?: SortOrder
     sender?: SortOrder
+    senderName?: SortOrder
     receiver?: SortOrder
+    receiverName?: SortOrder
     amount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -11426,7 +11556,9 @@ export namespace Prisma {
   export type TrasferTransactionMinOrderByAggregateInput = {
     id?: SortOrder
     sender?: SortOrder
+    senderName?: SortOrder
     receiver?: SortOrder
+    receiverName?: SortOrder
     amount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -11439,7 +11571,9 @@ export namespace Prisma {
   export type DonationTransactionCountOrderByAggregateInput = {
     id?: SortOrder
     sender?: SortOrder
+    senderName?: SortOrder
     unionId?: SortOrder
+    receiverName?: SortOrder
     amount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -11452,7 +11586,9 @@ export namespace Prisma {
   export type DonationTransactionMaxOrderByAggregateInput = {
     id?: SortOrder
     sender?: SortOrder
+    senderName?: SortOrder
     unionId?: SortOrder
+    receiverName?: SortOrder
     amount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -11461,7 +11597,9 @@ export namespace Prisma {
   export type DonationTransactionMinOrderByAggregateInput = {
     id?: SortOrder
     sender?: SortOrder
+    senderName?: SortOrder
     unionId?: SortOrder
+    receiverName?: SortOrder
     amount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -11474,7 +11612,9 @@ export namespace Prisma {
   export type RequestFriendTransactionCountOrderByAggregateInput = {
     id?: SortOrder
     sender?: SortOrder
+    senderName?: SortOrder
     receiver?: SortOrder
+    receiverName?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -11483,7 +11623,9 @@ export namespace Prisma {
   export type RequestFriendTransactionMaxOrderByAggregateInput = {
     id?: SortOrder
     sender?: SortOrder
+    senderName?: SortOrder
     receiver?: SortOrder
+    receiverName?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -11492,7 +11634,9 @@ export namespace Prisma {
   export type RequestFriendTransactionMinOrderByAggregateInput = {
     id?: SortOrder
     sender?: SortOrder
+    senderName?: SortOrder
     receiver?: SortOrder
+    receiverName?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
