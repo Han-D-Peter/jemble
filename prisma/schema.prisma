@@ -93,6 +93,7 @@ model Zerosum {
 
 model TrasferTransaction {
   id String @id @default(cuid())
+  type String @default("transfer")
   sender String
   senderName String
   receiver String
@@ -104,6 +105,7 @@ model TrasferTransaction {
 
 model DonationTransaction {
   id String @id @default(cuid())
+  type String @default("donation")
   sender String
   senderName String
   unionId String
@@ -115,6 +117,7 @@ model DonationTransaction {
 
 model RequestFriendTransaction {
   id String @id @default(cuid())
+  type String @default("request")
   sender String
   senderName String
   receiver String
