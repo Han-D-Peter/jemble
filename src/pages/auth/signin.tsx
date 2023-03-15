@@ -17,8 +17,9 @@ export default function SignIn({
       {Object.values(providers).map((provider) => (
         <div key={provider.name}>
           <button
-            css={css`
+            css={(theme) => css`
               border: 0;
+              background: ${theme.background.default};
             `}
             onClick={() => signIn(provider.id)}
           >
