@@ -1,9 +1,13 @@
 import DefaultLayout from "@/domains/shared/component/layout/DefaultLayout";
+import withAuthentication from "@/domains/shared/hoc/auth/withAuthentication";
+import { NextPage } from "next";
 
-export default function Union() {
+const Union: NextPage = () => {
   return (
     <DefaultLayout isLogined>
       <div>Union</div>
     </DefaultLayout>
   );
-}
+};
+
+export default withAuthentication(Union);

@@ -1,17 +1,13 @@
-import {
-  useGetFriends,
-  useRequestFriendMutation,
-} from "@/domains/query-hook/queries/friends";
-import { useGetTransactions } from "@/domains/query-hook/queries/transactions";
 import DefaultLayout from "@/domains/shared/component/layout/DefaultLayout";
+import withAuthentication from "@/domains/shared/hoc/auth/withAuthentication";
+import { NextPage } from "next";
 
-export default function Home() {
-  const { data } = useGetTransactions();
-
-  console.log("data", data);
+const Home: NextPage = () => {
   return (
     <DefaultLayout isLogined>
       <div>hello</div>
     </DefaultLayout>
   );
-}
+};
+
+export default withAuthentication(Home);
