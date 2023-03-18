@@ -19,7 +19,7 @@ export default function DefaultLayout({
   const layoutMainStyle = useMemo(() => {
     return css`
       background-color: ${theme.background.default};
-      height: 100vh;
+      height: 100%;
       flex-direction: column;
     `;
   }, [theme]);

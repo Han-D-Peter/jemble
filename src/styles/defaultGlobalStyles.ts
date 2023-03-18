@@ -54,6 +54,24 @@ const defaultGlobalStyles = css`
     height: 100vh;
     background-color: #e8e8e8;
   }
+  #__next {
+    height: 100%;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  a {
+    text-decoration: none;
+  }
 `;
 
 export default defaultGlobalStyles;
