@@ -46,6 +46,7 @@ const defaultGlobalStyles = css`
   * {
     font-family: GemunuLibre;
     font-weight: 500;
+    font-size: 20px;
   }
   body {
     margin: 0;

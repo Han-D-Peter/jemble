@@ -21,6 +21,7 @@
     "@tanstack/react-query": "^4.26.1",
     "@tanstack/react-query-devtools": "^4.26.1",
     "@toss/date": "^1.1.6",
+    "@toss/utils": "^1.4.1",
     "@yarnpkg/pnpify": "^4.0.0-rc.39",
     "got": "^12.6.0",
     "ky": "^0.33.2",

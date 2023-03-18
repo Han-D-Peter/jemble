@@ -1348,7 +1348,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.20.13, @babel/runtime@npm:^7.8.4":
+"@babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.14.8, @babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.20.13, @babel/runtime@npm:^7.8.4":
   version: 7.21.0
   resolution: "@babel/runtime@npm:7.21.0"
   dependencies:
@@ -2110,6 +2110,16 @@ __metadata:
   dependencies:
     date-fns: ^2.25.0
   checksum: 07b4d6f9f8faaa4180a76599948233d70bad2c372fd6752459549b003839af32770ac9b2fb9a98b18c297e6a280e667c2c0ab70784f74a314cf00c7314771d9d
+  languageName: node
+  linkType: hard
+
+"@toss/utils@npm:^1.4.1":
+  version: 1.4.1
+  resolution: "@toss/utils@npm:1.4.1"
+  dependencies:
+    "@babel/runtime": ^7.14.8
+    date-fns: ^2.25.0
+  checksum: b6e13df3935fa70c655536c7f0b218a375105af6f835e000b15c1f79fd2fad6191c210e5882cf76e3b947a46dc14a14510ebcd3610992c945df32a2fbc574ca5
   languageName: node
   linkType: hard
 
@@ -3592,6 +3602,7 @@ __metadata:
     "@tanstack/react-query": ^4.26.1
     "@tanstack/react-query-devtools": ^4.26.1
     "@toss/date": ^1.1.6
+    "@toss/utils": ^1.4.1
     "@types/eslint": ^8
     "@types/lodash": ^4
     "@types/node": 18.14.2
@@ -4798,11 +4809,11 @@ __metadata:
 
 "typescript@patch:typescript@4.9.5#~builtin<compat/typescript>":
   version: 4.9.5
-  resolution: "typescript@patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=ad5954"
+  resolution: "typescript@patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=23ec76"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 8f6260acc86b56bfdda6004bc53f32ea548f543e8baef7071c8e34d29d292f3e375c8416556c8de10b24deef6933cd1c16a8233dc84a3dd43a13a13265d0faab
+  checksum: ab417a2f398380c90a6cf5a5f74badd17866adf57f1165617d6a551f059c3ba0a3e4da0d147b3ac5681db9ac76a303c5876394b13b3de75fdd5b1eaa06181c9d
   languageName: node
   linkType: hard
 
