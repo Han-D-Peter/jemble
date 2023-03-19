@@ -39,6 +39,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@tanstack/react-query", "virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:4.26.1"],\
             ["@tanstack/react-query-devtools", "virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:4.26.1"],\
             ["@toss/date", "npm:1.1.6"],\
+            ["@toss/use-overlay", "virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:1.3.3"],\
             ["@toss/utils", "npm:1.4.1"],\
             ["@types/eslint", "npm:8.21.1"],\
             ["@types/lodash", "npm:4.14.191"],\
@@ -3546,6 +3547,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@toss/use-overlay", [\
+        ["npm:1.3.3", {\
+          "packageLocation": "./.yarn/cache/@toss-use-overlay-npm-1.3.3-88e7e06ddd-3a3040424a.zip/node_modules/@toss/use-overlay/",\
+          "packageDependencies": [\
+            ["@toss/use-overlay", "npm:1.3.3"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:1.3.3", {\
+          "packageLocation": "./.yarn/__virtual__/@toss-use-overlay-virtual-95c14f5421/0/cache/@toss-use-overlay-npm-1.3.3-88e7e06ddd-3a3040424a.zip/node_modules/@toss/use-overlay/",\
+          "packageDependencies": [\
+            ["@toss/use-overlay", "virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:1.3.3"],\
+            ["@types/react", "npm:18.0.28"],\
+            ["react", "npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@toss/utils", [\
         ["npm:1.4.1", {\
           "packageLocation": "./.yarn/cache/@toss-utils-npm-1.4.1-c7048da3e0-b6e13df393.zip/node_modules/@toss/utils/",\
@@ -5306,6 +5329,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@tanstack/react-query", "virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:4.26.1"],\
             ["@tanstack/react-query-devtools", "virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:4.26.1"],\
             ["@toss/date", "npm:1.1.6"],\
+            ["@toss/use-overlay", "virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:1.3.3"],\
             ["@toss/utils", "npm:1.4.1"],\
             ["@types/eslint", "npm:8.21.1"],\
             ["@types/lodash", "npm:4.14.191"],\

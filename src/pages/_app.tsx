@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { RecoilRoot } from "recoil";
 import { css, Global, ThemeProvider } from "@emotion/react";
+import { OverlayProvider } from "@toss/use-overlay";
 import theme from "@/styles/defaultTheme";
 import defaultGlobalStyles from "@/styles/defaultGlobalStyles";
 
@@ -29,7 +30,9 @@ export default function App({
             `}
           />
           <ThemeProvider theme={theme}>
-            <Component {...pageProps} />
+            <OverlayProvider>
+              <Component {...pageProps} />
+            </OverlayProvider>
           </ThemeProvider>
         </RecoilRoot>
         <ReactQueryDevtools initialIsOpen={false} />
