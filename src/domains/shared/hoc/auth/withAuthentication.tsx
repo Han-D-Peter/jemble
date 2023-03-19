@@ -8,8 +8,6 @@ export default function withAuthentication(WrappedComponent: NextPage) {
     const session = useSession();
     const moveTo = useRouting("replace");
 
-    console.log("session", session);
-
     useEffect(() => {
       if (!session.data) {
         moveTo("/auth/signin");

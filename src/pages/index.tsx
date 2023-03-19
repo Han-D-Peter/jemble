@@ -5,7 +5,7 @@ import { NextPage } from "next";
 const Home: NextPage = () => {
   return (
     <DefaultLayout isLogined>
-      <div>hello</div>
+      <div>profile</div>
     </DefaultLayout>
   );
 };

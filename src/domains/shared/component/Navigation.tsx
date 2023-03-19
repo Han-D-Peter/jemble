@@ -49,7 +49,7 @@ export default function Navigation() {
           <IconButton
             icon={<ProfileIcon />}
             text="Profile"
-            onClick={() => moveTo("myprofile")}
+            onClick={() => moveTo("/")}
           />
         </nav>
       </section>
