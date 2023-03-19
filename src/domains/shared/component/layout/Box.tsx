@@ -14,10 +14,11 @@ const boxStyle = css`
 `;
 
 const innerBoxStyle = css`
-  padding: 24px;
+  padding: 7px 24px 7px 24px;
 `;
 
 const titleStyle = css`
+  font-weight: 800;
   font-size: 22px;
 `;
 
