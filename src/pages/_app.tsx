@@ -7,7 +7,13 @@ import { css, Global, ThemeProvider } from "@emotion/react";
 import theme from "@/styles/defaultTheme";
 import defaultGlobalStyles from "@/styles/defaultGlobalStyles";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      suspense: true,
+    },
+  },
+});
 
 export default function App({
   Component,
