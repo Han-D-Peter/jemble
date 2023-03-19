@@ -36,12 +36,12 @@ async function getFriends(
     });
     assert(friends !== null, "friends is null");
 
-    const parsedFriends = friends.following.map((friend) => {
+    const parsedFriends = friends.following.map(friend => {
       return {
         id: friend.id,
         name: friend.name ?? "",
         email: friend.email ?? "",
-        profile_image: friend.email ?? "",
+        profile_image: friend.profile_image ?? "",
         points: friend.points,
         unionId: friend.unionId,
         union: friend.union,
