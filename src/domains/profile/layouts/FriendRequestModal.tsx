@@ -8,6 +8,7 @@ import Title from "@/domains/shared/component/Title";
 import useResetableState from "@/domains/shared/hooks/useResetableState";
 import { useGetMyUnion } from "@/domains/query-hook/queries/unions";
 import SearchedUSersList from "@/domains/profile/layouts/SearchedUsersList";
+import Spinner from "@/domains/shared/component/Spinner";
 
 export default function FriendRequestModal() {
   const { data } = useGetMyUnion();
@@ -33,7 +34,7 @@ export default function FriendRequestModal() {
       <Input onChange={debouncedChangeHandler} />
       <ErrorMsg text={error?.message} />
       <Spacing heightGap={25} />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Spinner />}>
         <SearchedUSersList keyword={keyword} />
       </Suspense>
     </div>

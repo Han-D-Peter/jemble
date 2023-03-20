@@ -1,6 +1,7 @@
 import { useQueryClient } from "@tanstack/react-query";
 import Button from "@/domains/shared/component/Button";
 import { useTransferPointToUnionMutation } from "@/domains/query-hook/queries/trade";
+import Spinner from "../Spinner";
 
 type ID = string;
 
@@ -40,7 +41,7 @@ export default function DonateButton({
   };
   return (
     <Button size="lg" onClick={transfer}>
-      {isLoading ? "Loading..." : "보내기"}
+      {isLoading ? <Spinner outline size="md" /> : "보내기"}
     </Button>
   );
 }

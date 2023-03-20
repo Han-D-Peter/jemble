@@ -1,6 +1,7 @@
 import { useQueryClient } from "@tanstack/react-query";
 import Button from "@/domains/shared/component/Button";
 import { useTransferPointToFriendMutation } from "@/domains/query-hook/queries/trade";
+import Spinner from "../Spinner";
 
 type ID = string;
 
@@ -41,7 +42,7 @@ export default function TransferButton({
   };
   return (
     <Button size="sm" onClick={transfer}>
-      {isLoading ? "Loading..." : "Send"}
+      {isLoading ? <Spinner outline size="sm" /> : "Send"}
     </Button>
   );
 }

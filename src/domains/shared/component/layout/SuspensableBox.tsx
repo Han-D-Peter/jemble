@@ -1,4 +1,5 @@
 import { forwardRef, HTMLAttributes, ReactNode, Ref, Suspense } from "react";
+import Spinner from "../Spinner";
 import Box from "./Box";
 
 interface SuspensableBoxProps extends HTMLAttributes<HTMLDivElement> {
@@ -8,7 +9,7 @@ interface SuspensableBoxProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 function SuspensableBox(
-  { children, fallback = <div>Loading...</div>, ...args }: SuspensableBoxProps,
+  { children, fallback = <Spinner />, ...args }: SuspensableBoxProps,
   ref: Ref<HTMLDivElement>
 ) {
   return (

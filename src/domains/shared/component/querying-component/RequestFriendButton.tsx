@@ -4,6 +4,7 @@ import {
 } from "@/domains/query-hook/queries/friends";
 import Button from "@/domains/shared/component/Button";
 import Badge from "../Badge";
+import Spinner from "../Spinner";
 
 type ID = string;
 
@@ -34,7 +35,7 @@ export default function ReuqestFrinedButton({
     return <Badge outline color="#4B7FF0" text="isPending" />;
   return (
     <Button onClick={requestFriend} size="sm">
-      {isLoading ? "Loading..." : "Request"}
+      {isLoading ? <Spinner outline size="sm" /> : "Request"}
     </Button>
   );
 }
