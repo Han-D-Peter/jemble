@@ -33,9 +33,7 @@ async function handler(
     };
   });
 
-  return res
-    .status(200)
-    .json({ status: "Success", data: { unions: rankedUnions } });
+  return res.status(200).json({ status: "Success", data: rankedUnions });
 }
 
 export default withHandler({
