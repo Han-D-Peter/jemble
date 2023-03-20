@@ -4,9 +4,9 @@ import UnionWithRank from "@/domains/profile/components/UnionWithRank";
 interface ProfileHeaderProps {}
 
 export default function ProfileHeader({}: ProfileHeaderProps) {
-  const { data } = useGetMyUnion();
+  const { data, isError } = useGetMyUnion();
 
-  if (!data?.data) return <div>Not Found</div>;
+  if (!data?.data || isError) return <div>Not Found</div>;
 
   return <UnionWithRank unionName={data.data.name} />;
 }
