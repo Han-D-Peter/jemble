@@ -1,6 +1,5 @@
 import { useGetMyUnion } from "@/domains/query-hook/queries/unions";
-import Box from "@/domains/shared/component/layout/Box";
-import ProfileRow from "@/domains/shared/component/ProfileRow";
+import UnionWithRank from "@/domains/profile/components/UnionWithRank";
 
 interface ProfileHeaderProps {}
 
@@ -9,11 +8,5 @@ export default function ProfileHeader({}: ProfileHeaderProps) {
 
   if (!data?.data) return <div>Not Found</div>;
 
-  return (
-    <ProfileRow
-      point={data.data.points}
-      name={data.data.name}
-      image={data.data.union_image}
-    />
-  );
+  return <UnionWithRank unionName={data.data.name} />;
 }
