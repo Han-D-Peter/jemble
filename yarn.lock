@@ -1348,7 +1348,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.14.8, @babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.20.13, @babel/runtime@npm:^7.8.4":
+"@babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.14.8, @babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.19.0, @babel/runtime@npm:^7.20.13, @babel/runtime@npm:^7.8.4":
   version: 7.21.0
   resolution: "@babel/runtime@npm:7.21.0"
   dependencies:
@@ -2113,6 +2113,31 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@toss/react@npm:^1.3.7":
+  version: 1.3.7
+  resolution: "@toss/react@npm:1.3.7"
+  dependencies:
+    "@babel/runtime": ^7.14.8
+    "@toss/storage": ^1.2.0
+    "@toss/utils": ^1.4.1
+    classnames: ^2.3.1
+    lodash.debounce: ^4.0.8
+    lodash.throttle: ^4.1.1
+  peerDependencies:
+    react: ^16.0.0 || ^17.0.0 || ^18
+  checksum: d39d86cea44c12ede8097f39c948fa24472160c0f23e3e820da55c0bf610b9a3b2166e93735289da8977c944d2f6c844af0d33ef42c2b46e4b89b2215a92c540
+  languageName: node
+  linkType: hard
+
+"@toss/storage@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "@toss/storage@npm:1.2.0"
+  dependencies:
+    "@babel/runtime": ^7.19.0
+  checksum: 14af01371400e777d9d0382a4ec6a0cc9f2880d58350e1435700fb3382b11924929b0d4d660f4df118310c6f85d8fa23867c8ba78d5401bc02bf069c893ddadc
+  languageName: node
+  linkType: hard
+
 "@toss/use-overlay@npm:^1.3.3":
   version: 1.3.3
   resolution: "@toss/use-overlay@npm:1.3.3"
@@ -2200,7 +2225,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:^4":
+"@types/lodash-es@npm:^4":
+  version: 4.17.7
+  resolution: "@types/lodash-es@npm:4.17.7"
+  dependencies:
+    "@types/lodash": "*"
+  checksum: 4b1f39fd1d921311c37a846c0e0df9d1fa23e27448a6ad1efd7574e703abd2b2fa5e8f3b5037146000f167ba231d0d01e52747d902654151b4ceeff9f2a9b380
+  languageName: node
+  linkType: hard
+
+"@types/lodash@npm:*, @types/lodash@npm:^4":
   version: 4.14.191
   resolution: "@types/lodash@npm:4.14.191"
   checksum: ba0d5434e10690869f32d5ea49095250157cae502f10d57de0a723fd72229ce6c6a4979576f0f13e0aa9fbe3ce2457bfb9fa7d4ec3d6daba56730a51906d1491
@@ -2688,6 +2722,13 @@ __metadata:
   version: 3.8.0
   resolution: "ci-info@npm:3.8.0"
   checksum: d0a4d3160497cae54294974a7246202244fff031b0a6ea20dd57b10ec510aa17399c41a1b0982142c105f3255aff2173e5c0dd7302ee1b2f28ba3debda375098
+  languageName: node
+  linkType: hard
+
+"classnames@npm:^2.3.1":
+  version: 2.3.2
+  resolution: "classnames@npm:2.3.2"
+  checksum: 2c62199789618d95545c872787137262e741f9db13328e216b093eea91c85ef2bfb152c1f9e63027204e2559a006a92eb74147d46c800a9f96297ae1d9f96f4e
   languageName: node
   linkType: hard
 
@@ -3613,10 +3654,12 @@ __metadata:
     "@tanstack/react-query": ^4.26.1
     "@tanstack/react-query-devtools": ^4.26.1
     "@toss/date": ^1.1.6
+    "@toss/react": ^1.3.7
     "@toss/use-overlay": ^1.3.3
     "@toss/utils": ^1.4.1
     "@types/eslint": ^8
     "@types/lodash": ^4
+    "@types/lodash-es": ^4
     "@types/node": 18.14.2
     "@types/react": 18.0.28
     "@yarnpkg/pnpify": ^4.0.0-rc.39
@@ -3624,6 +3667,7 @@ __metadata:
     got: ^12.6.0
     ky: ^0.33.2
     lodash: ^4.17.21
+    lodash-es: ^4.17.21
     next: ^13.2.1
     next-auth: ^4.19.2
     prisma: 4.11.0
@@ -3775,6 +3819,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lodash-es@npm:^4.17.21":
+  version: 4.17.21
+  resolution: "lodash-es@npm:4.17.21"
+  checksum: 05cbffad6e2adbb331a4e16fbd826e7faee403a1a04873b82b42c0f22090f280839f85b95393f487c1303c8a3d2a010048bf06151a6cbe03eee4d388fb0a12d2
+  languageName: node
+  linkType: hard
+
 "lodash.debounce@npm:^4.0.8":
   version: 4.0.8
   resolution: "lodash.debounce@npm:4.0.8"
@@ -3786,6 +3837,13 @@ __metadata:
   version: 4.6.2
   resolution: "lodash.merge@npm:4.6.2"
   checksum: ad580b4bdbb7ca1f7abf7e1bce63a9a0b98e370cf40194b03380a46b4ed799c9573029599caebc1b14e3f24b111aef72b96674a56cfa105e0f5ac70546cdc005
+  languageName: node
+  linkType: hard
+
+"lodash.throttle@npm:^4.1.1":
+  version: 4.1.1
+  resolution: "lodash.throttle@npm:4.1.1"
+  checksum: 129c0a28cee48b348aef146f638ef8a8b197944d4e9ec26c1890c19d9bf5a5690fe11b655c77a4551268819b32d27f4206343e30c78961f60b561b8608c8c805
   languageName: node
   linkType: hard
 
