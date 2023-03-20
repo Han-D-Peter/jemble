@@ -21,6 +21,10 @@ export interface CheckFriendsResponse {
   friends: UserModel[];
 }
 
+export interface CreateFriendRequest {
+  friendId: string;
+}
+
 export interface CreateFriendResponse {}
 
 export interface DonationMutationResponse {
@@ -70,6 +74,8 @@ export type CheckMyUnionResponse = UnionModel;
 export type CheckUserResponse = { user: User };
 
 export type CheckUsersResponse = { users: User[] };
+
+export type CheckRequestFriendResponse = { isPending: boolean };
 
 export interface CheckMeResponse {
   me: UserModel;

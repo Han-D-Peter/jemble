@@ -8,3 +8,9 @@ export const useGetFriends = () => {
 export const useRequestFriendMutation = () => {
   return useMutation(["requestFriend"], FriendRepository.requestFriend);
 };
+
+export const useCheckRequestFriend = (userId: string) => {
+  return useQuery(["requestFriend", userId], () =>
+    FriendRepository.checkhasRequestedFriend(userId)
+  );
+};

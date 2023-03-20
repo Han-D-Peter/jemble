@@ -12,3 +12,11 @@ export const useGetUser = (userId: string) => {
 export const useGetMe = () => {
   return useQuery(["me"], UserRepository.getMe);
 };
+
+export const useSearchUsersByKeyword = (keyword: string) => {
+  return useQuery(["searchusers"], () => UserRepository.searchUser(keyword), {
+    enabled: !!keyword,
+    staleTime: 0,
+    cacheTime: 0,
+  });
+};

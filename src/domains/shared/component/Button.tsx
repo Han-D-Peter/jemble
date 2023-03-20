@@ -1,8 +1,8 @@
 import { Color } from "@/styles/sharedStyles";
 import { css } from "@emotion/react";
-import { HTMLAttributes, useMemo } from "react";
+import { ButtonHTMLAttributes, useMemo } from "react";
 
-type ButtonProps = HTMLAttributes<HTMLButtonElement> & {
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   children: string;
   size?: "lg" | "md" | "sm";
   outline?: boolean;
