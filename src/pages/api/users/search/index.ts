@@ -14,6 +14,13 @@ async function handler(
 ) {
   const session = await getServerSession(req, res, authOptions);
   const searchKeyWord = req.query.keyword as string;
+  if (!searchKeyWord)
+    return res.status(200).json({
+      status: "Success",
+      data: {
+        users: [],
+      },
+    });
 
   assert(session !== null, "session is null");
 
@@ -30,18 +37,21 @@ async function handler(
         following: true,
       },
     });
-    const me = await client.user.findUnique({
-      where: {
-        id: session.user.id,
-      },
-    });
+    // const me = await client.user.findUnique({
+    //   where: {
+    //     id: session.user.id,
+    //   },
+    // });
     assert(users !== null, "users is null");
     assert(friends !== null, "users is null");
-    console.log("users", users);
 
-    const result = _.differenceBy(users, friends.following).filter(
+    const result = _.differenceWith(users, friends.following, _.isEqual).filter(
       item => item.id !== session.user.id
     );
+
+    console.log("users", users);
+    console.log("friends.following", friends.following);
+    console.log("result", result);
 
     res.status(200).json({
       status: "Success",
