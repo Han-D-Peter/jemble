@@ -63,7 +63,7 @@ export default function ProfileRow({
         </div>
         <div css={pointBoxStyle}>
           <div>
-            <span>{commaizeNumber(point)}</span>
+            <span>{commaizeNumber(point)} Pt</span>
           </div>
         </div>
         <div css={iconBoxStyle}>{icon}</div>
