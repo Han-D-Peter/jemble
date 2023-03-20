@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
-import { ReactNode } from "react";
+import { forwardRef, HTMLAttributes, LegacyRef, ReactNode } from "react";
 
-interface BoxProps {
+interface BoxProps extends HTMLAttributes<HTMLDivElement> {
   title?: string;
   children?: ReactNode | null;
 }
@@ -22,13 +22,18 @@ const titleStyle = css`
   font-size: 22px;
 `;
 
-export default function Box({ title, children }: BoxProps) {
+function Box(
+  { title, children, ...args }: BoxProps,
+  ref: LegacyRef<HTMLDivElement>
+) {
   return (
     <section css={boxStyle}>
-      <div css={innerBoxStyle}>
+      <div ref={ref} css={innerBoxStyle} {...args}>
         {title && <h1 css={titleStyle}>{title}</h1>}
         {children}
       </div>
     </section>
   );
 }
+
+export default forwardRef(Box);
