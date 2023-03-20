@@ -53,7 +53,8 @@ export default function ProfileRow({
           />
           <div
             css={css`
-              width: 200px;
+              width: auto;
+              white-space: nowrap;
               margin: 5px;
               margin-bottom: 10px;
             `}

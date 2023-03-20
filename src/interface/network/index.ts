@@ -67,9 +67,9 @@ export type CheckUnionsResponse = UnionModel[];
 
 export type CheckMyUnionResponse = UnionModel;
 
-export type CheckUserResponse = User;
+export type CheckUserResponse = { user: User };
 
-export type CheckUsersResponse = User[];
+export type CheckUsersResponse = { users: User[] };
 
 export interface CheckMeResponse {
   me: UserModel;

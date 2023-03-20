@@ -6,6 +6,12 @@ import Spacing from "@/domains/shared/component/Spacing";
 import Title from "@/domains/shared/component/Title";
 import useResetableState from "@/domains/shared/hooks/useResetableState";
 import { useGetMyUnion } from "@/domains/query-hook/queries/unions";
+import { css } from "@emotion/react";
+
+const leftAlignStyle = css`
+  display: flex;
+  justify-content: flex-end;
+`;
 
 export default function DonationModal() {
   const { data } = useGetMyUnion();
@@ -33,11 +39,13 @@ export default function DonationModal() {
       <Input isOnlyNumber onChange={onInputChange} />
       <ErrorMsg text={error?.message} />
       <Spacing heightGap={25} />
-      <DonateButton
-        targetUnion={data.data.id}
-        amount={amount}
-        onValidatedWhenClick={args => setError(args)}
-      />
+      <div css={leftAlignStyle}>
+        <DonateButton
+          targetUnion={data.data.id}
+          amount={amount}
+          onValidatedWhenClick={args => setError(args)}
+        />
+      </div>
     </div>
   );
 }

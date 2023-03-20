@@ -35,6 +35,7 @@ export default function TransferModal() {
       <Spacing heightGap={25} />
       {data.data.friends.map(friend => (
         <ProfileRow
+          key={friend.name}
           image={friend.profile_image}
           name={friend.name}
           point={friend.points}

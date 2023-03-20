@@ -27,6 +27,7 @@ export default function FriendsList({}: FriendsListProps) {
       </div>
       {data.data.friends.map((friend, index) => (
         <ProfileRow
+          key={friend.name}
           image={friend.profile_image}
           name={friend.name}
           point={friend.points}
