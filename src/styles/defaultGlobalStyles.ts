@@ -57,6 +57,7 @@ const defaultGlobalStyles = css`
   }
   #__next {
     height: 100%;
+    position: relative;
   }
 
   ul {

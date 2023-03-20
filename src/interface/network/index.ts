@@ -21,6 +21,10 @@ export interface CheckFriendsResponse {
   friends: UserModel[];
 }
 
+export interface CreateFriendRequest {
+  friendId: string;
+}
+
 export interface CreateFriendResponse {}
 
 export interface DonationMutationResponse {
@@ -55,36 +59,23 @@ export interface UnionWithRank extends UnionModel {
   rank: number;
 }
 
-export interface CheckUnionRankResponse {
-  union: UnionWithRank;
-}
+export type CheckUnionRankResponse = UnionWithRank;
 
-export interface CheckUnionsRankResponse {
-  unions: UnionWithRank[];
-}
+export type CheckUnionsRankResponse = UnionWithRank[];
 
-export interface CheckUnionResponse {
-  union: UnionModel;
-}
+export type CheckUnionResponse = UnionModel;
 
-export interface CreateUnionRespnse {
-  union: UnionModel;
-}
+export type CreateUnionRespnse = UnionModel;
 
-export interface CheckUnionsResponse {
-  unions: UnionModel[];
-}
+export type CheckUnionsResponse = UnionModel[];
 
-export interface CheckMyUnionResponse {
-  union: UnionModel;
-}
+export type CheckMyUnionResponse = UnionModel;
 
-export interface CheckUserResponse {
-  user: User;
-}
-export interface CheckUsersResponse {
-  users: User[];
-}
+export type CheckUserResponse = { user: User };
+
+export type CheckUsersResponse = { users: User[] };
+
+export type CheckRequestFriendResponse = { isPending: boolean };
 
 export interface CheckMeResponse {
   me: UserModel;

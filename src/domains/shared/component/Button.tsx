@@ -1,9 +1,9 @@
 import { Color } from "@/styles/sharedStyles";
 import { css } from "@emotion/react";
-import { HTMLAttributes, useMemo } from "react";
+import { ButtonHTMLAttributes, ReactNode, useMemo } from "react";
 
-type ButtonProps = HTMLAttributes<HTMLButtonElement> & {
-  children: string;
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  children: string | ReactNode;
   size?: "lg" | "md" | "sm";
   outline?: boolean;
   color?: Color;

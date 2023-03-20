@@ -20,6 +20,9 @@ class UserRepository {
   getMe(): Promise<NetworkResult<CheckMeResponse>> {
     return ky.get("/api/users/me").json();
   }
+  searchUser(keyword: string): Promise<NetworkResult<CheckUsersResponse>> {
+    return ky.get(`/api/users/search?keyword=${keyword}`).json();
+  }
 }
 
 export default new UserRepository();

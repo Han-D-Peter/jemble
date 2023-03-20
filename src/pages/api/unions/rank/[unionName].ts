@@ -35,7 +35,7 @@ async function handler(
   });
 
   const selectUnionByName = rankedUnions.find(
-    (union) => union.name === unionName
+    union => union.name === unionName
   );
 
   if (!selectUnionByName)
@@ -43,9 +43,7 @@ async function handler(
       .status(404)
       .json({ status: "Success", message: "유니온 정보가 없습니다." });
 
-  return res
-    .status(200)
-    .json({ status: "Success", data: { union: selectUnionByName } });
+  return res.status(200).json({ status: "Success", data: selectUnionByName });
 }
 
 export default withHandler({
