@@ -24,9 +24,10 @@ async function handler(
     });
   }
 
-  return res.status(404).json({
-    status: "Failed",
+  return res.status(200).json({
+    status: "Success",
     message: "소속된 유니온이 없습니다.",
+    data: null,
   });
 }
 
