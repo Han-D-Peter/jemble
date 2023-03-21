@@ -25,14 +25,19 @@ function DefaultLayout(
     return css`
       background-color: ${theme.background.default};
       height: 100%;
-      flex-direction: column;
     `;
-  }, [theme]);
+  }, [theme, isLogined]);
 
   return (
-    <div ref={ref} {...args}>
+    <div
+      css={css`
+        height: 100%;
+      `}
+      ref={ref}
+      {...args}
+    >
       {header && <header css={centeredStyle}>{header}</header>}
-      <main css={[centeredStyle, layoutMainStyle]}>{children}</main>
+      <main css={[layoutMainStyle]}>{children}</main>
       {isLogined && <Navigation />}
     </div>
   );

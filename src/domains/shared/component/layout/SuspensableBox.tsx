@@ -6,6 +6,7 @@ interface SuspensableBoxProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
   fallback?: ReactNode;
   title?: string;
+  fullHeight?: boolean;
 }
 
 function SuspensableBox(

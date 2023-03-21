@@ -11,7 +11,6 @@ import SearchedUSersList from "@/domains/profile/layouts/SearchedUsersList";
 import Spinner from "@/domains/shared/component/Spinner";
 
 export default function FriendRequestModal() {
-  const { data } = useGetMyUnion();
   const [error, setError, resetError] = useResetableState({
     status: "",
     message: "",
@@ -23,8 +22,6 @@ export default function FriendRequestModal() {
     setKeyword(e.target.value);
   };
   const debouncedChangeHandler = useCallback(debounce(changeHandler, 300), []);
-
-  if (!data?.data) return <div>Not Found</div>;
 
   return (
     <div>

@@ -13,7 +13,7 @@ export default function FriendsList({}: FriendsListProps) {
   return (
     <div
       css={css`
-        min-height: 350px;
+        min-height: 450px;
       `}
     >
       <div
