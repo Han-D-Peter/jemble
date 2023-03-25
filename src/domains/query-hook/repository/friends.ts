@@ -36,7 +36,7 @@ class FriendRepository {
 
   checkhasRequestedFriend(
     userId: string
-  ): Promise<NetworkResult<CreateFriendResponse>> {
+  ): Promise<NetworkResult<CheckRequestFriendResponse>> {
     return ky.get(`/api/users/checkrequest/${userId}`).json();
   }
 }
