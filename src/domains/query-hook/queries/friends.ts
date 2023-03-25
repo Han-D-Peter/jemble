@@ -14,3 +14,7 @@ export const useCheckRequestFriend = (userId: string) => {
     FriendRepository.checkhasRequestedFriend(userId)
   );
 };
+
+export const useAcceptRequestFriendMutation = () => {
+  return useMutation(["acceptFriendRequest"], FriendRepository.acceptFriend);
+};

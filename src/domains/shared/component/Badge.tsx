@@ -3,7 +3,8 @@ import { css } from "@emotion/react";
 import { useMemo } from "react";
 
 interface BadgeProps {
-  outline: boolean;
+  border?: boolean;
+  outline?: boolean;
   text: string;
   color: Color;
 }
@@ -16,13 +17,21 @@ const textStyle = css`
   padding: 3px;
 `;
 
-export default function Badge({ outline = false, text, color }: BadgeProps) {
+export default function Badge({
+  outline = false,
+  text,
+  color,
+  border = false,
+}: BadgeProps) {
   const badgeStyle = useMemo(
     () => css`
       ${outline
         ? css`
             color: ${color};
-            box-shadow: 0 0 0 1px ${color} inset;
+            ${border &&
+            css`
+              box-shadow: 0 0 0 1px ${color} inset;
+            `}
           `
         : css`
             color: white;
