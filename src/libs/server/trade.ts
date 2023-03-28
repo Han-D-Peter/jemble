@@ -36,7 +36,7 @@ export async function transferUser(
         id: from,
       },
       data: {
-        points: me.points - amount,
+        points: { decrement: amount },
       },
     });
     const updatedTarget = await client.user.update({
@@ -44,7 +44,7 @@ export async function transferUser(
         id: to,
       },
       data: {
-        points: targetUser.points + amount,
+        points: { increment: amount },
       },
     });
     res.status(200).json({
