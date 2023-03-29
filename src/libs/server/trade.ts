@@ -89,7 +89,7 @@ export async function transferUnion(
         id: from,
       },
       data: {
-        points: me.points - amount,
+        points: { decrement: amount },
       },
     });
     const updatedTarget = await client.union.update({
