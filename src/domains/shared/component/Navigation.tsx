@@ -32,16 +32,16 @@ export default function Navigation() {
           ]}
         >
           <GhostButton onClick={() => moveTo("/game")}>
-            <IconWithText icon={GameIcon} bottomText="Game" />
+            <IconWithText icon={<GameIcon />} bottomText="Game" />
           </GhostButton>
           <GhostButton onClick={() => moveTo("/notification")}>
-            <IconWithText icon={NotiIcon} bottomText="Noti" />
+            <IconWithText icon={<NotiIcon />} bottomText="Noti" />
           </GhostButton>
           <GhostButton onClick={() => moveTo("/union")}>
-            <IconWithText icon={UnionIcon} bottomText="Union" />
+            <IconWithText icon={<UnionIcon />} bottomText="Union" />
           </GhostButton>
           <GhostButton onClick={() => moveTo("/")}>
-            <IconWithText icon={ProfileIcon} bottomText="Profile" />
+            <IconWithText icon={<ProfileIcon />} bottomText="Profile" />
           </GhostButton>
         </nav>
       </section>

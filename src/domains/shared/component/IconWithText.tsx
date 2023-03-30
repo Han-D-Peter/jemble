@@ -1,15 +1,15 @@
 import { css } from "@emotion/react";
 import { createElement, ReactElement, SVGAttributes } from "react";
 
-type IconWithTextProps = SVGAttributes<SVGElement> & {
+type IconWithTextProps = {
   bottomText?: string;
-  icon: any;
+  icon: ReactElement;
 };
 
 function IconWithText({ bottomText, icon, ...args }: IconWithTextProps) {
   return (
     <div css={IconContainer}>
-      <div>{createElement(icon, { ...args })}</div>
+      <div>{icon}</div>
       {bottomText && <div css={IconText}>{bottomText}</div>}
     </div>
   );
