@@ -1,12 +1,12 @@
 import { css } from "@emotion/react";
-import { createElement, ReactElement, SVGAttributes } from "react";
+import { ReactElement } from "react";
 
 type IconWithTextProps = {
   bottomText?: string;
   icon: ReactElement;
 };
 
-function IconWithText({ bottomText, icon, ...args }: IconWithTextProps) {
+function IconWithText({ bottomText, icon }: IconWithTextProps) {
   return (
     <div css={IconContainer}>
       <div>{icon}</div>
