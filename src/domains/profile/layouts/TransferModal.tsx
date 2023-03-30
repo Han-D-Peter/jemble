@@ -1,4 +1,4 @@
-import { useGetFriends } from "@/domains/query-hook/queries/friends";
+import { useFriends } from "@/domains/query-hook/queries/friends";
 import ErrorMsg from "@/domains/shared/component/ErrorMsg";
 import Input from "@/domains/shared/component/Input";
 import ProfileRow from "@/domains/shared/component/ProfileRow";
@@ -14,7 +14,7 @@ export default function TransferModal() {
     message: "",
   });
   const [amount, setAmount] = useState(0);
-  const { data } = useGetFriends();
+  const { data } = useFriends();
 
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     resetError();
@@ -33,7 +33,7 @@ export default function TransferModal() {
       <Input isOnlyNumber onChange={onInputChange} />
       <ErrorMsg text={error?.message} />
       <Spacing heightGap={25} />
-      {data.data.friends.map(friend => (
+      {data.data.friends.map((friend) => (
         <ProfileRow
           key={friend.name}
           image={friend.profile_image}
@@ -43,7 +43,7 @@ export default function TransferModal() {
             <TransferButton
               target={friend.id}
               amount={amount}
-              onValidatedWhenClick={args => setError(args)}
+              onValidatedWhenClick={(args) => setError(args)}
             />
           }
         />

@@ -5,7 +5,7 @@ import DonateButton from "@/domains/shared/component/querying-component/DonateBu
 import Spacing from "@/domains/shared/component/Spacing";
 import Title from "@/domains/shared/component/Title";
 import useResetableState from "@/domains/shared/hooks/useResetableState";
-import { useGetMyUnion } from "@/domains/query-hook/queries/unions";
+import { useMyUnion } from "@/domains/query-hook/queries/unions";
 import { css } from "@emotion/react";
 
 const leftAlignStyle = css`
@@ -14,7 +14,7 @@ const leftAlignStyle = css`
 `;
 
 export default function DonationModal() {
-  const { data } = useGetMyUnion();
+  const { data } = useMyUnion();
   const [error, setError, resetError] = useResetableState({
     status: "",
     message: "",
@@ -43,7 +43,7 @@ export default function DonationModal() {
         <DonateButton
           targetUnion={data.data.id}
           amount={amount}
-          onValidatedWhenClick={args => setError(args)}
+          onValidatedWhenClick={(args) => setError(args)}
         />
       </div>
     </div>
