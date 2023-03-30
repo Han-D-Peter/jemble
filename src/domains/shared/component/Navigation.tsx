@@ -4,8 +4,7 @@ import GameIcon from "public/icons/CodeSandboxOutlined.svg";
 import NotiIcon from "public/icons/BellOutlined.svg";
 import UnionIcon from "public/icons/CrownOutlined.svg";
 import ProfileIcon from "public/icons/UserOutlined.svg";
-import IconButton from "./IconButton";
-import { useRouter } from "next/router";
+import GhostButton from "./GhostButton";
 import useRouting from "../hooks/useRouting";
 import IconWithText from "./IconWithText";
 
@@ -32,18 +31,18 @@ export default function Navigation() {
             `,
           ]}
         >
-          <IconButton onClick={() => moveTo("/game")}>
+          <GhostButton onClick={() => moveTo("/game")}>
             <IconWithText icon={GameIcon} bottomText="Game" />
-          </IconButton>
-          <IconButton onClick={() => moveTo("/notification")}>
+          </GhostButton>
+          <GhostButton onClick={() => moveTo("/notification")}>
             <IconWithText icon={NotiIcon} bottomText="Noti" />
-          </IconButton>
-          <IconButton onClick={() => moveTo("/union")}>
+          </GhostButton>
+          <GhostButton onClick={() => moveTo("/union")}>
             <IconWithText icon={UnionIcon} bottomText="Union" />
-          </IconButton>
-          <IconButton onClick={() => moveTo("/")}>
+          </GhostButton>
+          <GhostButton onClick={() => moveTo("/")}>
             <IconWithText icon={ProfileIcon} bottomText="Profile" />
-          </IconButton>
+          </GhostButton>
         </nav>
       </section>
     </footer>

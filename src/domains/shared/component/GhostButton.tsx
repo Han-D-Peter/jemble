@@ -1,12 +1,9 @@
 import { ButtonHTMLAttributes, ReactElement } from "react";
 import { css } from "@emotion/react";
-import Icon from "./IconWithText";
 
-type IconButton = ButtonHTMLAttributes<HTMLButtonElement> & {
-  children: ReactElement<typeof Icon>;
-};
+type GhostButton = ButtonHTMLAttributes<HTMLButtonElement> & {};
 
-export default function IconButton({ children, ...args }: IconButton) {
+export default function GhostButton({ children, ...args }: GhostButton) {
   return (
     <button
       css={css`
