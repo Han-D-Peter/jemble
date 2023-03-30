@@ -7,6 +7,7 @@ import ProfileIcon from "public/icons/UserOutlined.svg";
 import IconButton from "./IconButton";
 import { useRouter } from "next/router";
 import useRouting from "../hooks/useRouting";
+import IconWithText from "./IconWithText";
 
 export default function Navigation() {
   const moveTo = useRouting("push");
@@ -31,26 +32,18 @@ export default function Navigation() {
             `,
           ]}
         >
-          <IconButton
-            icon={<GameIcon />}
-            text="Game"
-            onClick={() => moveTo("/game")}
-          />
-          <IconButton
-            icon={<NotiIcon />}
-            text="Noti"
-            onClick={() => moveTo("/notification")}
-          />
-          <IconButton
-            icon={<UnionIcon />}
-            text="Union"
-            onClick={() => moveTo("/union")}
-          />
-          <IconButton
-            icon={<ProfileIcon />}
-            text="Profile"
-            onClick={() => moveTo("/")}
-          />
+          <IconButton onClick={() => moveTo("/game")}>
+            <IconWithText icon={GameIcon} bottomText="Game" />
+          </IconButton>
+          <IconButton onClick={() => moveTo("/notification")}>
+            <IconWithText icon={NotiIcon} bottomText="Noti" />
+          </IconButton>
+          <IconButton onClick={() => moveTo("/union")}>
+            <IconWithText icon={UnionIcon} bottomText="Union" />
+          </IconButton>
+          <IconButton onClick={() => moveTo("/")}>
+            <IconWithText icon={ProfileIcon} bottomText="Profile" />
+          </IconButton>
         </nav>
       </section>
     </footer>

@@ -1,34 +1,21 @@
 import { ButtonHTMLAttributes, ReactElement } from "react";
 import { css } from "@emotion/react";
+import Icon from "./IconWithText";
 
 type IconButton = ButtonHTMLAttributes<HTMLButtonElement> & {
-  icon: ReactElement;
-  text: string;
+  children: ReactElement<typeof Icon>;
 };
 
-export default function IconButton({ icon, text, ...args }: IconButton) {
+export default function IconButton({ children, ...args }: IconButton) {
   return (
-    <li
+    <button
       css={css`
-        list-style: none;
+        background: none;
+        border: none;
       `}
+      {...args}
     >
-      <button
-        css={css`
-          background: none;
-          border: none;
-        `}
-        {...args}
-      >
-        <div>{icon}</div>
-        <div
-          css={css`
-            font-size: 16px;
-          `}
-        >
-          {text}
-        </div>
-      </button>
-    </li>
+      {children}
+    </button>
   );
 }
