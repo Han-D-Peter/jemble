@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 import { ReactElement } from "react";
 
 type IconWithTextProps = {
-  bottomText?: string;
+  bottomText: string;
   icon: ReactElement;
 };
 
