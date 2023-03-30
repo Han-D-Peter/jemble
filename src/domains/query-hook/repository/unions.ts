@@ -1,3 +1,4 @@
+import { requestInstance } from "@/api/network";
 import {
   CheckMyUnionResponse,
   CheckUnionRankResponse,
@@ -6,7 +7,6 @@ import {
   CreateUnionRespnse,
   NetworkResult,
 } from "@/interface/network";
-import ky from "ky";
 
 export type CreateUnionPayload = {
   name: string;
@@ -14,33 +14,37 @@ export type CreateUnionPayload = {
 
 class UnionRepository {
   getGetMyUnion(): Promise<NetworkResult<CheckMyUnionResponse>> {
-    return ky.get("/api/unions/mine").json();
+    return requestInstance.get<CheckMyUnionResponse>("/api/unions/mine");
   }
 
   getUnions(): Promise<NetworkResult<CheckUnionsResponse>> {
-    return ky.get("/api/unions").json();
+    return requestInstance.get<CheckUnionsResponse>("/api/unions");
   }
 
   getUnion(name: string): Promise<NetworkResult<CheckMyUnionResponse>> {
-    return ky.get(`/api/unions/${name}`).json();
+    return requestInstance.get<CheckMyUnionResponse>(`/api/unions/${name}`);
   }
 
   joinUnion(name: string): Promise<NetworkResult<CreateUnionRespnse>> {
-    return ky.post(`/api/unions/${name}`, {}).json();
+    return requestInstance.post<CreateUnionRespnse>(`/api/unions/${name}`, {});
   }
 
   createUnion(
     payload: CreateUnionPayload
   ): Promise<NetworkResult<CreateUnionRespnse>> {
-    return ky.post(`/api/unions/`, { json: payload }).json();
+    return requestInstance.post<CreateUnionRespnse>(`/api/unions/`, {
+      json: payload,
+    });
   }
 
   getUnionRank(name: string): Promise<NetworkResult<CheckUnionRankResponse>> {
-    return ky.get(`/api/unions/rank/${name}`).json();
+    return requestInstance.get<CheckUnionRankResponse>(
+      `/api/unions/rank/${name}`
+    );
   }
 
   getUnionsRank(): Promise<NetworkResult<CheckUnionsRankResponse>> {
-    return ky.get("/api/unions/rank").json();
+    return requestInstance.get<CheckUnionsRankResponse>("/api/unions/rank");
   }
 }
 

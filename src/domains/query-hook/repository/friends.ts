@@ -1,4 +1,4 @@
-import ky from "ky";
+import { requestInstance } from "@/api/network";
 import {
   CheckFriendsResponse,
   CheckRequestFriendResponse,
@@ -11,15 +11,15 @@ type FriendRequestType = "Accepted" | "Rejected";
 
 class FriendRepository {
   getFriends(): Promise<NetworkResult<CheckFriendsResponse>> {
-    return ky.get("/api/friends").json();
+    return requestInstance.get<CheckFriendsResponse>("/api/friends");
   }
 
   requestFriend(
     payload: CreateFriendRequest
   ): Promise<NetworkResult<CreateFriendResponse>> {
-    return ky
-      .post("/api/friends", { json: { userId: payload.friendId } })
-      .json();
+    return requestInstance.post<CreateFriendResponse>("/api/friends", {
+      json: { userId: payload.friendId },
+    });
   }
 
   acceptFriend({
@@ -29,15 +29,17 @@ class FriendRepository {
     requestId: string;
     condition: FriendRequestType;
   }): Promise<NetworkResult<null>> {
-    return ky
-      .get(`/api/friends/agree/${requestId}?condition=${condition}`)
-      .json();
+    return requestInstance.get(
+      `/api/friends/agree/${requestId}?condition=${condition}`
+    );
   }
 
   checkhasRequestedFriend(
     userId: string
   ): Promise<NetworkResult<CheckRequestFriendResponse>> {
-    return ky.get(`/api/users/checkrequest/${userId}`).json();
+    return requestInstance.get<CheckRequestFriendResponse>(
+      `/api/users/checkrequest/${userId}`
+    );
   }
 }
 
