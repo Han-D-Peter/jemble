@@ -1,6 +1,5 @@
 import { memo, useEffect, useState } from "react";
 import UserRepository from "@/domains/query-hook/repository/users";
-import { useSearchUsersByKeyword } from "@/domains/query-hook/queries/users";
 import ProfileRow from "@/domains/shared/component/StatusRow";
 import { CheckUsersResponse, NetworkResult } from "@/interface/network";
 import ReuqestFrinedButton from "@/domains/shared/component/querying-component/RequestFriendButton";

@@ -13,7 +13,6 @@ import Input from "@/domains/shared/component/Input";
 import Spacing from "@/domains/shared/component/Spacing";
 import Title from "@/domains/shared/component/Title";
 import useResetableState from "@/domains/shared/hooks/useResetableState";
-import { useGetMyUnion } from "@/domains/query-hook/queries/unions";
 import SearchedUSersList from "@/domains/profile/layouts/SearchedUsersList";
 import Spinner from "@/domains/shared/component/Spinner";
 
