@@ -14,13 +14,15 @@ interface BoxProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 const innerBoxStyle = css`
-  height: 100%;
+  height: 90%;
+  overflow: auto;
   padding: 7px 24px 7px 24px;
 `;
 
 const titleStyle = css`
   font-weight: 800;
   font-size: 22px;
+  margin-left: 20px;
 `;
 
 function Box(
@@ -29,7 +31,9 @@ function Box(
 ) {
   const boxStyle = useMemo(
     () => css`
+      position: relative;
       background: #fff;
+      padding: 0;
       width: 100%;
       ${fullHeight &&
       css`
@@ -38,13 +42,39 @@ function Box(
       `}
       border-radius: 7px;
       margin: 5px 0 5px 0;
+      &::-webkit-scrollbar {
+        display: none;
+      }
     `,
     []
   );
   return (
     <section css={boxStyle}>
+      {title && (
+        <>
+          <div
+            css={css`
+              background-color: #fff;
+              height: 50px;
+              width: 100%;
+              border-radius: 7px 7px 0 0;
+            `}
+          ></div>
+          <div
+            css={css`
+              background-color: #fff;
+              height: 50px;
+              width: 100%;
+              position: absolute;
+              top: 0;
+              border-radius: 7px 7px 0 0;
+            `}
+          >
+            <h1 css={titleStyle}>{title}</h1>
+          </div>
+        </>
+      )}
       <div ref={ref} css={innerBoxStyle} {...args}>
-        {title && <h1 css={titleStyle}>{title}</h1>}
         {children}
       </div>
     </section>
