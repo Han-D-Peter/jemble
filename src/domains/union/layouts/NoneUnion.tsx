@@ -1,6 +1,7 @@
 import Box from "@/domains/shared/component/layout/Box";
 import ModalButton from "@/domains/shared/component/ModalButton";
 import { css } from "@emotion/react";
+import CreateUnionModal from "./CreateUnionModal";
 import JoinUnionModal from "./JoinUnionModal";
 
 const unionContainerStyle = css`
@@ -47,7 +48,7 @@ export default function NoneUnionContainer() {
             <ModalButton ModalComponent={JoinUnionModal} size="lg" outline>
               가입
             </ModalButton>
-            <ModalButton ModalComponent={() => <div>hello</div>} size="lg">
+            <ModalButton ModalComponent={CreateUnionModal} size="lg">
               개설
             </ModalButton>
           </div>
