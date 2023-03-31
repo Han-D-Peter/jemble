@@ -42,7 +42,7 @@ export default function FriendRequestModal() {
       <Title text="친구추가" />
       <Spacing heightGap={5} />
       <Input ref={inputRef} onChange={debouncedChangeHandler} />
-      <ErrorMsg text={error?.message} />
+      <ErrorMsg text={error.message} />
       <Spacing heightGap={25} />
       <Suspense fallback={<Spinner />}>
         <SearchedUSersList keyword={keyword} />
