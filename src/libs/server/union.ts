@@ -81,14 +81,18 @@ export async function getUnions({
 }
 
 export async function getUnionByMyId(myId: string) {
+  console.log("mine");
   try {
     const myUnion = await client.union.findFirst({
       where: {
         user: {
-          every: {
+          some: {
             id: myId,
           },
         },
+      },
+      include: {
+        user: true,
       },
     });
     if (myUnion) return myUnion;
