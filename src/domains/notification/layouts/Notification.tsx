@@ -14,9 +14,9 @@ export default function NotificationBox({}: NotificationBoxProps) {
   const { data } = useGetTransactions();
   return (
     <div css={notificationStyle}>
-      {data?.data?.transactions.map(item => {
+      {data?.data?.transactions.map((item) => {
         return (
-          <Suspense fallback={<Spinner size="sm" />}>
+          <Suspense key={item.id} fallback={<Spinner size="sm" />}>
             {parseTransactions(item, me.data?.user.id as string)}
           </Suspense>
         );
