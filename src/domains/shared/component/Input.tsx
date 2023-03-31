@@ -23,6 +23,7 @@ const defaultInputSytle = css`
   border-radius: 5px;
   font-size: 24px;
   padding-left: 20px;
+  box-sizing: border-box;
 `;
 
 function Input(

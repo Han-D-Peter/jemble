@@ -13,7 +13,7 @@ export default function useModal() {
   });
 
   const openModal = (props: ComponentProps<typeof SuspensableBox>) =>
-    new Promise<boolean>(resolve => {
+    new Promise<boolean>((resolve) => {
       overlay.open(({ isOpen, close }) => {
         return (
           <>
