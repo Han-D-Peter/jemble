@@ -8,7 +8,7 @@ type IconWithTextProps = {
 
 function IconWithText({ bottomText, icon }: IconWithTextProps) {
   return (
-    <div css={IconContainer}>
+    <div css={IconContainer} aria-labelledby={bottomText}>
       <div>{icon}</div>
       {bottomText && <div css={IconText}>{bottomText}</div>}
     </div>
