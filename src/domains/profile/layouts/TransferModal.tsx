@@ -1,7 +1,7 @@
 import { useGetFriends } from "@/domains/query-hook/queries/friends";
 import ErrorMsg from "@/domains/shared/component/ErrorMsg";
 import Input from "@/domains/shared/component/Input";
-import ProfileRow from "@/domains/shared/component/ProfileRow";
+import ProfileRow from "@/domains/shared/component/StatusRow";
 import TransferButton from "@/domains/shared/component/querying-component/TransferButton";
 import Spacing from "@/domains/shared/component/Spacing";
 import Title from "@/domains/shared/component/Title";
@@ -33,7 +33,7 @@ export default function TransferModal() {
       <Input isOnlyNumber onChange={onInputChange} />
       <ErrorMsg text={error?.message} />
       <Spacing heightGap={25} />
-      {data.data.friends.map(friend => (
+      {data.data.friends.map((friend) => (
         <ProfileRow
           key={friend.name}
           image={friend.profile_image}
@@ -43,7 +43,7 @@ export default function TransferModal() {
             <TransferButton
               target={friend.id}
               amount={amount}
-              onValidatedWhenClick={args => setError(args)}
+              onValidatedWhenClick={(args) => setError(args)}
             />
           }
         />
