@@ -30,7 +30,7 @@ export default function TransferModal() {
       <Spacing heightGap={20} />
       <Title text="포인트 보내기" />
       <Spacing heightGap={5} />
-      <Input isOnlyNumber onChange={onInputChange} />
+      <Input isOnlyNumber onChange={onInputChange} autoFocus />
       <ErrorMsg text={error?.message} />
       <Spacing heightGap={25} />
       {data.data.friends.map((friend) => (

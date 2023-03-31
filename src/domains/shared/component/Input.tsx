@@ -1,9 +1,19 @@
 import { css } from "@emotion/react";
-import { forwardRef, HTMLAttributes, LegacyRef, useMemo } from "react";
+import {
+  forwardRef,
+  HTMLAttributes,
+  LegacyRef,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+} from "react";
+import { mergeRefs } from "react-merge-refs";
 
 interface InputProps extends HTMLAttributes<HTMLInputElement> {
   isInvalid?: boolean;
   isOnlyNumber?: boolean;
+  autoFocus?: boolean;
 }
 
 const defaultInputSytle = css`
@@ -15,9 +25,10 @@ const defaultInputSytle = css`
 `;
 
 function Input(
-  { isInvalid = false, isOnlyNumber = false, ...args }: InputProps,
+  { isInvalid = false, isOnlyNumber = false, autoFocus, ...args }: InputProps,
   ref: LegacyRef<HTMLInputElement>
 ) {
+  const inputRef = useRef<HTMLInputElement>(null);
   const invalidInputStyle = useMemo(
     () => css`
       border: 1px solid ${isInvalid ? "red" : "#cbd5e0"};
@@ -32,10 +43,16 @@ function Input(
     [isInvalid]
   );
 
+  useLayoutEffect(() => {
+    if (autoFocus && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
+
   if (isOnlyNumber)
     return (
       <input
-        ref={ref}
+        ref={mergeRefs([ref, inputRef])}
         type="number"
         css={[defaultInputSytle, invalidInputStyle]}
         {...args}
