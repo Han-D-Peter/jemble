@@ -3,7 +3,7 @@ import TransferModal from "../layouts/TransferModal";
 
 export default function TransferAccessButton() {
   return (
-    <ModalButton ModalComponent={TransferModal} outline size="lg">
+    <ModalButton ModalComponent={TransferModal} size="lg">
       보내기
     </ModalButton>
   );
