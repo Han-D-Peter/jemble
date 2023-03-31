@@ -1,33 +1,35 @@
-import { RefObject, useEffect, useState } from "react";
+import { RefObject, useCallback, useEffect } from "react";
 
 export function useOnClickOutside(
-  ref: RefObject<HTMLElement> | undefined,
-  callback: (event: Event) => void
+  ref: RefObject<HTMLElement>,
+  callback: () => void
 ) {
-  const [isTouchEvent, setTouchEvent] = useState(false);
-  const eventType = isTouchEvent ? "touchend" : "click";
-
-  function handleEvent(event: Event) {
-    if (event.type === "click" && isTouchEvent) {
-      return;
-    }
-
-    if (ref?.current && event.target !== null) {
-      if (!ref.current.contains(event.target as Node)) {
-        callback(event);
+  const handleEvent = useCallback(
+    ({ target }: MouseEvent | TouchEvent) => {
+      if (target === null) {
+        return;
       }
-    }
-  }
+
+      if (!ref.current) {
+        return;
+      }
+
+      if (ref.current && target !== null) {
+        if (!ref.current.contains(target as Node)) {
+          callback();
+        }
+      }
+    },
+    [callback]
+  );
 
   useEffect(() => {
-    document.addEventListener(eventType, handleEvent, true);
+    document.addEventListener("click", handleEvent);
+    // document.addEventListener("touchend", handleEvent);
 
     return () => {
-      document.removeEventListener(eventType, handleEvent, true);
+      document.removeEventListener("click", handleEvent);
+      // document.removeEventListener("touchend", handleEvent);
     };
   });
-
-  useEffect(() => {
-    setTouchEvent("ontouchstart" in document.documentElement);
-  }, []);
 }
