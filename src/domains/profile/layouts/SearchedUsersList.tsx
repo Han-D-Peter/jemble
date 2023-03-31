@@ -11,9 +11,11 @@ interface SearchedUsersListProps {
 
 function SearchedUSersList({ keyword }: SearchedUsersListProps) {
   const [data, setData] = useState<NetworkResult<CheckUsersResponse>>();
+  const [isFetched, setIsFetched] = useState(false);
   const fetch = async () => {
     const result = await UserRepository.searchUser(keyword);
     setData(result);
+    setIsFetched(true);
   };
   useEffect(() => {
     fetch();
@@ -21,7 +23,8 @@ function SearchedUSersList({ keyword }: SearchedUsersListProps) {
 
   return (
     <>
-      {data?.data?.users.length === 0 && <div>검색결과 없음.</div>}
+      {data?.data?.users.length === 0 && !isFetched && null}
+      {data?.data?.users.length === 0 && isFetched && <div>검색결과 없음.</div>}
       {data?.data?.users.map((user) => (
         <ProfileRow
           key={user.name}
