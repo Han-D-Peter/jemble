@@ -1,9 +1,9 @@
-import Box from "@/domains/shared/component/layout/Box";
 import Spinner from "@/domains/shared/component/Spinner";
 import { css } from "@emotion/react";
 import { Suspense } from "react";
 import UnionProfile from "../components/UnionProfile";
 import UnionStatus from "./UnionStatus";
+import UnionTabsProps from "./UnionTabs";
 
 export default function HasUnion() {
   return (
@@ -18,7 +18,7 @@ export default function HasUnion() {
       <Suspense fallback={<Spinner size="sm" />}>
         <UnionStatus />
       </Suspense>
-      <Box>helolo</Box>
+      <UnionTabsProps />
     </div>
   );
 }
