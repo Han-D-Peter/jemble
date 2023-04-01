@@ -19,12 +19,16 @@ export default function TabsHeader() {
         {Object.keys(tabStacks).map(key => {
           if (selectedKey === key) {
             return (
-              <TabsTitle selected onClick={changeKey}>
+              <TabsTitle key={key} selected onClick={changeKey}>
                 {key}
               </TabsTitle>
             );
           }
-          return <TabsTitle onClick={changeKey}>{key}</TabsTitle>;
+          return (
+            <TabsTitle key={key} onClick={changeKey}>
+              {key}
+            </TabsTitle>
+          );
         })}
       </div>
     </ul>
