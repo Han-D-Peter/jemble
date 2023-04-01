@@ -9,6 +9,7 @@ import {
 
 interface BoxProps extends HTMLAttributes<HTMLDivElement> {
   title?: string;
+  noMargin?: boolean;
   fullHeight?: boolean;
   children?: ReactNode | null;
 }
@@ -26,7 +27,19 @@ const titleStyle = css`
 `;
 
 const Box = forwardRef<HTMLDivElement, BoxProps>(
-  ({ title, children, fullHeight = false, ...args }, ref) => {
+  ({ title, children, fullHeight = false, noMargin = false, ...args }, ref) => {
+    const innerBoxStyle = useMemo(
+      () => css`
+        height: 90%;
+        overflow: auto;
+        ${!noMargin &&
+        css`
+          padding: 7px 24px 7px 24px;
+        `};
+      `,
+      [noMargin]
+    );
+
     const boxStyle = useMemo(
       () => css`
         position: relative;

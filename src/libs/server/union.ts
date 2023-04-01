@@ -81,7 +81,6 @@ export async function getUnions({
 }
 
 export async function getUnionByMyId(myId: string) {
-  console.log("mine");
   try {
     const myUnion = await client.union.findFirst({
       where: {
@@ -95,7 +94,15 @@ export async function getUnionByMyId(myId: string) {
         user: true,
       },
     });
-    if (myUnion) return myUnion;
+
+    const unions = await client.union.findMany({
+      orderBy: {
+        points: "desc",
+      },
+    });
+
+    const rank = unions.findIndex((union) => union.name === myUnion.name);
+    if (myUnion) return { ...myUnion, rank };
     if (!myUnion) return null;
   } catch (e) {
     console.log("error", e);
