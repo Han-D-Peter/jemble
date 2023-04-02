@@ -4,9 +4,9 @@ import GameIcon from "public/icons/CodeSandboxOutlined.svg";
 import NotiIcon from "public/icons/BellOutlined.svg";
 import UnionIcon from "public/icons/CrownOutlined.svg";
 import ProfileIcon from "public/icons/UserOutlined.svg";
-import IconButton from "./IconButton";
-import { useRouter } from "next/router";
+import GhostButton from "./GhostButton";
 import useRouting from "../hooks/useRouting";
+import IconWithText from "./IconWithText";
 
 export default function Navigation() {
   const moveTo = useRouting("push");
@@ -31,26 +31,18 @@ export default function Navigation() {
             `,
           ]}
         >
-          <IconButton
-            icon={<GameIcon />}
-            text="Game"
-            onClick={() => moveTo("/game")}
-          />
-          <IconButton
-            icon={<NotiIcon />}
-            text="Noti"
-            onClick={() => moveTo("/notification")}
-          />
-          <IconButton
-            icon={<UnionIcon />}
-            text="Union"
-            onClick={() => moveTo("/union")}
-          />
-          <IconButton
-            icon={<ProfileIcon />}
-            text="Profile"
-            onClick={() => moveTo("/")}
-          />
+          <GhostButton onClick={() => moveTo("/game")}>
+            <IconWithText icon={<GameIcon />} bottomText="Game" />
+          </GhostButton>
+          <GhostButton onClick={() => moveTo("/notification")}>
+            <IconWithText icon={<NotiIcon />} bottomText="Noti" />
+          </GhostButton>
+          <GhostButton onClick={() => moveTo("/union")}>
+            <IconWithText icon={<UnionIcon />} bottomText="Union" />
+          </GhostButton>
+          <GhostButton onClick={() => moveTo("/")}>
+            <IconWithText icon={<ProfileIcon />} bottomText="Profile" />
+          </GhostButton>
         </nav>
       </section>
     </footer>
