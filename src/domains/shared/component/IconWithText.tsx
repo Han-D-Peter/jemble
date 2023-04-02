@@ -1,12 +1,23 @@
+import { Color } from "@/styles/sharedStyles";
 import { css } from "@emotion/react";
 import { ReactElement } from "react";
 
 type IconWithTextProps = {
   bottomText: string;
   icon: ReactElement;
+  color?: Color;
 };
 
-function IconWithText({ bottomText, icon }: IconWithTextProps) {
+function IconWithText({
+  bottomText,
+  icon,
+  color = "#000000",
+}: IconWithTextProps) {
+  const IconText = css`
+    font-size: 16px;
+    color: ${color};
+  `;
+
   return (
     <div css={IconContainer} aria-labelledby={bottomText}>
       <div>{icon}</div>

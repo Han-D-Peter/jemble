@@ -7,9 +7,11 @@ import ProfileIcon from "public/icons/UserOutlined.svg";
 import GhostButton from "./GhostButton";
 import useRouting from "../hooks/useRouting";
 import IconWithText from "./IconWithText";
+import { useRouter } from "next/router";
 
 export default function Navigation() {
   const moveTo = useRouting("push");
+  const router = useRouter();
   return (
     <footer>
       <section
@@ -32,16 +34,52 @@ export default function Navigation() {
           ]}
         >
           <GhostButton onClick={() => moveTo("/game")}>
-            <IconWithText icon={<GameIcon />} bottomText="Game" />
+            <IconWithText
+              color={router.pathname === "/game" ? "#4B7FF0" : "#000000"}
+              icon={
+                <GameIcon
+                  fill={router.pathname === "/game" ? "#4B7FF0" : "black"}
+                />
+              }
+              bottomText="Game"
+            />
           </GhostButton>
           <GhostButton onClick={() => moveTo("/notification")}>
-            <IconWithText icon={<NotiIcon />} bottomText="Noti" />
+            <IconWithText
+              color={
+                router.pathname === "/notification" ? "#4B7FF0" : "#000000"
+              }
+              icon={
+                <NotiIcon
+                  fill={
+                    router.pathname === "/notification" ? "#4B7FF0" : "black"
+                  }
+                />
+              }
+              bottomText="Noti"
+            />
           </GhostButton>
           <GhostButton onClick={() => moveTo("/union")}>
-            <IconWithText icon={<UnionIcon />} bottomText="Union" />
+            <IconWithText
+              color={router.pathname === "/union" ? "#4B7FF0" : "#000000"}
+              icon={
+                <UnionIcon
+                  fill={router.pathname === "/union" ? "#4B7FF0" : "black"}
+                />
+              }
+              bottomText="Union"
+            />
           </GhostButton>
           <GhostButton onClick={() => moveTo("/")}>
-            <IconWithText icon={<ProfileIcon />} bottomText="Profile" />
+            <IconWithText
+              color={router.pathname === "/" ? "#4B7FF0" : "#000000"}
+              icon={
+                <ProfileIcon
+                  fill={router.pathname === "/" ? "#4B7FF0" : "black"}
+                />
+              }
+              bottomText="Profile"
+            />
           </GhostButton>
         </nav>
       </section>
