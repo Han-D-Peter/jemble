@@ -35,7 +35,7 @@ async function handler(
         id: user.id,
         name: user.name ?? "",
         email: user.email ?? "",
-        profile_image: user.email ?? "",
+        profile_image: user.profile_image ?? "",
         points: user.points,
         unionId: user.unionId,
         union: user.union,
