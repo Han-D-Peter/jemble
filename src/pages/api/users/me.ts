@@ -49,7 +49,7 @@ async function handler(
           id: me.id,
           name: me.name ?? "",
           email: me.email ?? "",
-          profile_image: me.email ?? "",
+          profile_image: me.profile_image ?? "",
           points: me.points,
           unionId: me.unionId,
           union: me.union,
