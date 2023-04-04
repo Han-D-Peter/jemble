@@ -6,6 +6,7 @@ import withAuthentication from "@/domains/shared/hoc/auth/withAuthentication";
 import MyAccount from "@/domains/profile/layouts/MyAccount";
 import FriendsList from "@/domains/profile/layouts/FriendsList";
 import Spinner from "@/domains/shared/component/Spinner";
+import Timer from "@/domains/shared/component/Timer";
 
 const Home: NextPage = () => {
   return (
@@ -19,6 +20,7 @@ const Home: NextPage = () => {
       <SuspensableBox title="친구 목록" fallback={<Spinner size="lg" />}>
         <FriendsList />
       </SuspensableBox>
+      <Timer />
     </DefaultLayout>
   );
 };
