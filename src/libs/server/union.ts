@@ -91,7 +91,13 @@ export async function getUnionByMyId(myId: string) {
         },
       },
       include: {
-        user: true,
+        user: {
+          orderBy: [
+            {
+              points: "desc",
+            },
+          ],
+        },
       },
     });
 

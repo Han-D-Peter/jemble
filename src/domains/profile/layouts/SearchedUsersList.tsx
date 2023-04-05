@@ -27,7 +27,7 @@ function SearchedUSersList({ keyword }: SearchedUsersListProps) {
       {data?.data?.users.map((user) => (
         <ProfileRow
           key={user.name}
-          image={user.profile_image ?? "not found"}
+          image={user.profile_image}
           name={user.name ?? "unknown"}
           point={user.points}
           icon={<ReuqestFrinedButton userId={user.id} />}
