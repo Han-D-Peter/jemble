@@ -13,7 +13,7 @@ interface TimerProps {
   children: ReactNode;
   decimal?: 0 | 1 | 2 | 3;
   onStop?: (time: number) => void;
-  ref: MutableRefObject<{ value: number }>;
+  ref?: MutableRefObject<{ value: number }>;
 }
 
 export default function Timer({
@@ -23,35 +23,58 @@ export default function Timer({
   ref,
 }: TimerProps) {
   const [currentTime, setCurrentTime] = useState(0);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [isReady, setIsReady] = useState(true);
   const timeRef = useRef<NodeJS.Timer>();
 
   const toFixedCurrentTime = currentTime.toFixed(decimal);
 
-  const timerStart = useCallback(() => {
+  const startTimer = useCallback(() => {
     if (!timeRef.current) {
       timeRef.current = setInterval(() => {
         setCurrentTime((prev) => prev + Math.pow(1 / 10, decimal));
       }, 1000 / Math.pow(10, decimal));
+      setIsProcessing(true);
+      setIsReady(false);
     }
   }, [decimal]);
 
-  const timerStop = useCallback(() => {
+  const stopTimer = useCallback(() => {
     if (onStop) {
       onStop(Number(toFixedCurrentTime));
     }
     clearInterval(timeRef.current);
     timeRef.current = undefined;
+    setIsProcessing(false);
   }, [toFixedCurrentTime]);
 
-  const timerReset = useCallback(() => {
+  const resetTimer = useCallback(() => {
     clearInterval(timeRef.current);
     setCurrentTime(0);
     timeRef.current = undefined;
+    setIsProcessing(false);
+    setIsReady(true);
   }, []);
 
   const timerContextValue = useMemo(() => {
-    return { currentTime, timerStart, timerStop, timerReset };
-  }, [currentTime, timerStart, timerStop, timerReset]);
+    return {
+      currentTime: Number(toFixedCurrentTime),
+      startTimer,
+      stopTimer,
+      resetTimer,
+      isProcessing,
+      isReady,
+      decimal,
+    };
+  }, [
+    currentTime,
+    startTimer,
+    stopTimer,
+    resetTimer,
+    isProcessing,
+    isReady,
+    decimal,
+  ]);
 
   useImperativeHandle(ref, () => ({
     value: Number(toFixedCurrentTime),
