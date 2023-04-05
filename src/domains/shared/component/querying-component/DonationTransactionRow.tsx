@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import ProfileRow from "@/domains/shared/component/ProfileRow";
+import ProfileRow from "@/domains/shared/component/StatusRow";
 import { useUnion } from "@/domains/query-hook/queries/unions";
 
 interface DonationTransactionRowProps {

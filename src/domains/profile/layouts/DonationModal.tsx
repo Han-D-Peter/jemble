@@ -36,7 +36,7 @@ export default function DonationModal() {
       <Spacing heightGap={20} />
       <Title text="유니온 기여하기" />
       <Spacing heightGap={5} />
-      <Input isOnlyNumber onChange={onInputChange} />
+      <Input isOnlyNumber onChange={onInputChange} autoFocus />
       <ErrorMsg text={error?.message} />
       <Spacing heightGap={25} />
       <div css={leftAlignStyle}>

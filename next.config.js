@@ -11,7 +11,7 @@ const nextConfig = {
     return config;
   },
   images: {
-    domains: ["phinf.pstatic.net"],
+    domains: ["phinf.pstatic.net", "ssl.pstatic.net", "jemble.vercel.app"],
   },
 };
 

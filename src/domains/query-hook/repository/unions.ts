@@ -25,7 +25,11 @@ class UnionRepository {
     return ky.get(`/api/unions/${name}`).json();
   }
 
-  joinUnion(name: string): Promise<NetworkResult<CreateUnionRespnse>> {
+  joinUnion({
+    name,
+  }: {
+    name: string;
+  }): Promise<NetworkResult<CreateUnionRespnse>> {
     return ky.post(`/api/unions/${name}`, {}).json();
   }
 
@@ -41,6 +45,10 @@ class UnionRepository {
 
   getUnionsRank(): Promise<NetworkResult<CheckUnionsRankResponse>> {
     return ky.get("/api/unions/rank").json();
+  }
+
+  searchUnions(name: string): Promise<NetworkResult<CheckUnionsResponse>> {
+    return ky.get(`/api/unions/search?keyword=${name}`).json();
   }
 }
 

@@ -1,5 +1,6 @@
 import { useUnionRank } from "@/domains/query-hook/queries/unions";
-import ProfileRow from "@/domains/shared/component/ProfileRow";
+import StatusRow from "@/domains/shared/component/StatusRow";
+import { useGetUnionRank } from "@/domains/query-hook/queries/unions";
 import { getOrdinal } from "@/domains/shared/utils/utils";
 
 interface UnionWithRankProps {
@@ -11,7 +12,7 @@ export default function UnionWithRank({ unionName }: UnionWithRankProps) {
 
   if (!data?.data) return <div>Not Found</div>;
   return (
-    <ProfileRow
+    <StatusRow
       point={data.data.points}
       name={data.data.name}
       image={data.data.union_image}

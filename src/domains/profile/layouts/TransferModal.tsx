@@ -1,7 +1,7 @@
 import { useFriends } from "@/domains/query-hook/queries/friends";
 import ErrorMsg from "@/domains/shared/component/ErrorMsg";
 import Input from "@/domains/shared/component/Input";
-import ProfileRow from "@/domains/shared/component/ProfileRow";
+import ProfileRow from "@/domains/shared/component/StatusRow";
 import TransferButton from "@/domains/shared/component/querying-component/TransferButton";
 import Spacing from "@/domains/shared/component/Spacing";
 import Title from "@/domains/shared/component/Title";
@@ -30,7 +30,7 @@ export default function TransferModal() {
       <Spacing heightGap={20} />
       <Title text="포인트 보내기" />
       <Spacing heightGap={5} />
-      <Input isOnlyNumber onChange={onInputChange} />
+      <Input isOnlyNumber onChange={onInputChange} autoFocus />
       <ErrorMsg text={error?.message} />
       <Spacing heightGap={25} />
       {data.data.friends.map((friend) => (

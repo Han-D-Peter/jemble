@@ -37,6 +37,12 @@ async function handler(
   }
 
   if (req.method === "POST") {
+    if (!req.body.name) {
+      return res.status(400).json({
+        status: "Failed",
+        message: "유니온의 이름을 입력해주세요.",
+      });
+    }
     const existedUnionByName = await getUnionByName(req.body.name);
 
     if (existedUnionByName) {

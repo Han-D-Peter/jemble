@@ -4,7 +4,7 @@ import { commaizeNumber } from "@toss/utils";
 import { ReactElement } from "react";
 
 interface ProfileRowProps {
-  image: string;
+  image: string | null;
   name: string;
   point: number;
   icon?: string | ReactElement;
@@ -46,7 +46,7 @@ export default function ProfileRow({
         <div css={profileNameStyle}>
           <Image
             css={imageStyle}
-            src={image}
+            src={image ?? "/images/defaulProfile.webp"}
             alt="프로필 사진"
             width={32}
             height={32}

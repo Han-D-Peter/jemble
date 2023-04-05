@@ -3,7 +3,7 @@ import Image from "next/image";
 import { ReactElement } from "react";
 
 interface RequestRowProps {
-  image: string;
+  image: string | null;
   name: string;
   description: string;
   icon?: string | ReactElement;
@@ -44,7 +44,7 @@ export default function RequestRow({
         <div css={profileNameStyle}>
           <Image
             css={imageStyle}
-            src={image}
+            src={image ?? "/images/defaulProfile.webp"}
             alt="프로필 사진"
             width={32}
             height={32}

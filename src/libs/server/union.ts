@@ -85,13 +85,24 @@ export async function getUnionByMyId(myId: string) {
     const myUnion = await client.union.findFirst({
       where: {
         user: {
-          every: {
+          some: {
             id: myId,
           },
         },
       },
+      include: {
+        user: true,
+      },
     });
-    if (myUnion) return myUnion;
+
+    const unions = await client.union.findMany({
+      orderBy: {
+        points: "desc",
+      },
+    });
+
+    const rank = unions.findIndex((union) => union.name === myUnion.name);
+    if (myUnion) return { ...myUnion, rank };
     if (!myUnion) return null;
   } catch (e) {
     console.log("error", e);
