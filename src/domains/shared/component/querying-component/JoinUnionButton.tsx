@@ -1,5 +1,5 @@
 import {
-  useGetMyUnion,
+  useMyUnion,
   useJoinUnionMutation,
 } from "@/domains/query-hook/queries/unions";
 import Button from "@/domains/shared/component/Button";
@@ -13,7 +13,7 @@ interface JoinUnionButtonProps {
 
 export default function JoinUnionButton({ name }: JoinUnionButtonProps) {
   const { mutate, isLoading } = useJoinUnionMutation();
-  const { refetch } = useGetMyUnion();
+  const { refetch } = useMyUnion();
 
   const joinUnion = () => {
     mutate(
