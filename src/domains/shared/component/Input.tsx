@@ -1,11 +1,9 @@
 import { css } from "@emotion/react";
-import { isNaN } from "lodash";
 import {
   ChangeEvent,
+  ForwardedRef,
   forwardRef,
-  HTMLAttributes,
-  LegacyRef,
-  useEffect,
+  InputHTMLAttributes,
   useLayoutEffect,
   useMemo,
   useRef,
@@ -13,11 +11,11 @@ import {
 } from "react";
 import { mergeRefs } from "react-merge-refs";
 
-interface InputProps extends HTMLAttributes<HTMLInputElement> {
+type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   isInvalid?: boolean;
   isOnlyNumber?: boolean;
   autoFocus?: boolean;
-}
+};
 
 const defaultInputSytle = css`
   width: 100%;
@@ -30,8 +28,14 @@ const defaultInputSytle = css`
 `;
 
 function Input(
-  { isInvalid = false, isOnlyNumber = false, autoFocus, ...args }: InputProps,
-  ref: LegacyRef<HTMLInputElement>
+  {
+    isInvalid = false,
+    isOnlyNumber = false,
+    autoFocus,
+    onChange,
+    ...args
+  }: InputProps,
+  ref: ForwardedRef<HTMLInputElement>
 ) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [inputValue, setInputValue] = useState<string>("");
@@ -49,6 +53,9 @@ function Input(
     [isInvalid]
   );
   const onChangeInputOnlyNumber = (e: ChangeEvent<HTMLInputElement>) => {
+    if (onChange) {
+      onChange(e);
+    }
     const value = e.target.value;
     setInputValue(value.replace(/[^\d]/g, ""));
   };
@@ -66,8 +73,8 @@ function Input(
         type="text"
         css={[defaultInputSytle, invalidInputStyle]}
         value={inputValue}
-        {...args}
         onChange={onChangeInputOnlyNumber}
+        {...args}
       />
     );
   return (
