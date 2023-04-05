@@ -1,4 +1,4 @@
-import { useGetTransactions } from "@/domains/query-hook/queries/transactions";
+import { useTransactions } from "@/domains/query-hook/queries/transactions";
 import Spinner from "@/domains/shared/component/Spinner";
 import { parseTransactions } from "@/domains/shared/utils/componentUtils";
 import { css } from "@emotion/react";
@@ -11,7 +11,7 @@ const notificationStyle = css``;
 
 export default function NotificationBox({}: NotificationBoxProps) {
   const me = useSession();
-  const { data } = useGetTransactions();
+  const { data } = useTransactions();
   return (
     <div css={notificationStyle}>
       {data?.data?.transactions.map((item) => {

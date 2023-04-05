@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import ProfileRow from "@/domains/shared/component/StatusRow";
-import { useGetUnion } from "@/domains/query-hook/queries/unions";
+import { useUnion } from "@/domains/query-hook/queries/unions";
 
 interface DonationTransactionRowProps {
   unionName: string;
@@ -13,7 +13,7 @@ export default function DonationTransactionRow({
   point,
   icon,
 }: DonationTransactionRowProps) {
-  const { data } = useGetUnion(unionName);
+  const { data } = useUnion(unionName);
   if (!data?.data) return <div>Not Found</div>;
   return (
     <ProfileRow

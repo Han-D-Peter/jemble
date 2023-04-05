@@ -1,4 +1,4 @@
-import { useGetFriends } from "@/domains/query-hook/queries/friends";
+import { useFriends } from "@/domains/query-hook/queries/friends";
 import ErrorMsg from "@/domains/shared/component/ErrorMsg";
 import Input from "@/domains/shared/component/Input";
 import ProfileRow from "@/domains/shared/component/StatusRow";
@@ -14,7 +14,7 @@ export default function TransferModal() {
     message: "",
   });
   const [amount, setAmount] = useState(0);
-  const { data } = useGetFriends();
+  const { data } = useFriends();
 
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     resetError();
