@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { css } from "@emotion/react";
 import {
   useCreateUnionMutation,
-  useGetMyUnion,
+  useMyUnion,
 } from "@/domains/query-hook/queries/unions";
 import Button from "@/domains/shared/component/Button";
 import Input from "@/domains/shared/component/Input";
@@ -17,7 +17,7 @@ interface CreateUnionModalProps {}
 function CreateUnionModal({}: CreateUnionModalProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const { mutate, isLoading, isSuccess } = useCreateUnionMutation();
-  const { data, refetch } = useGetMyUnion();
+  const { data, refetch } = useMyUnion();
   const [error, setError, resetError] = useResetableState({
     status: "",
     message: "",

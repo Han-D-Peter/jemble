@@ -12,7 +12,6 @@ async function handler(
   res: NextApiResponse<NetworkResult<{ currentPoint: number }>>
 ) {
   const { result, amount } = req.query;
-  console.log(result, amount);
 
   const session = await getServerSession(req, res, authOptions);
   assert(session !== null, "session is null");

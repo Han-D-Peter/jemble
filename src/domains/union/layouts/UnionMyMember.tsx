@@ -1,4 +1,4 @@
-import { useGetMyUnion } from "@/domains/query-hook/queries/unions";
+import { useMyUnion } from "@/domains/query-hook/queries/unions";
 import ProfileRow from "@/domains/shared/component/StatusRow";
 import { getOrdinal } from "@/domains/shared/utils/utils";
 import { css } from "@emotion/react";
@@ -6,7 +6,7 @@ import { css } from "@emotion/react";
 interface UnionMyMember {}
 
 export default function UnionMyMember({}: UnionMyMember) {
-  const { data } = useGetMyUnion();
+  const { data } = useMyUnion();
   if (!data?.data) return <div>Not Found</div>;
   return (
     <div

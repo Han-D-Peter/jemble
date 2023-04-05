@@ -1,8 +1,8 @@
-import { useGetMe } from "@/domains/query-hook/queries/users";
+import { useMe } from "@/domains/query-hook/queries/users";
 import ProfileRow from "@/domains/shared/component/StatusRow";
 
 export default function MyInfo() {
-  const { data } = useGetMe();
+  const { data } = useMe();
 
   if (!data?.data) return <h1>Not Found</h1>;
 

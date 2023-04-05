@@ -1,4 +1,4 @@
-import { useGetUnionsRank } from "@/domains/query-hook/queries/unions";
+import { useUnionsRank } from "@/domains/query-hook/queries/unions";
 import ProfileRow from "@/domains/shared/component/StatusRow";
 import { css } from "@emotion/react";
 import { getOrdinal } from "@/domains/shared/utils/utils";
@@ -6,7 +6,7 @@ import { getOrdinal } from "@/domains/shared/utils/utils";
 interface UnionRanksProps {}
 
 export default function UnionRanks({}: UnionRanksProps) {
-  const { data } = useGetUnionsRank();
+  const { data } = useUnionsRank();
 
   if (!data?.data) return <div>Not Found</div>;
   return (

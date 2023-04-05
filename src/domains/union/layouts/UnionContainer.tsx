@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import { useGetMyUnion } from "@/domains/query-hook/queries/unions";
+import { useMyUnion } from "@/domains/query-hook/queries/unions";
 import NoneUnion from "./NoneUnion";
 import HasUnion from "./HasUnion";
 
@@ -12,7 +12,7 @@ const unionContainerStyle = css`
 `;
 
 export default function UnionContainer() {
-  const { data } = useGetMyUnion();
+  const { data } = useMyUnion();
   return (
     <div css={unionContainerStyle}>
       {!data?.data ? <NoneUnion /> : <HasUnion />}

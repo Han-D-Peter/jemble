@@ -1,4 +1,4 @@
-import { useGetMyUnion } from "@/domains/query-hook/queries/unions";
+import { useMyUnion } from "@/domains/query-hook/queries/unions";
 import DisplayPoint from "@/domains/shared/component/DisplayPoint";
 import Box from "@/domains/shared/component/layout/Box";
 import Spacing from "@/domains/shared/component/Spacing";
@@ -20,7 +20,7 @@ const rightAlignText = css`
 `;
 
 export default function UnionStatus() {
-  const { data } = useGetMyUnion();
+  const { data } = useMyUnion();
 
   if (!data?.data) return <Title text="Not Found" />;
   return (
