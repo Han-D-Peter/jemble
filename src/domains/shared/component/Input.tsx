@@ -1,5 +1,7 @@
 import { css } from "@emotion/react";
+import { isNaN } from "lodash";
 import {
+  ChangeEvent,
   forwardRef,
   HTMLAttributes,
   LegacyRef,
@@ -7,6 +9,7 @@ import {
   useLayoutEffect,
   useMemo,
   useRef,
+  useState,
 } from "react";
 import { mergeRefs } from "react-merge-refs";
 
@@ -31,6 +34,7 @@ function Input(
   ref: LegacyRef<HTMLInputElement>
 ) {
   const inputRef = useRef<HTMLInputElement>(null);
+  const [inputValue, setInputValue] = useState<string>("");
   const invalidInputStyle = useMemo(
     () => css`
       border: 1px solid ${isInvalid ? "red" : "#cbd5e0"};
@@ -44,6 +48,10 @@ function Input(
     `,
     [isInvalid]
   );
+  const onChangeInputOnlyNumber = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setInputValue(value.replace(/[^\d]/g, ""));
+  };
 
   useLayoutEffect(() => {
     if (autoFocus && inputRef.current) {
@@ -55,9 +63,11 @@ function Input(
     return (
       <input
         ref={mergeRefs([ref, inputRef])}
-        type="number"
+        type="text"
         css={[defaultInputSytle, invalidInputStyle]}
+        value={inputValue}
         {...args}
+        onChange={onChangeInputOnlyNumber}
       />
     );
   return (
