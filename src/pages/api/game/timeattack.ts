@@ -25,7 +25,7 @@ async function handler(
 
     assert(user !== null, "user is null");
 
-    if (user.points <= Number(amount)) {
+    if (user.points < Number(amount)) {
       return res.status(404).json({
         status: "Failed",
         message: "배팅 금액이 보유 금액을 초과합니다.",
