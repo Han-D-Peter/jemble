@@ -80,3 +80,5 @@ export type CheckRequestFriendResponse = { isPending: boolean };
 export interface CheckMeResponse {
   me: UserModel;
 }
+
+export type TimeattckResponse = { currentPoint: number };
