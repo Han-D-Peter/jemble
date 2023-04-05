@@ -20,7 +20,6 @@ const Home: NextPage = () => {
       <SuspensableBox title="친구 목록" fallback={<Spinner size="lg" />}>
         <FriendsList />
       </SuspensableBox>
-      <Timer />
     </DefaultLayout>
   );
 };
