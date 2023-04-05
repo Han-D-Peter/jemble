@@ -1,6 +1,5 @@
 import { useUnionRank } from "@/domains/query-hook/queries/unions";
 import StatusRow from "@/domains/shared/component/StatusRow";
-import { useGetUnionRank } from "@/domains/query-hook/queries/unions";
 import { getOrdinal } from "@/domains/shared/utils/utils";
 
 interface UnionWithRankProps {
