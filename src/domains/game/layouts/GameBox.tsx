@@ -26,7 +26,7 @@ export default function GameBox() {
       </Timer>
       <Spacing heightGap={20} />
       <Box>
-        <SubTitle text="배팅 포인트" />
+        <SubTitle text="베팅 포인트" />
         <Spacing heightGap={20} />
         <Input
           ref={betNumberRef}

@@ -28,7 +28,7 @@ async function handler(
     if (user.points <= Number(amount)) {
       return res.status(404).json({
         status: "Failed",
-        message: "배팅 금액이 보유 금액을 초과합니다.",
+        message: "베팅 금액이 보유 금액을 초과합니다.",
       });
     }
   } catch (error) {
