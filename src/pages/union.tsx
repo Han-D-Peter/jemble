@@ -1,4 +1,3 @@
-import { useGetMyUnion } from "@/domains/query-hook/queries/unions";
 import DefaultLayout from "@/domains/shared/component/layout/DefaultLayout";
 import Spinner from "@/domains/shared/component/Spinner";
 import withAuthentication from "@/domains/shared/hoc/auth/withAuthentication";
