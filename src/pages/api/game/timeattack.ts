@@ -1,6 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import NextCors from "nextjs-cors";
 import { getServerSession } from "next-auth";
 import assert from "assert";
 import { NetworkResult } from "@/interface/network";
@@ -83,13 +82,6 @@ async function handler(
       });
     }
   }
-
-  // await NextCors(req, res, {
-  //   // Options
-  //   methods: ["GET"],
-  //   origin: "*",
-  //   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-  // });
 
   res.status(400).json({ status: "Failed", message: "알 수 없는 오류" });
 }
