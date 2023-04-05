@@ -7,6 +7,7 @@ import Spacing from "@/domains/shared/component/Spacing";
 import useTimer from "@/domains/shared/component/Timer/useTimer";
 import TimerDisplay from "../components/TimerDisplay";
 import TimerControl from "./TimerControl";
+import Title from "@/domains/shared/component/Title";
 
 interface TimerGameBoxProps {
   betAmount: string;
@@ -14,6 +15,7 @@ interface TimerGameBoxProps {
 
 export default function TimerGameBox({ betAmount }: TimerGameBoxProps) {
   const numberedBetAmount = Number(betAmount);
+
   const [isFailed, setIsFailed] = useState(false);
   const { isProcessing, currentTime, isReady } = useTimer();
   const queryClient = useQueryClient();
@@ -69,7 +71,11 @@ export default function TimerGameBox({ betAmount }: TimerGameBoxProps) {
       )}
       <TimerDisplay />
       <Spacing heightGap={20} />
-      <TimerControl isFailed={isFailed} />
+      {numberedBetAmount >= 1000 ? (
+        <TimerControl isFailed={isFailed} />
+      ) : (
+        <Title text="1000포인트 이상 베팅해주세요." />
+      )}
       <Spacing heightGap={20} />
     </Box>
   );
