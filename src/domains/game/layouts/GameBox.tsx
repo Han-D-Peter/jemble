@@ -8,6 +8,7 @@ import Timer from "@/domains/shared/component/Timer";
 import TimerGameBox from "./TimerGameBox";
 import { useMe } from "@/domains/query-hook/queries/users";
 import SpinnerBox from "@/domains/shared/component/SpinnerBox";
+import { TIME_ATTACK_DIFFICULTY } from "@/constants/game";
 
 export default function GameBox() {
   const betNumberRef = useRef<HTMLInputElement>(null);
@@ -37,7 +38,7 @@ export default function GameBox() {
         width: 100%;
       `}
     >
-      <Timer decimal={2}>
+      <Timer decimal={TIME_ATTACK_DIFFICULTY}>
         <Suspense fallback={<SpinnerBox />}>
           <TimerGameBox
             betAmount={+betAmount}

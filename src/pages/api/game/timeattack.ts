@@ -6,6 +6,8 @@ import { NetworkResult } from "@/interface/network";
 import withHandler from "@/libs/server/withHandler";
 import { authOptions } from "../auth/[...nextauth]";
 import client from "@/libs/client";
+import { TIME_ATTACK_DIFFICULTY } from "@/constants/game";
+import { getEarningValue } from "@/domains/shared/utils/utils";
 
 async function handler(
   req: NextApiRequest,
@@ -45,7 +47,9 @@ async function handler(
           id: session.user.id,
         },
         data: {
-          points: { increment: Number(amount) * 100 },
+          points: {
+            increment: Number(amount) * getEarningValue(TIME_ATTACK_DIFFICULTY),
+          },
         },
       });
       return res.status(200).json({
