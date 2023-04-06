@@ -17,8 +17,8 @@ export default function TimerControl({ isFailed }: TimerControlProps) {
         width: 100%;
       `}
     >
-      {isReady && <TimerStartButton />}
-      {isProcessing && <TimerStopButton />}
+      {!isProcessing && isReady && <TimerStartButton />}
+      {isProcessing && !isReady && <TimerStopButton />}
       {!isProcessing && !isReady && <TimerResetButton isFailed={isFailed} />}
     </div>
   );
