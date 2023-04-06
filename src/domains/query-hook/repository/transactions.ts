@@ -1,9 +1,9 @@
-import ky from "ky";
+import { requestInstance } from "@/api/network";
 import { CheckTransactionResponse, NetworkResult } from "@/interface/network";
 
 class TransactionRepository {
   getTransactions(): Promise<NetworkResult<CheckTransactionResponse>> {
-    return ky.get("/api/transactions").json();
+    return requestInstance.get<CheckTransactionResponse>("/api/transactions");
   }
 }
 

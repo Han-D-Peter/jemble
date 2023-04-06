@@ -1,4 +1,4 @@
-import ky from "ky";
+import { requestInstance } from "@/api/network";
 import {
   DonationMutationRequest,
   DonationMutationResponse,
@@ -11,13 +11,19 @@ class TradeRepository {
   transferPointToFriend(
     payload: TransferMutationRequest
   ): Promise<NetworkResult<TransferMutationResponse>> {
-    return ky.post("/api/trade/user", { json: payload }).json();
+    return requestInstance.post<TransferMutationResponse>(
+      "/api/trade/user",
+      payload
+    );
   }
 
   transferPointToUnion(
     payload: DonationMutationRequest
   ): Promise<NetworkResult<DonationMutationResponse>> {
-    return ky.post("/api/trade/union", { json: payload }).json();
+    return requestInstance.post<DonationMutationResponse>(
+      "/api/trade/union",
+      payload
+    );
   }
 }
 
