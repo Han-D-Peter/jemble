@@ -25,7 +25,7 @@ class UnionRepository {
     return requestInstance.get<CheckMyUnionResponse>(`/api/unions/${name}`);
   }
 
-  joinUnion{
+  joinUnion({
     name,
   }: {
     name: string;

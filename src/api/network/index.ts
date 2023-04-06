@@ -1,5 +1,4 @@
 import { NetworkResult } from "@/interface/network";
-import axios from "axios";
 import ky from "ky";
 
 type request = {
@@ -10,33 +9,33 @@ type request = {
   delete: <T>(url: string) => Promise<NetworkResult<T>>;
 };
 
-const axiosRequest: request = {
-  get: <T>(url: string) =>
-    axios.get(url).then<NetworkResult<T>>((res) => ({
-      data: res.data.data,
-      status: res.data.status,
-    })),
-  post: <T>(url: string, data: any) =>
-    axios.post(url, data).then<NetworkResult<T>>((res) => ({
-      data: res.data.data,
-      status: res.data.status,
-    })),
-  patch: <T>(url: string, data: any) =>
-    axios.patch(url, data).then<NetworkResult<T>>((res) => ({
-      data: res.data.data,
-      status: res.data.status,
-    })),
-  put: <T>(url: string, data: any) =>
-    axios.put(url, data).then<NetworkResult<T>>((res) => ({
-      data: res.data.data,
-      status: res.data.status,
-    })),
-  delete: <T>(url: string) =>
-    axios.delete(url).then<NetworkResult<T>>((res) => ({
-      data: res.data.data,
-      status: res.data.status,
-    })),
-};
+// const axiosRequest: request = {
+//   get: <T>(url: string) =>
+//     axios.get(url).then<NetworkResult<T>>((res) => ({
+//       data: res.data.data,
+//       status: res.data.status,
+//     })),
+//   post: <T>(url: string, data: any) =>
+//     axios.post(url, data).then<NetworkResult<T>>((res) => ({
+//       data: res.data.data,
+//       status: res.data.status,
+//     })),
+//   patch: <T>(url: string, data: any) =>
+//     axios.patch(url, data).then<NetworkResult<T>>((res) => ({
+//       data: res.data.data,
+//       status: res.data.status,
+//     })),
+//   put: <T>(url: string, data: any) =>
+//     axios.put(url, data).then<NetworkResult<T>>((res) => ({
+//       data: res.data.data,
+//       status: res.data.status,
+//     })),
+//   delete: <T>(url: string) =>
+//     axios.delete(url).then<NetworkResult<T>>((res) => ({
+//       data: res.data.data,
+//       status: res.data.status,
+//     })),
+// };
 
 const kyRequest: request = {
   get: <R = unknown>(url: string) =>
