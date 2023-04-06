@@ -7,9 +7,18 @@ import SuspensableBox from "@/domains/shared/component/layout/SuspensableBox";
 import Spacing from "@/domains/shared/component/Spacing";
 import SubTitle from "@/domains/shared/component/SubTitle";
 import withAuthentication from "@/domains/shared/hoc/auth/withAuthentication";
+import useModal from "@/domains/shared/hooks/useModal";
 import { NextPage } from "next";
+import { useEffect } from "react";
 
 const Game: NextPage = () => {
+  const { open } = useModal();
+
+  useEffect(() => {
+    open({
+      children: <Guide />,
+    });
+  }, []);
   return (
     <DefaultLayout isLogined centered>
       <Guide />

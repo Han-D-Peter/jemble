@@ -19,6 +19,7 @@ export default function Guide() {
       <Spacing heightGap={5} />
       <SubTitle text={`4. 10.0초를 정확히 맞추면 승리!`} />
       <Spacing heightGap={20} />
+      <Spacing heightGap={20} />
     </Box>
   );
 }
