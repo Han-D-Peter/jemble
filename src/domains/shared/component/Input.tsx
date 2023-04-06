@@ -72,7 +72,7 @@ function Input(
         ref={mergeRefs([ref, inputRef])}
         type="text"
         css={[defaultInputSytle, invalidInputStyle]}
-        value={inputValue}
+        value={args.value ? args.value : inputValue}
         onChange={onChangeInputOnlyNumber}
         {...args}
       />
