@@ -2,7 +2,6 @@ import { memo, useEffect, useState } from "react";
 import UnionRepository from "@/domains/query-hook/repository/unions";
 import ProfileRow from "@/domains/shared/component/StatusRow";
 import { CheckUnionsResponse, NetworkResult } from "@/interface/network";
-import ReuqestFrinedButton from "@/domains/shared/component/querying-component/RequestFriendButton";
 import JoinUnionButton from "@/domains/shared/component/querying-component/JoinUnionButton";
 
 interface SearchedUnionListProps {

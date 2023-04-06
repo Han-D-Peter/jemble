@@ -1,3 +1,4 @@
+import { css } from "@emotion/react";
 import { useMyUnion } from "@/domains/query-hook/queries/unions";
 import DisplayPoint from "@/domains/shared/component/DisplayPoint";
 import Box from "@/domains/shared/component/layout/Box";
@@ -5,7 +6,6 @@ import Spacing from "@/domains/shared/component/Spacing";
 import SubTitle from "@/domains/shared/component/SubTitle";
 import Title from "@/domains/shared/component/Title";
 import { getOrdinal } from "@/domains/shared/utils/utils";
-import { css } from "@emotion/react";
 
 const rightFlexStyle = css`
   width: 100%;

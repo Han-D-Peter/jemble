@@ -1,11 +1,5 @@
 import { css } from "@emotion/react";
-import {
-  forwardRef,
-  HTMLAttributes,
-  LegacyRef,
-  ReactNode,
-  useMemo,
-} from "react";
+import { forwardRef, HTMLAttributes, ReactNode, useMemo } from "react";
 
 interface BoxProps extends HTMLAttributes<HTMLDivElement> {
   title?: string;

@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, ReactElement } from "react";
+import { ButtonHTMLAttributes } from "react";
 import { css } from "@emotion/react";
 
 type GhostButton = ButtonHTMLAttributes<HTMLButtonElement> & {};

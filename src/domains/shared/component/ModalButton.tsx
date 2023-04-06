@@ -1,12 +1,6 @@
 import Button from "@/domains/shared/component/Button";
 import useModal from "@/domains/shared/hooks/useModal";
-import {
-  ComponentProps,
-  FunctionComponent,
-  ReactElement,
-  ReactNode,
-} from "react";
-import SuspensableBox from "./layout/SuspensableBox";
+import { ReactNode } from "react";
 
 type ModalButton = typeof Button.arguments & {
   ModalComponent: ReactNode;
