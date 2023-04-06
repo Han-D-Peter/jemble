@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import FriendRepository from "@/domains/query-hook/repository/friends";
 
-export const useGetFriends = () => {
+export const useFriends = () => {
   return useQuery(["friends"], FriendRepository.getFriends);
 };
 

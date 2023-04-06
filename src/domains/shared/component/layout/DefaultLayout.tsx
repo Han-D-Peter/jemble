@@ -13,10 +13,17 @@ type DefaultLayoutProps = HTMLAttributes<HTMLDivElement> & {
   isLogined?: boolean;
   header?: ReactNode;
   children: ReactNode | ReactNode[];
+  centered?: boolean;
 };
 
 function DefaultLayout(
-  { isLogined, header, children, ...args }: DefaultLayoutProps,
+  {
+    isLogined,
+    header,
+    children,
+    centered = false,
+    ...args
+  }: DefaultLayoutProps,
   ref: LegacyRef<HTMLDivElement>
 ) {
   const theme = useTheme();
@@ -25,8 +32,15 @@ function DefaultLayout(
     return css`
       background-color: ${theme.background.default};
       height: 100%;
+      ${centered &&
+      css`
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      `}
     `;
-  }, [theme, isLogined]);
+  }, [theme, isLogined, centered]);
 
   return (
     <div

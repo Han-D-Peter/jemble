@@ -1,19 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
 import UserRepository from "@/domains/query-hook/repository/users";
 
-export const useGetUsers = () => {
+export const useUsers = () => {
   return useQuery(["users"], UserRepository.getUsers);
 };
 
-export const useGetUser = (userId: string) => {
+export const useUser = (userId: string) => {
   return useQuery(["user", userId], () => UserRepository.getUser(userId));
 };
 
-export const useGetMe = () => {
+export const useMe = () => {
   return useQuery(["me"], UserRepository.getMe);
 };
 
-export const useSearchUsersByKeyword = (keyword: string) => {
+export const useSearchedUsersByKeyword = (keyword: string) => {
   return useQuery(["searchusers"], () => UserRepository.searchUser(keyword), {
     enabled: !!keyword,
     staleTime: 0,

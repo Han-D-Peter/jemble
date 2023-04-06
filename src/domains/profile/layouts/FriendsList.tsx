@@ -1,13 +1,13 @@
 import { css } from "@emotion/react";
-import { useGetFriends } from "@/domains/query-hook/queries/friends";
+import { useFriends } from "@/domains/query-hook/queries/friends";
 import FriendRequestAccessButton from "@/domains/profile/components/FriendRequestAccessButton";
-import ProfileRow from "@/domains/shared/component/ProfileRow";
+import ProfileRow from "@/domains/shared/component/StatusRow";
 import { getOrdinal } from "@/domains/shared/utils/utils";
 
 interface FriendsListProps {}
 
 export default function FriendsList({}: FriendsListProps) {
-  const { data } = useGetFriends();
+  const { data } = useFriends();
 
   if (!data?.data) return <div>Not Found</div>;
   return (

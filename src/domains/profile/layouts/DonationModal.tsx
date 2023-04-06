@@ -5,8 +5,9 @@ import DonateButton from "@/domains/shared/component/querying-component/DonateBu
 import Spacing from "@/domains/shared/component/Spacing";
 import Title from "@/domains/shared/component/Title";
 import useResetableState from "@/domains/shared/hooks/useResetableState";
-import { useGetMyUnion } from "@/domains/query-hook/queries/unions";
+import { useMyUnion, useUnionRank } from "@/domains/query-hook/queries/unions";
 import { css } from "@emotion/react";
+import { useMe } from "@/domains/query-hook/queries/users";
 
 const leftAlignStyle = css`
   display: flex;
@@ -14,36 +15,49 @@ const leftAlignStyle = css`
 `;
 
 export default function DonationModal() {
-  const { data } = useGetMyUnion();
+  const { data } = useMyUnion();
+  const { data: mine } = useMe();
+
+  if (!data?.data) return <div>Not Found</div>;
+
+  const { refetch } = useUnionRank(data?.data?.name);
   const [error, setError, resetError] = useResetableState({
     status: "",
     message: "",
   });
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState<string>("");
 
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
     resetError();
     const stringifiedNumber = e.target.value;
-    if (stringifiedNumber) {
-      setAmount(Number(stringifiedNumber));
+
+    const userPoints = mine?.data?.me.points as number;
+
+    if (Number(stringifiedNumber) > userPoints) {
+      alert("보유 금액을 초과합니다.");
+      return;
     }
+
+    setAmount(stringifiedNumber);
   };
 
-  if (!data?.data) return <div>Not Found</div>;
+  if (!data?.data || !mine?.data) return <div>Not Found</div>;
 
   return (
     <div>
       <Spacing heightGap={20} />
       <Title text="유니온 기여하기" />
       <Spacing heightGap={5} />
-      <Input isOnlyNumber onChange={onInputChange} />
+      <Input isOnlyNumber value={amount} onChange={onInputChange} autoFocus />
       <ErrorMsg text={error?.message} />
       <Spacing heightGap={25} />
       <div css={leftAlignStyle}>
         <DonateButton
           targetUnion={data.data.id}
-          amount={amount}
-          onValidatedWhenClick={args => setError(args)}
+          amount={Number(amount)}
+          onValidatedWhenClick={(args) => setError(args)}
+          onSuccess={refetch}
         />
       </div>
     </div>

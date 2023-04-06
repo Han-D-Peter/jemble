@@ -1,4 +1,4 @@
-import { useGetMe } from "@/domains/query-hook/queries/users";
+import { useMe } from "@/domains/query-hook/queries/users";
 import DisplayPoint from "@/domains/shared/component/DisplayPoint";
 import Spacing from "@/domains/shared/component/Spacing";
 import SubTitle from "@/domains/shared/component/SubTitle";
@@ -9,7 +9,7 @@ import TransferAccessButton from "../components/TransferAccessButton";
 interface MyAccountProps {}
 
 export default function MyAccount({}: MyAccountProps) {
-  const { data } = useGetMe();
+  const { data } = useMe();
 
   if (!data?.data) return <div>Not Found</div>;
 

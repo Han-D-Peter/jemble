@@ -1,0 +1,1 @@
+export const TIME_ATTACK_DIFFICULTY = 1;

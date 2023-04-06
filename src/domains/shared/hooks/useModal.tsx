@@ -1,5 +1,5 @@
 import { useOverlay } from "@toss/use-overlay";
-import { ComponentProps, MouseEvent, TouchEvent, useRef } from "react";
+import { ComponentProps, MouseEvent, useRef } from "react";
 import SuspensableBox from "@/domains/shared/component/layout/SuspensableBox";
 import DefaultModal from "../component/layout/DefaultModal";
 import { useOnClickOutside } from "./useOnClickOutside";
@@ -13,7 +13,7 @@ export default function useModal() {
   });
 
   const openModal = (props: ComponentProps<typeof SuspensableBox>) =>
-    new Promise<boolean>(resolve => {
+    new Promise<boolean>((resolve) => {
       overlay.open(({ isOpen, close }) => {
         return (
           <>

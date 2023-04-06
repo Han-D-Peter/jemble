@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import RequestRow from "@/domains/shared/component/RequestRow";
-import { useGetUser } from "@/domains/query-hook/queries/users";
+import { useUser } from "@/domains/query-hook/queries/users";
 
 interface RequestFriendTransactionRowProps {
   hostId: string;
@@ -13,7 +13,7 @@ export default function RequestFriendTransactionRow({
   description,
   icon,
 }: RequestFriendTransactionRowProps) {
-  const { data } = useGetUser(hostId);
+  const { data } = useUser(hostId);
 
   if (!data?.data) return <div>Not Found</div>;
   return (

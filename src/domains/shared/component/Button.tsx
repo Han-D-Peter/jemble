@@ -7,6 +7,7 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   size?: "lg" | "md" | "sm";
   outline?: boolean;
   color?: Color;
+  fullWidth?: boolean;
 };
 
 const defaultButtonStyle = css`
@@ -27,6 +28,7 @@ export default function Button({
   outline = false,
   color = "#4B7FF0",
   children,
+  fullWidth,
   ...args
 }: ButtonProps) {
   const buttonStyle = useMemo(
@@ -49,24 +51,24 @@ export default function Button({
     return css`
       ${size === "lg" &&
       css`
-        width: 144px;
+        width: ${fullWidth ? "100%" : "144px"};
         height: 47px;
         font-size: 18px;
       `}
       ${size === "md" &&
       css`
-        width: 105px;
+        width: ${fullWidth ? "100%" : "105px"};
         height: 26px;
         font-size: 13px;
       `}
       ${size === "sm" &&
       css`
-        width: 63px;
+        width: ${fullWidth ? "100%" : "63px"};
         height: 20px;
         font-size: 11px;
       `}
     `;
-  }, [size]);
+  }, [size, fullWidth]);
   return (
     <button css={[defaultButtonStyle, buttonStyle, buttonSizeStyle]} {...args}>
       {children}

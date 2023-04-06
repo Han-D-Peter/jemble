@@ -14,24 +14,34 @@ export default function SignIn({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <DefaultLayout>
-      {Object.values(providers).map((provider) => (
-        <div key={provider.name}>
-          <button
-            css={(theme) => css`
-              border: 0;
-              background: ${theme.background.default};
-            `}
-            onClick={() => signIn(provider.id)}
-          >
-            <Image
-              src="/images/naver_login_banner.png"
-              width={300}
-              height={82}
-              alt="네이버 로그인 배너"
-            />
-          </button>
-        </div>
-      ))}
+      <div
+        css={css`
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        `}
+      >
+        {Object.values(providers).map(provider => (
+          <div key={provider.name}>
+            <button
+              css={theme => css`
+                border: 0;
+                background: ${theme.background.default};
+              `}
+              onClick={() => signIn(provider.id)}
+            >
+              <Image
+                src="/images/naver_login_banner.png"
+                width={300}
+                height={82}
+                alt="네이버 로그인 배너"
+              />
+            </button>
+          </div>
+        ))}
+      </div>
     </DefaultLayout>
   );
 }

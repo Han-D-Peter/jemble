@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
-import ProfileRow from "@/domains/shared/component/ProfileRow";
-import { useGetUser } from "@/domains/query-hook/queries/users";
+import ProfileRow from "@/domains/shared/component/StatusRow";
+import { useUser } from "@/domains/query-hook/queries/users";
 
 interface TransferTransactionRowProps {
   hostId: string;
@@ -13,7 +13,7 @@ export default function TransferTransactionRow({
   point,
   icon,
 }: TransferTransactionRowProps) {
-  const { data } = useGetUser(hostId);
+  const { data } = useUser(hostId);
 
   if (!data?.data) return <div>Not Found</div>;
   return (
