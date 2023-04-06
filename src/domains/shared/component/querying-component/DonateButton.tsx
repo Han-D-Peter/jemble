@@ -9,14 +9,20 @@ interface DonateButtonProps {
   targetUnion: ID;
   amount: number;
   onValidatedWhenClick?: ({ status, message }: any) => void;
+  onSuccess?: () => void;
+  onError?: () => void;
+  onMutate?: () => void;
 }
 
 export default function DonateButton({
   targetUnion,
   amount,
-  onValidatedWhenClick = args => {
+  onValidatedWhenClick = (args) => {
     console.log(args);
   },
+  onSuccess,
+  onError,
+  onMutate,
 }: DonateButtonProps) {
   const { mutate, isLoading } = useTransferPointToUnionMutation();
   const queryClient = useQueryClient();
@@ -31,10 +37,16 @@ export default function DonateButton({
         onSuccess: () => {
           queryClient.invalidateQueries({ queryKey: ["me"] });
           queryClient.invalidateQueries({ queryKey: ["myUnion"] });
+          if (onSuccess) {
+            onSuccess();
+          }
         },
         onError: async (error: any) => {
           const response = await error.response.json();
           onValidatedWhenClick(response);
+          if (onError) {
+            onError();
+          }
         },
       }
     );
