@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent, Suspense, useRef, useState } from "react";
 import { css } from "@emotion/react";
 import Input from "@/domains/shared/component/Input";
 import Box from "@/domains/shared/component/layout/Box";
@@ -7,10 +7,11 @@ import SubTitle from "@/domains/shared/component/SubTitle";
 import Timer from "@/domains/shared/component/Timer";
 import TimerGameBox from "./TimerGameBox";
 import { useMe } from "@/domains/query-hook/queries/users";
+import SpinnerBox from "@/domains/shared/component/SpinnerBox";
 
 export default function GameBox() {
   const betNumberRef = useRef<HTMLInputElement>(null);
-  const [betAmount, setBetAmount] = useState<string>("1000");
+  const [betAmount, setBetAmount] = useState<string>("");
   const { data } = useMe();
 
   if (!data?.data) return <h1>Not Found</h1>;
@@ -18,12 +19,16 @@ export default function GameBox() {
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const userPoint = data?.data?.me.points as number;
     const value = e.target.value;
-    if (userPoint < Number(e.target.value)) {
+    if (userPoint < +e.target.value) {
       alert("베팅금액이 보유금액을 초과합니다.");
       setBetAmount(String(userPoint));
       return;
     }
     setBetAmount(value.replace(/[^\d]/g, ""));
+  };
+
+  const betAmountValidate = (amount: string) => {
+    setBetAmount(amount);
   };
 
   return (
@@ -32,8 +37,14 @@ export default function GameBox() {
         width: 100%;
       `}
     >
-      <Timer decimal={1}>
-        <TimerGameBox betAmount={betAmount} />
+      <Timer decimal={2}>
+        <Suspense fallback={<SpinnerBox />}>
+          <TimerGameBox
+            betAmount={+betAmount}
+            userPoints={data.data.me.points}
+            betAmountValidate={betAmountValidate}
+          />
+        </Suspense>
       </Timer>
       <Spacing heightGap={20} />
       <Box>
