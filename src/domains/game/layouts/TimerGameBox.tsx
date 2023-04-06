@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useDidUpdate } from "@toss/react";
 import { css } from "@emotion/react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useGameMutation } from "@/domains/query-hook/queries/game";
@@ -10,18 +11,28 @@ import TimerControl from "./TimerControl";
 import Title from "@/domains/shared/component/Title";
 
 interface TimerGameBoxProps {
-  betAmount: string;
+  betAmount: number;
+  userPoints: number;
+  betAmountValidate: (amount: string) => void;
 }
 
-export default function TimerGameBox({ betAmount }: TimerGameBoxProps) {
+export default function TimerGameBox({
+  betAmount,
+  userPoints,
+  betAmountValidate,
+}: TimerGameBoxProps) {
   const numberedBetAmount = Number(betAmount);
-
+  const [isMutating, setIsMutating] = useState(false);
   const [isFailed, setIsFailed] = useState(false);
   const { isProcessing, currentTime, isReady } = useTimer();
   const queryClient = useQueryClient();
-  const { mutate } = useGameMutation();
+  const { mutate } = useGameMutation({
+    onMutate: () => {
+      setIsMutating(true);
+    },
+  });
 
-  useEffect(() => {
+  useDidUpdate(() => {
     if (!isProcessing && currentTime === 10.0) {
       setIsFailed(false);
       mutate(
@@ -29,6 +40,7 @@ export default function TimerGameBox({ betAmount }: TimerGameBoxProps) {
         {
           onSettled: () => {
             queryClient.refetchQueries(["me"]);
+            setIsMutating(false);
           },
         }
       );
@@ -38,8 +50,15 @@ export default function TimerGameBox({ betAmount }: TimerGameBoxProps) {
       mutate(
         { result: "lose", amount: numberedBetAmount },
         {
+          onSuccess: () => {
+            const netPoints = userPoints - betAmount;
+            if (netPoints === 0) {
+              betAmountValidate("");
+            }
+          },
           onSettled: () => {
             queryClient.refetchQueries(["me"]);
+            setIsMutating(false);
           },
         }
       );
@@ -71,10 +90,12 @@ export default function TimerGameBox({ betAmount }: TimerGameBoxProps) {
       )}
       <TimerDisplay />
       <Spacing heightGap={20} />
-      {numberedBetAmount >= 1000 ? (
+      {numberedBetAmount >= 100 && !isMutating ? (
         <TimerControl isFailed={isFailed} />
       ) : (
-        <Title text="1000포인트 이상 베팅해주세요." />
+        <Title
+          text={isMutating ? "처리중..." : "100포인트 이상 베팅해주세요."}
+        />
       )}
       <Spacing heightGap={20} />
     </Box>

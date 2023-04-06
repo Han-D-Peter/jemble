@@ -45,7 +45,7 @@ async function handler(
           id: session.user.id,
         },
         data: {
-          points: { increment: Number(amount) * 4 },
+          points: { increment: Number(amount) * 100 },
         },
       });
       return res.status(200).json({
