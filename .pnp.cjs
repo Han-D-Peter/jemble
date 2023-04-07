@@ -50,7 +50,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@yarnpkg/pnpify", "npm:4.0.0-rc.40"],\
             ["eslint", "npm:8.35.0"],\
             ["got", "npm:12.6.0"],\
-            ["ky", "npm:0.33.2"],\
+            ["ky", "npm:0.33.3"],\
             ["lodash", "npm:4.17.21"],\
             ["lodash-es", "npm:4.17.21"],\
             ["next", "virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:13.2.3"],\
@@ -5401,7 +5401,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@yarnpkg/pnpify", "npm:4.0.0-rc.40"],\
             ["eslint", "npm:8.35.0"],\
             ["got", "npm:12.6.0"],\
-            ["ky", "npm:0.33.2"],\
+            ["ky", "npm:0.33.3"],\
             ["lodash", "npm:4.17.21"],\
             ["lodash-es", "npm:4.17.21"],\
             ["next", "virtual:b5df55196569863a072b9fae548578f506ff9f9b358b1f31e0573809da17e0a4fcd9740b76f88b13a7a114fe95ad9140afa73fdfd06c1332cd4c951a26ff62d4#npm:13.2.3"],\
@@ -5534,10 +5534,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["ky", [\
-        ["npm:0.33.2", {\
-          "packageLocation": "./.yarn/cache/ky-npm-0.33.2-962f722db7-bb5b1685b7.zip/node_modules/ky/",\
+        ["npm:0.33.3", {\
+          "packageLocation": "./.yarn/cache/ky-npm-0.33.3-7d1cbfa9f4-d1869e1f33.zip/node_modules/ky/",\
           "packageDependencies": [\
-            ["ky", "npm:0.33.2"]\
+            ["ky", "npm:0.33.3"]\
           ],\
           "linkType": "HARD"\
         }]\

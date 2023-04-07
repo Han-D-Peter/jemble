@@ -52,7 +52,7 @@ class UnionRepository {
   }
 
   searchUnions(name: string): Promise<NetworkResult<CheckUnionsResponse>> {
-    return ky.get(`/api/unions/search?keyword=${name}`).json();
+    return requestInstance.get(`/api/unions/search?keyword=${name}`);
   }
 }
 
