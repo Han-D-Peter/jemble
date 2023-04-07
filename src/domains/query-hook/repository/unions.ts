@@ -36,9 +36,7 @@ class UnionRepository {
   createUnion(
     payload: CreateUnionPayload
   ): Promise<NetworkResult<CreateUnionRespnse>> {
-    return requestInstance.post<CreateUnionRespnse>(`/api/unions/`, {
-      json: payload,
-    });
+    return requestInstance.post<CreateUnionRespnse>(`/api/unions/`, payload);
   }
 
   getUnionRank(name: string): Promise<NetworkResult<CheckUnionRankResponse>> {

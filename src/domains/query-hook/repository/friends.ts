@@ -18,7 +18,7 @@ class FriendRepository {
     payload: CreateFriendRequest
   ): Promise<NetworkResult<CreateFriendResponse>> {
     return requestInstance.post<CreateFriendResponse>("/api/friends", {
-      json: { userId: payload.friendId },
+      userId: payload.friendId,
     });
   }
 
