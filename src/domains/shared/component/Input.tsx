@@ -60,6 +60,14 @@ function Input(
     setInputValue(value.replace(/[^\d]/g, ""));
   };
 
+  const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+    if (onChange) {
+      onChange(e);
+    }
+    const value = e.target.value;
+    setInputValue(value);
+  };
+
   useLayoutEffect(() => {
     if (autoFocus && inputRef.current) {
       inputRef.current.focus();
@@ -78,7 +86,12 @@ function Input(
       />
     );
   return (
-    <input ref={ref} css={[defaultInputSytle, invalidInputStyle]} {...args} />
+    <input
+      ref={ref}
+      css={[defaultInputSytle, invalidInputStyle]}
+      onChange={onChangeInput}
+      {...args}
+    />
   );
 }
 
