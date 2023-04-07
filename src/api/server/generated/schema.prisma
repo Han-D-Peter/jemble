@@ -48,7 +48,7 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   profile_image String?
-  points        Int       @default(0)
+  points        BigInt       @default(0)
   unionId       String?
   doneTime      DateTime?
   union         Union?    @relation(fields: [unionId], references: [id], onDelete: SetNull)
@@ -74,7 +74,7 @@ model Union {
   id     String @id @default(cuid())
   name   String @unique
   union_image String?
-  points Int @default(0)
+  points BigInt @default(0)
   user   User[]
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt

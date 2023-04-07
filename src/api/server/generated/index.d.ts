@@ -50,7 +50,7 @@ export type User = {
   email: string | null
   emailVerified: Date | null
   profile_image: string | null
-  points: number
+  points: bigint
   unionId: string | null
   doneTime: Date | null
   createdAt: Date
@@ -75,7 +75,7 @@ export type Union = {
   id: string
   name: string
   union_image: string | null
-  points: number
+  points: bigint
   createdAt: Date
   updatedAt: Date
 }
@@ -3046,7 +3046,7 @@ export namespace Prisma {
   }
 
   export type UserSumAggregateOutputType = {
-    points: number | null
+    points: bigint | null
   }
 
   export type UserMinAggregateOutputType = {
@@ -3055,7 +3055,7 @@ export namespace Prisma {
     email: string | null
     emailVerified: Date | null
     profile_image: string | null
-    points: number | null
+    points: bigint | null
     unionId: string | null
     doneTime: Date | null
     createdAt: Date | null
@@ -3068,7 +3068,7 @@ export namespace Prisma {
     email: string | null
     emailVerified: Date | null
     profile_image: string | null
-    points: number | null
+    points: bigint | null
     unionId: string | null
     doneTime: Date | null
     createdAt: Date | null
@@ -3231,7 +3231,7 @@ export namespace Prisma {
     email: string | null
     emailVerified: Date | null
     profile_image: string | null
-    points: number
+    points: bigint
     unionId: string | null
     doneTime: Date | null
     createdAt: Date
@@ -5029,14 +5029,14 @@ export namespace Prisma {
   }
 
   export type UnionSumAggregateOutputType = {
-    points: number | null
+    points: bigint | null
   }
 
   export type UnionMinAggregateOutputType = {
     id: string | null
     name: string | null
     union_image: string | null
-    points: number | null
+    points: bigint | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -5045,7 +5045,7 @@ export namespace Prisma {
     id: string | null
     name: string | null
     union_image: string | null
-    points: number | null
+    points: bigint | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -5188,7 +5188,7 @@ export namespace Prisma {
     id: string
     name: string
     union_image: string | null
-    points: number
+    points: bigint
     createdAt: Date
     updatedAt: Date
     _count: UnionCountAggregateOutputType | null
@@ -10052,7 +10052,7 @@ export namespace Prisma {
     email?: StringNullableFilter | string | null
     emailVerified?: DateTimeNullableFilter | Date | string | null
     profile_image?: StringNullableFilter | string | null
-    points?: IntFilter | number
+    points?: BigIntFilter | bigint | number
     unionId?: StringNullableFilter | string | null
     doneTime?: DateTimeNullableFilter | Date | string | null
     createdAt?: DateTimeFilter | Date | string
@@ -10114,7 +10114,7 @@ export namespace Prisma {
     email?: StringNullableWithAggregatesFilter | string | null
     emailVerified?: DateTimeNullableWithAggregatesFilter | Date | string | null
     profile_image?: StringNullableWithAggregatesFilter | string | null
-    points?: IntWithAggregatesFilter | number
+    points?: BigIntWithAggregatesFilter | bigint | number
     unionId?: StringNullableWithAggregatesFilter | string | null
     doneTime?: DateTimeNullableWithAggregatesFilter | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter | Date | string
@@ -10166,7 +10166,7 @@ export namespace Prisma {
     id?: StringFilter | string
     name?: StringFilter | string
     union_image?: StringNullableFilter | string | null
-    points?: IntFilter | number
+    points?: BigIntFilter | bigint | number
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
     user?: UserListRelationFilter
@@ -10208,7 +10208,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter | string
     name?: StringWithAggregatesFilter | string
     union_image?: StringNullableWithAggregatesFilter | string | null
-    points?: IntWithAggregatesFilter | number
+    points?: BigIntWithAggregatesFilter | bigint | number
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
   }
@@ -10617,7 +10617,7 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     profile_image?: string | null
-    points?: number
+    points?: bigint | number
     doneTime?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10634,7 +10634,7 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     profile_image?: string | null
-    points?: number
+    points?: bigint | number
     unionId?: string | null
     doneTime?: Date | string | null
     createdAt?: Date | string
@@ -10651,7 +10651,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profile_image?: NullableStringFieldUpdateOperationsInput | string | null
-    points?: IntFieldUpdateOperationsInput | number
+    points?: BigIntFieldUpdateOperationsInput | bigint | number
     doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10668,7 +10668,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profile_image?: NullableStringFieldUpdateOperationsInput | string | null
-    points?: IntFieldUpdateOperationsInput | number
+    points?: BigIntFieldUpdateOperationsInput | bigint | number
     unionId?: NullableStringFieldUpdateOperationsInput | string | null
     doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10685,7 +10685,7 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     profile_image?: string | null
-    points?: number
+    points?: bigint | number
     unionId?: string | null
     doneTime?: Date | string | null
     createdAt?: Date | string
@@ -10698,7 +10698,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profile_image?: NullableStringFieldUpdateOperationsInput | string | null
-    points?: IntFieldUpdateOperationsInput | number
+    points?: BigIntFieldUpdateOperationsInput | bigint | number
     doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10710,7 +10710,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profile_image?: NullableStringFieldUpdateOperationsInput | string | null
-    points?: IntFieldUpdateOperationsInput | number
+    points?: BigIntFieldUpdateOperationsInput | bigint | number
     unionId?: NullableStringFieldUpdateOperationsInput | string | null
     doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10763,7 +10763,7 @@ export namespace Prisma {
     id?: string
     name: string
     union_image?: string | null
-    points?: number
+    points?: bigint | number
     createdAt?: Date | string
     updatedAt?: Date | string
     user?: UserCreateNestedManyWithoutUnionInput
@@ -10773,7 +10773,7 @@ export namespace Prisma {
     id?: string
     name: string
     union_image?: string | null
-    points?: number
+    points?: bigint | number
     createdAt?: Date | string
     updatedAt?: Date | string
     user?: UserUncheckedCreateNestedManyWithoutUnionInput
@@ -10783,7 +10783,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     union_image?: NullableStringFieldUpdateOperationsInput | string | null
-    points?: IntFieldUpdateOperationsInput | number
+    points?: BigIntFieldUpdateOperationsInput | bigint | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateManyWithoutUnionNestedInput
@@ -10793,7 +10793,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     union_image?: NullableStringFieldUpdateOperationsInput | string | null
-    points?: IntFieldUpdateOperationsInput | number
+    points?: BigIntFieldUpdateOperationsInput | bigint | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUncheckedUpdateManyWithoutUnionNestedInput
@@ -10803,7 +10803,7 @@ export namespace Prisma {
     id?: string
     name: string
     union_image?: string | null
-    points?: number
+    points?: bigint | number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -10812,7 +10812,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     union_image?: NullableStringFieldUpdateOperationsInput | string | null
-    points?: IntFieldUpdateOperationsInput | number
+    points?: BigIntFieldUpdateOperationsInput | bigint | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -10821,7 +10821,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     union_image?: NullableStringFieldUpdateOperationsInput | string | null
-    points?: IntFieldUpdateOperationsInput | number
+    points?: BigIntFieldUpdateOperationsInput | bigint | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11364,15 +11364,15 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter | Date | string | null
   }
 
-  export type IntFilter = {
-    equals?: number
-    in?: Enumerable<number>
-    notIn?: Enumerable<number>
-    lt?: number
-    lte?: number
-    gt?: number
-    gte?: number
-    not?: NestedIntFilter | number
+  export type BigIntFilter = {
+    equals?: bigint | number
+    in?: Enumerable<bigint> | Enumerable<number>
+    notIn?: Enumerable<bigint> | Enumerable<number>
+    lt?: bigint | number
+    lte?: bigint | number
+    gt?: bigint | number
+    gte?: bigint | number
+    not?: NestedBigIntFilter | bigint | number
   }
 
   export type UnionRelationFilter = {
@@ -11471,20 +11471,20 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter
   }
 
-  export type IntWithAggregatesFilter = {
-    equals?: number
-    in?: Enumerable<number>
-    notIn?: Enumerable<number>
-    lt?: number
-    lte?: number
-    gt?: number
-    gte?: number
-    not?: NestedIntWithAggregatesFilter | number
+  export type BigIntWithAggregatesFilter = {
+    equals?: bigint | number
+    in?: Enumerable<bigint> | Enumerable<number>
+    notIn?: Enumerable<bigint> | Enumerable<number>
+    lt?: bigint | number
+    lte?: bigint | number
+    gt?: bigint | number
+    gte?: bigint | number
+    not?: NestedBigIntWithAggregatesFilter | bigint | number
     _count?: NestedIntFilter
     _avg?: NestedFloatFilter
-    _sum?: NestedIntFilter
-    _min?: NestedIntFilter
-    _max?: NestedIntFilter
+    _sum?: NestedBigIntFilter
+    _min?: NestedBigIntFilter
+    _max?: NestedBigIntFilter
   }
 
   export type VerificationTokenIdentifierTokenCompoundUniqueInput = {
@@ -11545,6 +11545,17 @@ export namespace Prisma {
     points?: SortOrder
   }
 
+  export type IntFilter = {
+    equals?: number
+    in?: Enumerable<number>
+    notIn?: Enumerable<number>
+    lt?: number
+    lte?: number
+    gt?: number
+    gte?: number
+    not?: NestedIntFilter | number
+  }
+
   export type ZerosumCountOrderByAggregateInput = {
     id?: SortOrder
     numberOne?: SortOrder
@@ -11588,6 +11599,22 @@ export namespace Prisma {
     numberOne?: SortOrder
     numberTwo?: SortOrder
     numberThree?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter = {
+    equals?: number
+    in?: Enumerable<number>
+    notIn?: Enumerable<number>
+    lt?: number
+    lte?: number
+    gt?: number
+    gte?: number
+    not?: NestedIntWithAggregatesFilter | number
+    _count?: NestedIntFilter
+    _avg?: NestedFloatFilter
+    _sum?: NestedIntFilter
+    _min?: NestedIntFilter
+    _max?: NestedIntFilter
   }
 
   export type TrasferTransactionCountOrderByAggregateInput = {
@@ -11824,12 +11851,12 @@ export namespace Prisma {
     set?: Date | string | null
   }
 
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
+  export type BigIntFieldUpdateOperationsInput = {
+    set?: bigint | number
+    increment?: bigint | number
+    decrement?: bigint | number
+    multiply?: bigint | number
+    divide?: bigint | number
   }
 
   export type UnionUpdateOneWithoutUserNestedInput = {
@@ -11992,6 +12019,14 @@ export namespace Prisma {
     deleteMany?: Enumerable<UserScalarWhereInput>
   }
 
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type NestedStringFilter = {
     equals?: string
     in?: Enumerable<string>
@@ -12139,6 +12174,17 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter | Date | string | null
   }
 
+  export type NestedBigIntFilter = {
+    equals?: bigint | number
+    in?: Enumerable<bigint> | Enumerable<number>
+    notIn?: Enumerable<bigint> | Enumerable<number>
+    lt?: bigint | number
+    lte?: bigint | number
+    gt?: bigint | number
+    gte?: bigint | number
+    not?: NestedBigIntFilter | bigint | number
+  }
+
   export type NestedDateTimeNullableWithAggregatesFilter = {
     equals?: Date | string | null
     in?: Enumerable<Date> | Enumerable<string> | null
@@ -12151,6 +12197,33 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter
     _min?: NestedDateTimeNullableFilter
     _max?: NestedDateTimeNullableFilter
+  }
+
+  export type NestedBigIntWithAggregatesFilter = {
+    equals?: bigint | number
+    in?: Enumerable<bigint> | Enumerable<number>
+    notIn?: Enumerable<bigint> | Enumerable<number>
+    lt?: bigint | number
+    lte?: bigint | number
+    gt?: bigint | number
+    gte?: bigint | number
+    not?: NestedBigIntWithAggregatesFilter | bigint | number
+    _count?: NestedIntFilter
+    _avg?: NestedFloatFilter
+    _sum?: NestedBigIntFilter
+    _min?: NestedBigIntFilter
+    _max?: NestedBigIntFilter
+  }
+
+  export type NestedFloatFilter = {
+    equals?: number
+    in?: Enumerable<number>
+    notIn?: Enumerable<number>
+    lt?: number
+    lte?: number
+    gt?: number
+    gte?: number
+    not?: NestedFloatFilter | number
   }
 
   export type NestedIntWithAggregatesFilter = {
@@ -12169,24 +12242,13 @@ export namespace Prisma {
     _max?: NestedIntFilter
   }
 
-  export type NestedFloatFilter = {
-    equals?: number
-    in?: Enumerable<number>
-    notIn?: Enumerable<number>
-    lt?: number
-    lte?: number
-    gt?: number
-    gte?: number
-    not?: NestedFloatFilter | number
-  }
-
   export type UserCreateWithoutAccountsInput = {
     id?: string
     name?: string | null
     email?: string | null
     emailVerified?: Date | string | null
     profile_image?: string | null
-    points?: number
+    points?: bigint | number
     doneTime?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12202,7 +12264,7 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     profile_image?: string | null
-    points?: number
+    points?: bigint | number
     unionId?: string | null
     doneTime?: Date | string | null
     createdAt?: Date | string
@@ -12228,7 +12290,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profile_image?: NullableStringFieldUpdateOperationsInput | string | null
-    points?: IntFieldUpdateOperationsInput | number
+    points?: BigIntFieldUpdateOperationsInput | bigint | number
     doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12244,7 +12306,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profile_image?: NullableStringFieldUpdateOperationsInput | string | null
-    points?: IntFieldUpdateOperationsInput | number
+    points?: BigIntFieldUpdateOperationsInput | bigint | number
     unionId?: NullableStringFieldUpdateOperationsInput | string | null
     doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12260,7 +12322,7 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     profile_image?: string | null
-    points?: number
+    points?: bigint | number
     doneTime?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12276,7 +12338,7 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     profile_image?: string | null
-    points?: number
+    points?: bigint | number
     unionId?: string | null
     doneTime?: Date | string | null
     createdAt?: Date | string
@@ -12302,7 +12364,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profile_image?: NullableStringFieldUpdateOperationsInput | string | null
-    points?: IntFieldUpdateOperationsInput | number
+    points?: BigIntFieldUpdateOperationsInput | bigint | number
     doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12318,7 +12380,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profile_image?: NullableStringFieldUpdateOperationsInput | string | null
-    points?: IntFieldUpdateOperationsInput | number
+    points?: BigIntFieldUpdateOperationsInput | bigint | number
     unionId?: NullableStringFieldUpdateOperationsInput | string | null
     doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12332,7 +12394,7 @@ export namespace Prisma {
     id?: string
     name: string
     union_image?: string | null
-    points?: number
+    points?: bigint | number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -12341,7 +12403,7 @@ export namespace Prisma {
     id?: string
     name: string
     union_image?: string | null
-    points?: number
+    points?: bigint | number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -12357,7 +12419,7 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     profile_image?: string | null
-    points?: number
+    points?: bigint | number
     doneTime?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12373,7 +12435,7 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     profile_image?: string | null
-    points?: number
+    points?: bigint | number
     unionId?: string | null
     doneTime?: Date | string | null
     createdAt?: Date | string
@@ -12394,7 +12456,7 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     profile_image?: string | null
-    points?: number
+    points?: bigint | number
     doneTime?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12410,7 +12472,7 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     profile_image?: string | null
-    points?: number
+    points?: bigint | number
     unionId?: string | null
     doneTime?: Date | string | null
     createdAt?: Date | string
@@ -12494,7 +12556,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     union_image?: NullableStringFieldUpdateOperationsInput | string | null
-    points?: IntFieldUpdateOperationsInput | number
+    points?: BigIntFieldUpdateOperationsInput | bigint | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -12503,7 +12565,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     union_image?: NullableStringFieldUpdateOperationsInput | string | null
-    points?: IntFieldUpdateOperationsInput | number
+    points?: BigIntFieldUpdateOperationsInput | bigint | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -12533,7 +12595,7 @@ export namespace Prisma {
     email?: StringNullableFilter | string | null
     emailVerified?: DateTimeNullableFilter | Date | string | null
     profile_image?: StringNullableFilter | string | null
-    points?: IntFilter | number
+    points?: BigIntFilter | bigint | number
     unionId?: StringNullableFilter | string | null
     doneTime?: DateTimeNullableFilter | Date | string | null
     createdAt?: DateTimeFilter | Date | string
@@ -12622,7 +12684,7 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     profile_image?: string | null
-    points?: number
+    points?: bigint | number
     doneTime?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12638,7 +12700,7 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     profile_image?: string | null
-    points?: number
+    points?: bigint | number
     doneTime?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12700,7 +12762,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profile_image?: NullableStringFieldUpdateOperationsInput | string | null
-    points?: IntFieldUpdateOperationsInput | number
+    points?: BigIntFieldUpdateOperationsInput | bigint | number
     doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12716,7 +12778,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profile_image?: NullableStringFieldUpdateOperationsInput | string | null
-    points?: IntFieldUpdateOperationsInput | number
+    points?: BigIntFieldUpdateOperationsInput | bigint | number
     unionId?: NullableStringFieldUpdateOperationsInput | string | null
     doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12732,7 +12794,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profile_image?: NullableStringFieldUpdateOperationsInput | string | null
-    points?: IntFieldUpdateOperationsInput | number
+    points?: BigIntFieldUpdateOperationsInput | bigint | number
     unionId?: NullableStringFieldUpdateOperationsInput | string | null
     doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12745,7 +12807,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profile_image?: NullableStringFieldUpdateOperationsInput | string | null
-    points?: IntFieldUpdateOperationsInput | number
+    points?: BigIntFieldUpdateOperationsInput | bigint | number
     doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12761,7 +12823,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profile_image?: NullableStringFieldUpdateOperationsInput | string | null
-    points?: IntFieldUpdateOperationsInput | number
+    points?: BigIntFieldUpdateOperationsInput | bigint | number
     unionId?: NullableStringFieldUpdateOperationsInput | string | null
     doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12777,7 +12839,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profile_image?: NullableStringFieldUpdateOperationsInput | string | null
-    points?: IntFieldUpdateOperationsInput | number
+    points?: BigIntFieldUpdateOperationsInput | bigint | number
     unionId?: NullableStringFieldUpdateOperationsInput | string | null
     doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12850,7 +12912,7 @@ export namespace Prisma {
     email?: string | null
     emailVerified?: Date | string | null
     profile_image?: string | null
-    points?: number
+    points?: bigint | number
     doneTime?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12862,7 +12924,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profile_image?: NullableStringFieldUpdateOperationsInput | string | null
-    points?: IntFieldUpdateOperationsInput | number
+    points?: BigIntFieldUpdateOperationsInput | bigint | number
     doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12878,7 +12940,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profile_image?: NullableStringFieldUpdateOperationsInput | string | null
-    points?: IntFieldUpdateOperationsInput | number
+    points?: BigIntFieldUpdateOperationsInput | bigint | number
     doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12894,7 +12956,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profile_image?: NullableStringFieldUpdateOperationsInput | string | null
-    points?: IntFieldUpdateOperationsInput | number
+    points?: BigIntFieldUpdateOperationsInput | bigint | number
     doneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
