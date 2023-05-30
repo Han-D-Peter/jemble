@@ -14,7 +14,7 @@ export default function MyAccount({}: MyAccountProps) {
   if (!data?.data) return <div>Not Found</div>;
 
   return (
-    <>
+    <section>
       <Spacing heightGap={15} />
       <SubTitle text="보유 포인트" />
       <DisplayPoint point={data.data.me.points} />
@@ -30,6 +30,6 @@ export default function MyAccount({}: MyAccountProps) {
         <TransferAccessButton />
       </div>
       <Spacing heightGap={15} />
-    </>
+    </section>
   );
 }

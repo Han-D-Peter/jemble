@@ -3,7 +3,7 @@ import Image from "next/image";
 import { commaizeNumber } from "@toss/utils";
 import { ReactElement } from "react";
 
-interface ProfileRowProps {
+interface StatusRowProps {
   image: string | null;
   name: string;
   point: number;
@@ -34,12 +34,12 @@ const iconBoxStyle = css`
   margin-left: 10px;
 `;
 
-export default function ProfileRow({
+export default function StatusRow({
   image,
   name,
   point,
   icon,
-}: ProfileRowProps) {
+}: StatusRowProps) {
   return (
     <li>
       <div css={profileRowStyle}>

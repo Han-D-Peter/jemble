@@ -4,10 +4,10 @@ import GameIcon from "public/icons/CodeSandboxOutlined.svg";
 import NotiIcon from "public/icons/BellOutlined.svg";
 import UnionIcon from "public/icons/CrownOutlined.svg";
 import ProfileIcon from "public/icons/UserOutlined.svg";
-import GhostButton from "./GhostButton";
 import useRouting from "../hooks/useRouting";
-import IconWithText from "./IconWithText";
+import IconWithText from "./TextedIcon";
 import { useRouter } from "next/router";
+import Button from "./Button";
 
 export default function Navigation() {
   const moveTo = useRouting("push");
@@ -33,7 +33,7 @@ export default function Navigation() {
             `,
           ]}
         >
-          <GhostButton onClick={() => moveTo("/game")}>
+          <Button variant="clear" onClick={() => moveTo("/game")}>
             <IconWithText
               color={router.pathname === "/game" ? "#4B7FF0" : "#000000"}
               icon={
@@ -43,8 +43,8 @@ export default function Navigation() {
               }
               bottomText="Game"
             />
-          </GhostButton>
-          <GhostButton onClick={() => moveTo("/notification")}>
+          </Button>
+          <Button variant="clear" onClick={() => moveTo("/notification")}>
             <IconWithText
               color={
                 router.pathname === "/notification" ? "#4B7FF0" : "#000000"
@@ -58,8 +58,8 @@ export default function Navigation() {
               }
               bottomText="Noti"
             />
-          </GhostButton>
-          <GhostButton onClick={() => moveTo("/union")}>
+          </Button>
+          <Button variant="clear" onClick={() => moveTo("/union")}>
             <IconWithText
               color={router.pathname === "/union" ? "#4B7FF0" : "#000000"}
               icon={
@@ -69,8 +69,8 @@ export default function Navigation() {
               }
               bottomText="Union"
             />
-          </GhostButton>
-          <GhostButton onClick={() => moveTo("/")}>
+          </Button>
+          <Button variant="clear" onClick={() => moveTo("/")}>
             <IconWithText
               color={router.pathname === "/" ? "#4B7FF0" : "#000000"}
               icon={
@@ -80,7 +80,7 @@ export default function Navigation() {
               }
               bottomText="Profile"
             />
-          </GhostButton>
+          </Button>
         </nav>
       </section>
     </footer>

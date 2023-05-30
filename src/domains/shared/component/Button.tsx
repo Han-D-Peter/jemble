@@ -8,6 +8,7 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   outline?: boolean;
   color?: Color;
   fullWidth?: boolean;
+  variant?: "clear" | "solid";
 };
 
 const defaultButtonStyle = css`
@@ -29,6 +30,7 @@ export default function Button({
   color = "#4B7FF0",
   children,
   fullWidth,
+  variant = "solid",
   ...args
 }: ButtonProps) {
   const buttonStyle = useMemo(
@@ -69,8 +71,25 @@ export default function Button({
       `}
     `;
   }, [size, fullWidth]);
+
+  const buttonVariantStyle = useMemo(() => {
+    if (variant === "clear") {
+      return css`
+        background: none;
+        border: none;
+      `;
+    }
+  }, [variant]);
   return (
-    <button css={[defaultButtonStyle, buttonStyle, buttonSizeStyle]} {...args}>
+    <button
+      css={[
+        defaultButtonStyle,
+        buttonStyle,
+        buttonSizeStyle,
+        buttonVariantStyle,
+      ]}
+      {...args}
+    >
       {children}
     </button>
   );

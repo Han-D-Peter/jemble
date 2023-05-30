@@ -1,22 +1,27 @@
 import { Color } from "@/styles/sharedStyles";
 import { css } from "@emotion/react";
-import { ReactElement } from "react";
+import { ReactElement, useMemo } from "react";
 
-type IconWithTextProps = {
+type TextedIconProps = {
   bottomText: string;
   icon: ReactElement;
+  size?: number;
   color?: Color;
 };
 
-function IconWithText({
+function TextedIcon({
   bottomText,
   icon,
+  size = 16,
   color = "#000000",
-}: IconWithTextProps) {
-  const IconText = css`
-    font-size: 16px;
-    color: ${color};
-  `;
+}: TextedIconProps) {
+  const IconText = useMemo(
+    () => css`
+      font-size: ${size}px;
+      color: ${color};
+    `,
+    [size, color]
+  );
 
   return (
     <div css={IconContainer} aria-labelledby={bottomText}>
@@ -33,8 +38,4 @@ const IconContainer = css`
   flex-direction: column;
 `;
 
-const IconText = css`
-  font-size: 16px;
-`;
-
-export default IconWithText;
+export default TextedIcon;
